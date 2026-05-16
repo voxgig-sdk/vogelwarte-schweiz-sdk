@@ -1,0 +1,50 @@
+{
+  "existing": {
+    "species": {
+      "SPECIES00": {
+        "characteristic": {},
+        "common_name": {},
+        "conservation_status": "s52",
+        "distribution": {},
+        "observation_count": "s54",
+        "scientific_name": "s55",
+        "species_id": "SPECIES01",
+        "taxonomy": {}
+      },
+      "SPECIES01": {
+        "characteristic": {},
+        "common_name": {},
+        "conservation_status": "sa2",
+        "distribution": {},
+        "observation_count": "sa4",
+        "scientific_name": "sa5",
+        "species_id": "SPECIES01",
+        "taxonomy": {}
+      },
+      "SPECIES02": {
+        "characteristic": {},
+        "common_name": {},
+        "conservation_status": "sf2",
+        "distribution": {},
+        "observation_count": "sf4",
+        "scientific_name": "sf5",
+        "species_id": "SPECIES01",
+        "taxonomy": {}
+      }
+    }
+  },
+  "new": {
+    "species": {
+      "species_ref01": {
+        "characteristic": {},
+        "common_name": {},
+        "conservation_status": "s142",
+        "distribution": {},
+        "observation_count": "s144",
+        "scientific_name": "s145",
+        "species_id": "SPECIES01",
+        "taxonomy": {}
+      }
+    }
+  }
+}

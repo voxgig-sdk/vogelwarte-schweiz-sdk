@@ -1,0 +1,25 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: bird: {
+    path: "/api/birds": {
+      op: list: method: *GET
+    }
+    path: "/api/birds/{birdId}": {
+      rename: param: "birdId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: species: {
+    path: "/api/species": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.species`")|top
+    }
+  }
+
+}

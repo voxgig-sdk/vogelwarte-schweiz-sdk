@@ -1,0 +1,186 @@
+# Entity: bird
+
+main: kit: entity: bird: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "common_name_de"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "common_name_en"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "common_name_fr"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "common_name_it"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "conservation_status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "family"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "habitat"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "length"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "order"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "scientific_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "weight"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "wingspan"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "bird"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "search"
+                orig: "search"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/birds"
+          parts: [
+            "api"
+            "birds"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "offset"
+              "search"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "bird_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/birds/{birdId}"
+          parts: [
+            "api"
+            "birds"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              birdId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

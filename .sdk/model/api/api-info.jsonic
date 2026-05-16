@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Vogelwarte Schweiz"
+        url: "https://www.vogelwarte.ch/"
+      }
+      description: "Reverse-Engineered Vogel-Datenbank der Schweiz mit verschiedenen Endpoints - Bird Database API for Switzerland providing access to bird species information and data"
+      servers: [
+        {
+          description: "Production server"
+          url: "https://www.vogelwarte.ch"
+        }
+      ]
+      title: "Vogelwarte Schweiz"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

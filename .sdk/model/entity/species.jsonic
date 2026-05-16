@@ -1,0 +1,105 @@
+# Entity: species
+
+main: kit: entity: species: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "characteristic"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "common_name"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "conservation_status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "distribution"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "observation_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "scientific_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "species_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "taxonomy"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "species"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "family"
+                orig: "family"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "habitat"
+                orig: "habitat"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "status"
+                orig: "status"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/species"
+          parts: [
+            "api"
+            "species"
+          ]
+          select: {
+            exist: [
+              "family"
+              "habitat"
+              "status"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

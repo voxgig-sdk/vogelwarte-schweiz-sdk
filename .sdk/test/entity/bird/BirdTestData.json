@@ -1,0 +1,77 @@
+{
+  "existing": {
+    "bird": {
+      "BIRD00": {
+        "common_name_de": "s96",
+        "common_name_en": "s97",
+        "common_name_fr": "s98",
+        "common_name_it": "s99",
+        "conservation_status": "s9a",
+        "description": "s9b",
+        "family": "s9c",
+        "habitat": [],
+        "id": "BIRD00",
+        "image_url": "s9f",
+        "length": {},
+        "order": "sa1",
+        "scientific_name": "sa2",
+        "weight": {},
+        "wingspan": {}
+      },
+      "BIRD01": {
+        "common_name_de": "s12c",
+        "common_name_en": "s12d",
+        "common_name_fr": "s12e",
+        "common_name_it": "s12f",
+        "conservation_status": "s130",
+        "description": "s131",
+        "family": "s132",
+        "habitat": [],
+        "id": "BIRD01",
+        "image_url": "s135",
+        "length": {},
+        "order": "s137",
+        "scientific_name": "s138",
+        "weight": {},
+        "wingspan": {}
+      },
+      "BIRD02": {
+        "common_name_de": "s1c2",
+        "common_name_en": "s1c3",
+        "common_name_fr": "s1c4",
+        "common_name_it": "s1c5",
+        "conservation_status": "s1c6",
+        "description": "s1c7",
+        "family": "s1c8",
+        "habitat": [],
+        "id": "BIRD02",
+        "image_url": "s1cb",
+        "length": {},
+        "order": "s1cd",
+        "scientific_name": "s1ce",
+        "weight": {},
+        "wingspan": {}
+      }
+    }
+  },
+  "new": {
+    "bird": {
+      "bird_ref01": {
+        "common_name_de": "s258",
+        "common_name_en": "s259",
+        "common_name_fr": "s25a",
+        "common_name_it": "s25b",
+        "conservation_status": "s25c",
+        "description": "s25d",
+        "family": "s25e",
+        "habitat": [],
+        "image_url": "s261",
+        "length": {},
+        "order": "s263",
+        "scientific_name": "s264",
+        "weight": {},
+        "wingspan": {}
+      }
+    }
+  }
+}

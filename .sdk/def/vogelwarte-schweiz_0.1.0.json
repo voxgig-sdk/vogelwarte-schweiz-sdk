@@ -1,0 +1,484 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Vogelwarte Schweiz",
+    "description": "Reverse-Engineered Vogel-Datenbank der Schweiz mit verschiedenen Endpoints - Bird Database API for Switzerland providing access to bird species information and data",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Vogelwarte Schweiz",
+      "url": "https://www.vogelwarte.ch/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.vogelwarte.ch",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/api/birds": {
+      "get": {
+        "summary": "Get list of birds",
+        "description": "Retrieve a list of bird species from the Swiss bird database",
+        "operationId": "getBirds",
+        "tags": [
+          "Birds"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 100,
+              "minimum": 1,
+              "maximum": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Number of results to skip for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search term to filter bird species by name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of birds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Bird"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "description": "Total number of birds matching the query"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/birds/{birdId}": {
+      "get": {
+        "summary": "Get bird by ID",
+        "description": "Retrieve detailed information about a specific bird species by its ID",
+        "operationId": "getBirdById",
+        "tags": [
+          "Birds"
+        ],
+        "parameters": [
+          {
+            "name": "birdId",
+            "in": "path",
+            "description": "Unique identifier of the bird species",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with bird details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bird"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bird not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/species": {
+      "get": {
+        "summary": "Get bird species information",
+        "description": "Retrieve comprehensive information about bird species including taxonomy, characteristics, and observation data",
+        "operationId": "getSpecies",
+        "tags": [
+          "Species"
+        ],
+        "parameters": [
+          {
+            "name": "family",
+            "in": "query",
+            "description": "Filter by bird family",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "habitat",
+            "in": "query",
+            "description": "Filter by habitat type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by conservation status",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "LC",
+                "NT",
+                "VU",
+                "EN",
+                "CR",
+                "EW",
+                "EX"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with species data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "species": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Species"
+                      }
+                    },
+                    "count": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Bird": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the bird"
+          },
+          "scientificName": {
+            "type": "string",
+            "description": "Scientific name of the bird species"
+          },
+          "commonNameDe": {
+            "type": "string",
+            "description": "German common name"
+          },
+          "commonNameFr": {
+            "type": "string",
+            "description": "French common name"
+          },
+          "commonNameIt": {
+            "type": "string",
+            "description": "Italian common name"
+          },
+          "commonNameEn": {
+            "type": "string",
+            "description": "English common name"
+          },
+          "family": {
+            "type": "string",
+            "description": "Taxonomic family"
+          },
+          "order": {
+            "type": "string",
+            "description": "Taxonomic order"
+          },
+          "conservationStatus": {
+            "type": "string",
+            "description": "IUCN conservation status"
+          },
+          "habitat": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Preferred habitats"
+          },
+          "length": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "number",
+                "description": "Minimum length in cm"
+              },
+              "max": {
+                "type": "number",
+                "description": "Maximum length in cm"
+              }
+            }
+          },
+          "wingspan": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "number",
+                "description": "Minimum wingspan in cm"
+              },
+              "max": {
+                "type": "number",
+                "description": "Maximum wingspan in cm"
+              }
+            }
+          },
+          "weight": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "number",
+                "description": "Minimum weight in grams"
+              },
+              "max": {
+                "type": "number",
+                "description": "Maximum weight in grams"
+              }
+            }
+          },
+          "imageUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to bird image"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the bird"
+          }
+        }
+      },
+      "Species": {
+        "type": "object",
+        "properties": {
+          "speciesId": {
+            "type": "string",
+            "description": "Unique species identifier"
+          },
+          "scientificName": {
+            "type": "string",
+            "description": "Scientific name"
+          },
+          "commonNames": {
+            "type": "object",
+            "properties": {
+              "de": {
+                "type": "string"
+              },
+              "fr": {
+                "type": "string"
+              },
+              "it": {
+                "type": "string"
+              },
+              "en": {
+                "type": "string"
+              }
+            }
+          },
+          "taxonomy": {
+            "type": "object",
+            "properties": {
+              "kingdom": {
+                "type": "string"
+              },
+              "phylum": {
+                "type": "string"
+              },
+              "class": {
+                "type": "string"
+              },
+              "order": {
+                "type": "string"
+              },
+              "family": {
+                "type": "string"
+              },
+              "genus": {
+                "type": "string"
+              },
+              "species": {
+                "type": "string"
+              }
+            }
+          },
+          "conservationStatus": {
+            "type": "string",
+            "description": "Conservation status code"
+          },
+          "characteristics": {
+            "type": "object",
+            "properties": {
+              "size": {
+                "type": "string"
+              },
+              "plumage": {
+                "type": "string"
+              },
+              "behavior": {
+                "type": "string"
+              },
+              "diet": {
+                "type": "string"
+              }
+            }
+          },
+          "distribution": {
+            "type": "object",
+            "properties": {
+              "regions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "breedingRange": {
+                "type": "string"
+              },
+              "winteringRange": {
+                "type": "string"
+              }
+            }
+          },
+          "observationCount": {
+            "type": "integer",
+            "description": "Number of recorded observations"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "code": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the error"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Birds",
+      "description": "Operations related to bird species data"
+    },
+    {
+      "name": "Species",
+      "description": "Operations related to detailed species information"
+    }
+  ]
+}
