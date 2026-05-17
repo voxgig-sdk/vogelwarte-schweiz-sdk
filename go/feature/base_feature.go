@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/core"
+	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go/core"
 )
 
 type BaseFeature struct {

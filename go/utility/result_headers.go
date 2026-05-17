@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/vogelwarte-schweiz-sdk/core"
+import "github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go/core"
 
 func resultHeadersUtil(ctx *core.Context) *core.Result {
 	response := ctx.Response

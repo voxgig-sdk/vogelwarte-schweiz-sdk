@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/vogelwarte-schweiz-sdk"
-	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/core"
+	sdk "github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go"
+	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go/core"
 )
 
 func TestSpeciesDirect(t *testing.T) {

@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/core"
+	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go/utility/struct"
 )
 
 type SpeciesEntity struct {

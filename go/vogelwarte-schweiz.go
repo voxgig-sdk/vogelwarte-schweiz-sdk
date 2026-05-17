@@ -1,10 +1,10 @@
 package voxgigvogelwarteschweizsdk
 
 import (
-	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/core"
-	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/entity"
-	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/feature"
-	_ "github.com/voxgig-sdk/vogelwarte-schweiz-sdk/utility"
+	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go/core"
+	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go/entity"
+	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go/feature"
+	_ "github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
