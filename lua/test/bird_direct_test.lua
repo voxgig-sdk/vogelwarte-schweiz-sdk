@@ -117,14 +117,12 @@ function bird_direct_setup(mockres)
   local env = runner.env_override({
     ["VOGELWARTESCHWEIZ_TEST_BIRD_ENTID"] = {},
     ["VOGELWARTESCHWEIZ_TEST_LIVE"] = "FALSE",
-    ["VOGELWARTESCHWEIZ_APIKEY"] = "NONE",
   })
 
   local live = env["VOGELWARTESCHWEIZ_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["VOGELWARTESCHWEIZ_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

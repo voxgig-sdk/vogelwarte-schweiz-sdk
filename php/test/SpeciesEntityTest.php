@@ -86,7 +86,6 @@ function species_basic_setup($extra)
         "VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID" => $idmap,
         "VOGELWARTESCHWEIZ_TEST_LIVE" => "FALSE",
         "VOGELWARTESCHWEIZ_TEST_EXPLAIN" => "FALSE",
-        "VOGELWARTESCHWEIZ_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +97,6 @@ function species_basic_setup($extra)
     if ($env["VOGELWARTESCHWEIZ_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["VOGELWARTESCHWEIZ_APIKEY"],
             ],
             $extra ?? [],
         ]);

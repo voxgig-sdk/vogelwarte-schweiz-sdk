@@ -62,14 +62,12 @@ def species_direct_setup(mockres)
   env = Runner.env_override({
     "VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID" => {},
     "VOGELWARTESCHWEIZ_TEST_LIVE" => "FALSE",
-    "VOGELWARTESCHWEIZ_APIKEY" => "NONE",
   })
 
   live = env["VOGELWARTESCHWEIZ_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["VOGELWARTESCHWEIZ_APIKEY"],
     }
     client = VogelwarteSchweizSDK.new(merged_opts)
     return {

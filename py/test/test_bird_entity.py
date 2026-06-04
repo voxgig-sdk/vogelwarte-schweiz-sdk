@@ -102,7 +102,6 @@ def _bird_basic_setup(extra):
         "VOGELWARTESCHWEIZ_TEST_BIRD_ENTID": idmap,
         "VOGELWARTESCHWEIZ_TEST_LIVE": "FALSE",
         "VOGELWARTESCHWEIZ_TEST_EXPLAIN": "FALSE",
-        "VOGELWARTESCHWEIZ_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +112,6 @@ def _bird_basic_setup(extra):
     if env.get("VOGELWARTESCHWEIZ_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("VOGELWARTESCHWEIZ_APIKEY"),
             },
             extra or {},
         ])

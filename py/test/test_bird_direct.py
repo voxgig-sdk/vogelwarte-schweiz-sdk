@@ -109,14 +109,12 @@ def _bird_direct_setup(mockres):
     env = runner.env_override({
         "VOGELWARTESCHWEIZ_TEST_BIRD_ENTID": {},
         "VOGELWARTESCHWEIZ_TEST_LIVE": "FALSE",
-        "VOGELWARTESCHWEIZ_APIKEY": "NONE",
     })
 
     live = env.get("VOGELWARTESCHWEIZ_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("VOGELWARTESCHWEIZ_APIKEY"),
         }
         client = VogelwarteSchweizSDK(merged_opts)
         return {

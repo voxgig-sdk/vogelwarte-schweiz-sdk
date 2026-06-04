@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { VogelwarteSchweizSDK } from 'vogelwarte-schweiz'
 
-const client = new VogelwarteSchweizSDK({
-  apikey: process.env.VOGELWARTE-SCHWEIZ_APIKEY,
-})
+const client = new VogelwarteSchweizSDK({})
 ```
 
 ### 2. List birds
@@ -94,7 +92,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new VogelwarteSchweizSDK({ apikey: '...' })
+const client = new VogelwarteSchweizSDK()
 const testClient = client.tester()
 ```
 
@@ -130,7 +128,6 @@ const logger = {
 }
 
 const client = new VogelwarteSchweizSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -141,7 +138,6 @@ Create a `.env.local` file at the project root:
 
 ```
 VOGELWARTE-SCHWEIZ_TEST_LIVE=TRUE
-VOGELWARTE-SCHWEIZ_APIKEY=<your-key>
 ```
 
 Then run:
@@ -159,7 +155,6 @@ cd ts && npm test
 
 ```ts
 new VogelwarteSchweizSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -170,7 +165,6 @@ new VogelwarteSchweizSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
