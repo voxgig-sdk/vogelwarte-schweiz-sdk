@@ -10,7 +10,7 @@ The Python SDK for the VogelwarteSchweiz API — an entity-oriented client follo
 
 ## Install
 ```bash
-pip install vogelwarte-schweiz-sdk
+pip install voxgig-sdk-vogelwarte-schweiz
 ```
 
 Or install from source:

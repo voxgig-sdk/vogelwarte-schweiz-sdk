@@ -10,7 +10,7 @@ The TypeScript SDK for the VogelwarteSchweiz API — a type-safe, entity-oriente
 
 ## Install
 ```bash
-npm install vogelwarte-schweiz
+npm install @voxgig-sdk/vogelwarte-schweiz
 ```
 ## Tutorial: your first API call
 

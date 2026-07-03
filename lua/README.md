@@ -10,7 +10,7 @@ The Lua SDK for the VogelwarteSchweiz API — an entity-oriented client using Lu
 
 ## Install
 ```bash
-luarocks install vogelwarte-schweiz-sdk
+luarocks install voxgig-sdk-vogelwarte-schweiz
 ```
 
 If the module is not yet published, add the source directory to

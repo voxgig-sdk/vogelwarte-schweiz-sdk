@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/vogelwarte-schweiz",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the Vogelwarte Schweiz public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "vogelwarte-schweiz"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/issues"
+  },
   "main": "dist/VogelwarteSchweizSDK.js",
   "type": "commonjs",
   "types": "dist/VogelwarteSchweizSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "VogelwarteSchweiz",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

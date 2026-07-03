@@ -10,7 +10,7 @@ The PHP SDK for the VogelwarteSchweiz API — an entity-oriented client using PH
 
 ## Install
 ```bash
-composer require voxgig/vogelwarte-schweiz-sdk
+composer require voxgig-sdk/vogelwarte-schweiz
 ```
 
 

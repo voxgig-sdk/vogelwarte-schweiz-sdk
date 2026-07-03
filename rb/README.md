@@ -10,13 +10,13 @@ The Ruby SDK for the VogelwarteSchweiz API — an entity-oriented client using i
 
 ## Install
 ```bash
-gem install vogelwarte-schweiz-sdk
+gem install voxgig-sdk-vogelwarte-schweiz
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "vogelwarte-schweiz-sdk"
+gem "voxgig-sdk-vogelwarte-schweiz"
 ```
 
 Then run:

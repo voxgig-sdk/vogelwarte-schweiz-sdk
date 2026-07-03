@@ -8,12 +8,14 @@ source = {
   dir = "vogelwarte-schweiz-sdk/lua"
 }
 description = {
-  summary = "VogelwarteSchweiz SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Vogelwarte Schweiz public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk",
+  issues_url = "https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "vogelwarte-schweiz" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {
