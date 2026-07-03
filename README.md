@@ -1,20 +1,8 @@
 # VogelwarteSchweiz SDK
 
-Browse Switzerland's national bird database with daily featured species and detailed records by ID and language
+Vogelwarte Schweiz client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Vogelwarte Schweiz
-
-[Vogelwarte Schweiz](https://www.vogelwarte.ch) exposes the bird database maintained by the [Schweizerische Vogelwarte Sempach](https://www.vogelwarte.ch) — the Swiss Ornithological Institute, an independent foundation for ornithology and bird conservation based in Sempach. The endpoints powering the institute's public species pages are not officially documented; this SDK targets the reverse-engineered routes catalogued on [freepublicapis.com](https://freepublicapis.com/vogelwarte-schweiz).
-
-What you can pull from the API:
-
-- A random "bird of the day" entry
-- A full bird record by numeric ID and language code (for example `700_de` for German)
-- The complete list of birds in the database, covering the 400+ species recorded in Switzerland
-
-No authentication or rate limits are advertised, but because the endpoints are undocumented they may change without notice. CORS is disabled on the upstream server, so requests must be made from a server or other non-browser client.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install vogelwarte-schweiz-sdk
 luarocks install vogelwarte-schweiz-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { VogelwarteSchweizSDK } from 'vogelwarte-schweiz'
 
-const client = new VogelwarteSchweizSDK({})
+const client = new VogelwarteSchweizSDK({
+  apikey: process.env.VOGELWARTE-SCHWEIZ_APIKEY,
+})
 
 // List all birds
 const birds = await client.Bird().list()
+console.log(birds.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Bird** | An individual bird record from the Vogelwarte database, addressable by numeric ID and language (e.g. `700_de`), plus a "bird of the day" endpoint. | `/api/birds` |
-| **Species** | The catalogue of bird species occurring in Switzerland, with a listing endpoint that enumerates every entry in the database. | `/api/species` |
+| **Bird** |  | `/api/birds` |
+| **Species** |  | `/api/species` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -111,17 +101,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from vogelwarteschweiz_sdk import VogelwarteSchweizSDK
 
-client = VogelwarteSchweizSDK({})
+client = VogelwarteSchweizSDK({
+    "apikey": os.environ.get("VOGELWARTE-SCHWEIZ_APIKEY"),
+})
 
 # List all birds
-birds, err = client.Bird(None).list(None, None)
+birds, err = client.Bird().list()
+print(birds)
 
 # Load a specific bird
-bird, err = client.Bird(None).load(
-    {"id": "example_id"}, None
-)
+bird, err = client.Bird().load({"id": "example_id"})
+print(bird)
 ```
 
 ### PHP
@@ -130,15 +123,17 @@ bird, err = client.Bird(None).load(
 <?php
 require_once 'vogelwarteschweiz_sdk.php';
 
-$client = new VogelwarteSchweizSDK([]);
+$client = new VogelwarteSchweizSDK([
+    "apikey" => getenv("VOGELWARTE-SCHWEIZ_APIKEY"),
+]);
 
 // List all birds
-[$birds, $err] = $client->Bird(null)->list(null, null);
+[$birds, $err] = $client->Bird()->list();
+print_r($birds);
 
 // Load a specific bird
-[$bird, $err] = $client->Bird(null)->load(
-    ["id" => "example_id"], null
-);
+[$bird, $err] = $client->Bird()->load(["id" => "example_id"]);
+print_r($bird);
 ```
 
 ### Golang
@@ -146,10 +141,13 @@ $client = new VogelwarteSchweizSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go"
 
-client := sdk.NewVogelwarteSchweizSDK(map[string]any{})
+client := sdk.NewVogelwarteSchweizSDK(map[string]any{
+    "apikey": os.Getenv("VOGELWARTE-SCHWEIZ_APIKEY"),
+})
 
 // List all birds
 birds, err := client.Bird(nil).List(nil, nil)
+fmt.Println(birds)
 ```
 
 ### Ruby
@@ -157,15 +155,17 @@ birds, err := client.Bird(nil).List(nil, nil)
 ```ruby
 require_relative "VogelwarteSchweiz_sdk"
 
-client = VogelwarteSchweizSDK.new({})
+client = VogelwarteSchweizSDK.new({
+  "apikey" => ENV["VOGELWARTE-SCHWEIZ_APIKEY"],
+})
 
 # List all birds
-birds, err = client.Bird(nil).list(nil, nil)
+birds, err = client.Bird().list
+puts birds
 
 # Load a specific bird
-bird, err = client.Bird(nil).load(
-  { "id" => "example_id" }, nil
-)
+bird, err = client.Bird().load({ "id" => "example_id" })
+puts bird
 ```
 
 ### Lua
@@ -173,15 +173,17 @@ bird, err = client.Bird(nil).load(
 ```lua
 local sdk = require("vogelwarte-schweiz_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("VOGELWARTE-SCHWEIZ_APIKEY"),
+})
 
 -- List all birds
-local birds, err = client:Bird(nil):list(nil, nil)
+local birds, err = client:Bird():list()
+print(birds)
 
 -- Load a specific bird
-local bird, err = client:Bird(nil):load(
-  { id = "example_id" }, nil
-)
+local bird, err = client:Bird():load({ id = "example_id" })
+print(bird)
 ```
 
 ## Unit testing in offline mode
@@ -200,25 +202,21 @@ const result = await client.Bird().load({ id: 'test01' })
 ### Python
 
 ```python
-client = VogelwarteSchweizSDK.test(None, None)
-result, err = client.Bird(None).load(
-    {"id": "test01"}, None
-)
+client = VogelwarteSchweizSDK.test()
+result, err = client.Bird().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = VogelwarteSchweizSDK::test(null, null);
-[$result, $err] = $client->Bird(null)->load(
-    ["id" => "test01"], null
-);
+$client = VogelwarteSchweizSDK::test();
+[$result, $err] = $client->Bird()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Bird(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -227,19 +225,15 @@ result, err := client.Bird(nil).Load(
 ### Ruby
 
 ```ruby
-client = VogelwarteSchweizSDK.test(nil, nil)
-result, err = client.Bird(nil).load(
-  { "id" => "test01" }, nil
-)
+client = VogelwarteSchweizSDK.test
+result, err = client.Bird().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Bird(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Bird():load({ id = "test01" })
 ```
 
 ## How it works
@@ -343,16 +337,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Vogelwarte Schweiz
-
-- Upstream: [https://www.vogelwarte.ch](https://www.vogelwarte.ch)
-- API docs: [https://freepublicapis.com/vogelwarte-schweiz](https://freepublicapis.com/vogelwarte-schweiz)
-
-- No public licence or terms of use are published for this API
-- Endpoints were reverse-engineered from the public vogelwarte.ch website
-- Data is the property of the [Schweizerische Vogelwarte Sempach](https://www.vogelwarte.ch); attribute the source and check with them before redistributing
-- CORS is disabled, so calls from browsers will be blocked
 
 ---
 

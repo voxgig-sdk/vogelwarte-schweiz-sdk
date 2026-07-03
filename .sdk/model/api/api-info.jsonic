@@ -17,28 +17,7 @@ main: {
       ]
       title: "Vogelwarte Schweiz"
       version: "1.0.0"
-      tagline: "Browse Switzerland's national bird database with daily featured species and detailed records by ID and language"
-      homepage: "https://www.vogelwarte.ch"
-      docs_url: "https://freepublicapis.com/vogelwarte-schweiz"
-      license_short: "No licence stated; data sourced from the Swiss Ornithological Institute (Vogelwarte Sempach)."
-      license_md: `- No public licence or terms of use are published for this API
-- Endpoints were reverse-engineered from the public vogelwarte.ch website
-- Data is the property of the [Schweizerische Vogelwarte Sempach](https://www.vogelwarte.ch); attribute the source and check with them before redistributing
-- CORS is disabled, so calls from browsers will be blocked`
-      about_md: `[Vogelwarte Schweiz](https://www.vogelwarte.ch) exposes the bird database maintained by the [Schweizerische Vogelwarte Sempach](https://www.vogelwarte.ch) — the Swiss Ornithological Institute, an independent foundation for ornithology and bird conservation based in Sempach. The endpoints powering the institute's public species pages are not officially documented; this SDK targets the reverse-engineered routes catalogued on [freepublicapis.com](https://freepublicapis.com/vogelwarte-schweiz).
-
-What you can pull from the API:
-
-- A random "bird of the day" entry
-- A full bird record by numeric ID and language code (for example \`700_de\` for German)
-- The complete list of birds in the database, covering the 400+ species recorded in Switzerland
-
-No authentication or rate limits are advertised, but because the endpoints are undocumented they may change without notice. CORS is disabled on the upstream server, so requests must be made from a server or other non-browser client.`
-      entity_desc: {
-        bird: "An individual bird record from the Vogelwarte database, addressable by numeric ID and language (e.g. `700_de`), plus a \"bird of the day\" endpoint."
-        species: "The catalogue of bird species occurring in Switzerland, with a listing endpoint that enumerates every entry in the database."
-      }
-      auth: false
     }
   }
 }
+
