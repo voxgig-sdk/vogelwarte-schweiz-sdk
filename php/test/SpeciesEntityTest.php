@@ -50,8 +50,7 @@ class SpeciesEntityTest extends TestCase
         $species_ref01_ent = $client->Species(null);
         $species_ref01_match = [];
 
-        [$species_ref01_list_result, $err] = $species_ref01_ent->list($species_ref01_match, null);
-        $this->assertNull($err);
+        $species_ref01_list_result = $species_ref01_ent->list($species_ref01_match, null);
         $this->assertIsArray($species_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function species_basic_setup($extra)
         "VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID" => $idmap,
         "VOGELWARTESCHWEIZ_TEST_LIVE" => "FALSE",
         "VOGELWARTESCHWEIZ_TEST_EXPLAIN" => "FALSE",
-        "VOGELWARTESCHWEIZ_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function species_basic_setup($extra)
     if ($env["VOGELWARTESCHWEIZ_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["VOGELWARTESCHWEIZ_APIKEY"],
             ],
             $extra ?? [],
         ]);

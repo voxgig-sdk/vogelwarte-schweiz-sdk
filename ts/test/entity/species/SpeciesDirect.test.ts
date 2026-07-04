@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID': {},
     'VOGELWARTESCHWEIZ_TEST_LIVE': 'FALSE',
-    'VOGELWARTESCHWEIZ_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.VOGELWARTESCHWEIZ_TEST_LIVE
 
   if (live) {
     const client = new VogelwarteSchweizSDK({
-      apikey: env.VOGELWARTESCHWEIZ_APIKEY,
     })
 
     let idmap: any = env['VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID']

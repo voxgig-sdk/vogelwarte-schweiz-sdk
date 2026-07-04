@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://www.vogelwarte.ch',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -241,7 +237,8 @@ class Config {
                     "name": "id",
                     "orig": "bird_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

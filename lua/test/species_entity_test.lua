@@ -92,7 +92,6 @@ function species_basic_setup(extra)
     ["VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID"] = idmap,
     ["VOGELWARTESCHWEIZ_TEST_LIVE"] = "FALSE",
     ["VOGELWARTESCHWEIZ_TEST_EXPLAIN"] = "FALSE",
-    ["VOGELWARTESCHWEIZ_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function species_basic_setup(extra)
   if env["VOGELWARTESCHWEIZ_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["VOGELWARTESCHWEIZ_APIKEY"],
       },
       extra or {},
     })

@@ -120,7 +120,6 @@ function basicSetup(extra?: any) {
     'VOGELWARTE_SCHWEIZ_TEST_BIRD_ENTID': idmap,
     'VOGELWARTE_SCHWEIZ_TEST_LIVE': 'FALSE',
     'VOGELWARTE_SCHWEIZ_TEST_EXPLAIN': 'FALSE',
-    'VOGELWARTE_SCHWEIZ_APIKEY': 'NONE',
   })
 
   idmap = env['VOGELWARTE_SCHWEIZ_TEST_BIRD_ENTID']
@@ -130,7 +129,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new VogelwarteSchweizSDK(merge([
       {
-        apikey: env.VOGELWARTE_SCHWEIZ_APIKEY,
       },
       extra
     ]))

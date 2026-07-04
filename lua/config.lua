@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://www.vogelwarte.ch",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -209,6 +206,7 @@ local function make_config()
                       ["orig"] = "bird_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                 },

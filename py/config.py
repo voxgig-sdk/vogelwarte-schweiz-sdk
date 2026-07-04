@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://www.vogelwarte.ch",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -210,6 +207,7 @@ def make_config():
                       "orig": "bird_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

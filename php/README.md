@@ -9,9 +9,10 @@ The PHP SDK for the VogelwarteSchweiz API — an entity-oriented client using PH
 
 
 ## Install
-```bash
-composer require voxgig-sdk/vogelwarte-schweiz
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases](https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,31 +26,34 @@ loading a specific record.
 <?php
 require_once 'vogelwarteschweiz_sdk.php';
 
-$client = new VogelwarteSchweizSDK([
-    "apikey" => getenv("VOGELWARTE-SCHWEIZ_APIKEY"),
-]);
+$client = new VogelwarteSchweizSDK();
 ```
 
 ### 2. List birds
 
 ```php
-[$result, $err] = $client->Bird()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->bird()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
 ### 3. Load a bird
 
 ```php
-[$result, $err] = $client->Bird()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->bird()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -60,28 +64,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -95,7 +102,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = VogelwarteSchweizSDK::test();
 
-[$result, $err] = $client->VogelwarteSchweiz()->load(["id" => "test01"]);
+$result = $client->bird()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -129,8 +136,7 @@ $client = new VogelwarteSchweizSDK([
 Create a `.env.local` file at the project root:
 
 ```
-VOGELWARTE-SCHWEIZ_TEST_LIVE=TRUE
-VOGELWARTE-SCHWEIZ_APIKEY=<your-key>
+VOGELWARTE_SCHWEIZ_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -153,7 +159,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -200,8 +205,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -262,7 +271,7 @@ API path: `/api/species`
 
 ### Bird
 
-Create an instance: `const bird = client.Bird()`
+Create an instance: `const bird = client.bird`
 
 #### Operations
 
@@ -294,19 +303,19 @@ Create an instance: `const bird = client.Bird()`
 #### Example: Load
 
 ```ts
-const bird = await client.Bird().load({ id: 'bird_id' })
+const bird = await client.bird.load({ id: 'bird_id' })
 ```
 
 #### Example: List
 
 ```ts
-const birds = await client.Bird().list()
+const birds = await client.bird.list()
 ```
 
 
 ### Species
 
-Create an instance: `const species = client.Species()`
+Create an instance: `const species = client.species`
 
 #### Operations
 
@@ -330,7 +339,7 @@ Create an instance: `const species = client.Species()`
 #### Example: List
 
 ```ts
-const speciess = await client.Species().list()
+const speciess = await client.species.list()
 ```
 
 
@@ -405,11 +414,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$bird = $client->bird();
+$bird->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $bird->dataGet() now returns the loaded bird data
+// $bird->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

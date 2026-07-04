@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:bird():list() / client:bird():load({ id = ... })
+function VogelwarteSchweizSDK:bird(data)
+  local EntityMod = require("entity.bird_entity")
+  if data == nil then
+    if self._bird == nil then
+      self._bird = EntityMod.new(self, nil)
+    end
+    return self._bird
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:bird() instead.
 function VogelwarteSchweizSDK:Bird(data)
   local EntityMod = require("entity.bird_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:species():list() / client:species():load({ id = ... })
+function VogelwarteSchweizSDK:species(data)
+  local EntityMod = require("entity.species_entity")
+  if data == nil then
+    if self._species == nil then
+      self._species = EntityMod.new(self, nil)
+    end
+    return self._species
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:species() instead.
 function VogelwarteSchweizSDK:Species(data)
   local EntityMod = require("entity.species_entity")
   return EntityMod.new(self, data)

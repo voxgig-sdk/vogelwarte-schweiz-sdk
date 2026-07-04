@@ -245,11 +245,17 @@ func (sdk *VogelwarteSchweizSDK) Direct(fetchargs map[string]any) (map[string]an
 }
 
 
+// Bird returns a Bird entity bound to this client.
+// Idiomatic usage: client.Bird(nil).List(nil, nil) or
+// client.Bird(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *VogelwarteSchweizSDK) Bird(data map[string]any) VogelwarteSchweizEntity {
 	return NewBirdEntityFunc(sdk, data)
 }
 
 
+// Species returns a Species entity bound to this client.
+// Idiomatic usage: client.Species(nil).List(nil, nil) or
+// client.Species(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *VogelwarteSchweizSDK) Species(data map[string]any) VogelwarteSchweizEntity {
 	return NewSpeciesEntityFunc(sdk, data)
 }

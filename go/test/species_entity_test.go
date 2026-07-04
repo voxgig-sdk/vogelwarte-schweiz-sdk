@@ -119,7 +119,6 @@ func speciesBasicSetup(extra map[string]any) *entityTestSetup {
 		"VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID": idmap,
 		"VOGELWARTESCHWEIZ_TEST_LIVE":      "FALSE",
 		"VOGELWARTESCHWEIZ_TEST_EXPLAIN":   "FALSE",
-		"VOGELWARTESCHWEIZ_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID"])
@@ -130,7 +129,6 @@ func speciesBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["VOGELWARTESCHWEIZ_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["VOGELWARTESCHWEIZ_APIKEY"],
 			},
 			extra,
 		})

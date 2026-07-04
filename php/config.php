@@ -20,9 +20,6 @@ class VogelwarteSchweizConfig
             ],
             "options" => [
                 "base" => "https://www.vogelwarte.ch",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -215,6 +212,7 @@ class VogelwarteSchweizConfig
                         'orig' => 'bird_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

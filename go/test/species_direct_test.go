@@ -93,14 +93,12 @@ func speciesDirectSetup(mockres any) *speciesDirectSetupResult {
 	env := envOverride(map[string]any{
 		"VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID": map[string]any{},
 		"VOGELWARTESCHWEIZ_TEST_LIVE":    "FALSE",
-		"VOGELWARTESCHWEIZ_APIKEY":       "NONE",
 	})
 
 	live := env["VOGELWARTESCHWEIZ_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["VOGELWARTESCHWEIZ_APIKEY"],
 		}
 		client := sdk.NewVogelwarteSchweizSDK(mergedOpts)
 

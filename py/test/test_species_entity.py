@@ -50,8 +50,7 @@ class TestSpeciesEntity:
         species_ref01_ent = client.Species(None)
         species_ref01_match = {}
 
-        species_ref01_list_result, err = species_ref01_ent.list(species_ref01_match, None)
-        assert err is None
+        species_ref01_list_result = species_ref01_ent.list(species_ref01_match, None)
         assert isinstance(species_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _species_basic_setup(extra):
         "VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID": idmap,
         "VOGELWARTESCHWEIZ_TEST_LIVE": "FALSE",
         "VOGELWARTESCHWEIZ_TEST_EXPLAIN": "FALSE",
-        "VOGELWARTESCHWEIZ_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _species_basic_setup(extra):
     if env.get("VOGELWARTESCHWEIZ_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("VOGELWARTESCHWEIZ_APIKEY"),
             },
             extra or {},
         ])

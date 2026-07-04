@@ -9,12 +9,9 @@ The Lua SDK for the VogelwarteSchweiz API — an entity-oriented client using Lu
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-vogelwarte-schweiz
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("vogelwarte-schweiz_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("VOGELWARTE-SCHWEIZ_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List birds
 
 ```lua
-local result, err = client:Bird():list()
+local result, err = client:bird():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +48,7 @@ end
 ### 3. Load a bird
 
 ```lua
-local result, err = client:Bird():load({ id = "example_id" })
+local result, err = client:bird():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:VogelwarteSchweiz():load({ id = "test01" })
+local result, err = client:bird():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -134,8 +129,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-VOGELWARTE-SCHWEIZ_TEST_LIVE=TRUE
-VOGELWARTE-SCHWEIZ_APIKEY=<your-key>
+VOGELWARTE_SCHWEIZ_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -158,7 +152,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -267,7 +260,7 @@ API path: `/api/species`
 
 ### Bird
 
-Create an instance: `const bird = client.Bird()`
+Create an instance: `const bird = client.bird`
 
 #### Operations
 
@@ -299,19 +292,19 @@ Create an instance: `const bird = client.Bird()`
 #### Example: Load
 
 ```ts
-const bird = await client.Bird().load({ id: 'bird_id' })
+const bird = await client.bird.load({ id: 'bird_id' })
 ```
 
 #### Example: List
 
 ```ts
-const birds = await client.Bird().list()
+const birds = await client.bird.list()
 ```
 
 
 ### Species
 
-Create an instance: `const species = client.Species()`
+Create an instance: `const species = client.species`
 
 #### Operations
 
@@ -335,7 +328,7 @@ Create an instance: `const species = client.Species()`
 #### Example: List
 
 ```ts
-const speciess = await client.Species().list()
+const speciess = await client.species.list()
 ```
 
 
@@ -410,11 +403,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local bird = client:bird()
+bird:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- bird:data_get() now returns the loaded bird data
+-- bird:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
