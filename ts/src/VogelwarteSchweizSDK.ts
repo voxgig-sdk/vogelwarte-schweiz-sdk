@@ -205,28 +205,14 @@ class VogelwarteSchweizSDK {
 
 
 
-  _bird?: BirdEntity
-
-  // Idiomatic facade: `client.bird.list()` / `client.bird.load({ id })`.
-  get bird(): BirdEntity {
-    return (this._bird ??= new BirdEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.bird` instead. */
+  // Entity access: `client.Bird().list()` / `client.Bird().load({ id })`.
   Bird(data?: any) {
     const self = this
     return new BirdEntity(self,data)
   }
 
 
-  _species?: SpeciesEntity
-
-  // Idiomatic facade: `client.species.list()` / `client.species.load({ id })`.
-  get species(): SpeciesEntity {
-    return (this._species ??= new SpeciesEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.species` instead. */
+  // Entity access: `client.Species().list()` / `client.Species().load({ id })`.
   Species(data?: any) {
     const self = this
     return new SpeciesEntity(self,data)

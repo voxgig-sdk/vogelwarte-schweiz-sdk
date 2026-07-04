@@ -4,76 +4,75 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Bird:
-    common_name_de: Optional[str] = None
-    common_name_en: Optional[str] = None
-    common_name_fr: Optional[str] = None
-    common_name_it: Optional[str] = None
-    conservation_status: Optional[str] = None
-    description: Optional[str] = None
-    family: Optional[str] = None
-    habitat: Optional[list] = None
-    id: Optional[str] = None
-    image_url: Optional[str] = None
-    length: Optional[dict] = None
-    order: Optional[str] = None
-    scientific_name: Optional[str] = None
-    weight: Optional[dict] = None
-    wingspan: Optional[dict] = None
+class Bird(TypedDict, total=False):
+    common_name_de: str
+    common_name_en: str
+    common_name_fr: str
+    common_name_it: str
+    conservation_status: str
+    description: str
+    family: str
+    habitat: list
+    id: str
+    image_url: str
+    length: dict
+    order: str
+    scientific_name: str
+    weight: dict
+    wingspan: dict
 
 
-@dataclass
-class BirdLoadMatch:
+class BirdLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class BirdListMatch:
-    common_name_de: Optional[str] = None
-    common_name_en: Optional[str] = None
-    common_name_fr: Optional[str] = None
-    common_name_it: Optional[str] = None
-    conservation_status: Optional[str] = None
-    description: Optional[str] = None
-    family: Optional[str] = None
-    habitat: Optional[list] = None
-    id: Optional[str] = None
-    image_url: Optional[str] = None
-    length: Optional[dict] = None
-    order: Optional[str] = None
-    scientific_name: Optional[str] = None
-    weight: Optional[dict] = None
-    wingspan: Optional[dict] = None
+class BirdListMatch(TypedDict, total=False):
+    common_name_de: str
+    common_name_en: str
+    common_name_fr: str
+    common_name_it: str
+    conservation_status: str
+    description: str
+    family: str
+    habitat: list
+    id: str
+    image_url: str
+    length: dict
+    order: str
+    scientific_name: str
+    weight: dict
+    wingspan: dict
 
 
-@dataclass
-class Species:
-    characteristic: Optional[dict] = None
-    common_name: Optional[dict] = None
-    conservation_status: Optional[str] = None
-    distribution: Optional[dict] = None
-    observation_count: Optional[int] = None
-    scientific_name: Optional[str] = None
-    species_id: Optional[str] = None
-    taxonomy: Optional[dict] = None
+class Species(TypedDict, total=False):
+    characteristic: dict
+    common_name: dict
+    conservation_status: str
+    distribution: dict
+    observation_count: int
+    scientific_name: str
+    species_id: str
+    taxonomy: dict
 
 
-@dataclass
-class SpeciesListMatch:
-    characteristic: Optional[dict] = None
-    common_name: Optional[dict] = None
-    conservation_status: Optional[str] = None
-    distribution: Optional[dict] = None
-    observation_count: Optional[int] = None
-    scientific_name: Optional[str] = None
-    species_id: Optional[str] = None
-    taxonomy: Optional[dict] = None
-
+class SpeciesListMatch(TypedDict, total=False):
+    characteristic: dict
+    common_name: dict
+    conservation_status: str
+    distribution: dict
+    observation_count: int
+    scientific_name: str
+    species_id: str
+    taxonomy: dict

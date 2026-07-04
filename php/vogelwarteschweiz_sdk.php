@@ -233,10 +233,10 @@ class VogelwarteSchweizSDK
 
     private $_bird = null;
 
-    // Idiomatic facade: $client->bird()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Bird() (PHP method
-    // names are case-insensitive).
-    public function bird($data = null)
+    // Canonical facade: $client->Bird()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->bird()
+    // resolves here too.
+    public function Bird($data = null)
     {
         require_once __DIR__ . '/entity/bird_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class VogelwarteSchweizSDK
 
     private $_species = null;
 
-    // Idiomatic facade: $client->species()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Species() (PHP method
-    // names are case-insensitive).
-    public function species($data = null)
+    // Canonical facade: $client->Species()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->species()
+    // resolves here too.
+    public function Species($data = null)
     {
         require_once __DIR__ . '/entity/species_entity.php';
         if ($data === null) {

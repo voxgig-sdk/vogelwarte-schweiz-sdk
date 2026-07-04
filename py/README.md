@@ -31,24 +31,28 @@ from vogelwarteschweiz_sdk import VogelwarteSchweizSDK
 client = VogelwarteSchweizSDK()
 ```
 
-### 2. List birds
+### 2. List bird records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.bird.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    birds = client.Bird().list({})
+    for bird in birds:
+        print(bird)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a bird
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.bird.load({"id": "example_id"})
-    print(result)
+    bird = client.Bird().load({"id": "example_id"})
+    print(bird)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = VogelwarteSchweizSDK.test()
 
-result = client.bird.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+bird = client.Bird().load({"id": "test01"})
+# bird contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -262,7 +267,7 @@ API path: `/api/species`
 
 ### Bird
 
-Create an instance: `const bird = client.bird`
+Create an instance: `bird = client.Bird()`
 
 #### Operations
 
@@ -293,20 +298,20 @@ Create an instance: `const bird = client.bird`
 
 #### Example: Load
 
-```ts
-const bird = await client.bird.load({ id: 'bird_id' })
+```python
+bird = client.Bird().load({"id": "bird_id"})
 ```
 
 #### Example: List
 
-```ts
-const birds = await client.bird.list()
+```python
+birds = client.Bird().list({})
 ```
 
 
 ### Species
 
-Create an instance: `const species = client.species`
+Create an instance: `species = client.Species()`
 
 #### Operations
 
@@ -329,8 +334,8 @@ Create an instance: `const species = client.species`
 
 #### Example: List
 
-```ts
-const speciess = await client.species.list()
+```python
+speciess = client.Species().list({})
 ```
 
 
@@ -404,7 +409,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-bird = client.bird
+bird = client.Bird()
 bird.load({"id": "example_id"})
 
 # bird.data_get() now returns the loaded bird data
