@@ -94,21 +94,21 @@ local bird = client:Bird(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `common_name_de` | ``$STRING`` | No |  |
-| `common_name_en` | ``$STRING`` | No |  |
-| `common_name_fr` | ``$STRING`` | No |  |
-| `common_name_it` | ``$STRING`` | No |  |
-| `conservation_status` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `family` | ``$STRING`` | No |  |
-| `habitat` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `length` | ``$OBJECT`` | No |  |
-| `order` | ``$STRING`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `weight` | ``$OBJECT`` | No |  |
-| `wingspan` | ``$OBJECT`` | No |  |
+| `common_name_de` | `string` | No |  |
+| `common_name_en` | `string` | No |  |
+| `common_name_fr` | `string` | No |  |
+| `common_name_it` | `string` | No |  |
+| `conservation_status` | `string` | No |  |
+| `description` | `string` | No |  |
+| `family` | `string` | No |  |
+| `habitat` | `table` | No |  |
+| `id` | `string` | No |  |
+| `image_url` | `string` | No |  |
+| `length` | `table` | No |  |
+| `order` | `string` | No |  |
+| `scientific_name` | `string` | No |  |
+| `weight` | `table` | No |  |
+| `wingspan` | `table` | No |  |
 
 ### Operations
 
@@ -168,14 +168,14 @@ local species = client:Species(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `characteristic` | ``$OBJECT`` | No |  |
-| `common_name` | ``$OBJECT`` | No |  |
-| `conservation_status` | ``$STRING`` | No |  |
-| `distribution` | ``$OBJECT`` | No |  |
-| `observation_count` | ``$INTEGER`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `species_id` | ``$STRING`` | No |  |
-| `taxonomy` | ``$OBJECT`` | No |  |
+| `characteristic` | `table` | No |  |
+| `common_name` | `table` | No |  |
+| `conservation_status` | `string` | No |  |
+| `distribution` | `table` | No |  |
+| `observation_count` | `number` | No |  |
+| `scientific_name` | `string` | No |  |
+| `species_id` | `string` | No |  |
+| `taxonomy` | `table` | No |  |
 
 ### Operations
 

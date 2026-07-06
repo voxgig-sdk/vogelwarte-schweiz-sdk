@@ -8,7 +8,7 @@ Complete API reference for the VogelwarteSchweiz Python SDK.
 ### Constructor
 
 ```python
-from vogelwarte-schweiz_sdk import VogelwarteSchweizSDK
+from vogelwarteschweiz_sdk import VogelwarteSchweizSDK
 
 client = VogelwarteSchweizSDK(options)
 ```
@@ -91,30 +91,30 @@ bird = client.Bird()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `common_name_de` | ``$STRING`` | No |  |
-| `common_name_en` | ``$STRING`` | No |  |
-| `common_name_fr` | ``$STRING`` | No |  |
-| `common_name_it` | ``$STRING`` | No |  |
-| `conservation_status` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `family` | ``$STRING`` | No |  |
-| `habitat` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `length` | ``$OBJECT`` | No |  |
-| `order` | ``$STRING`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `weight` | ``$OBJECT`` | No |  |
-| `wingspan` | ``$OBJECT`` | No |  |
+| `common_name_de` | `str` | No |  |
+| `common_name_en` | `str` | No |  |
+| `common_name_fr` | `str` | No |  |
+| `common_name_it` | `str` | No |  |
+| `conservation_status` | `str` | No |  |
+| `description` | `str` | No |  |
+| `family` | `str` | No |  |
+| `habitat` | `list` | No |  |
+| `id` | `str` | No |  |
+| `image_url` | `str` | No |  |
+| `length` | `dict` | No |  |
+| `order` | `str` | No |  |
+| `scientific_name` | `str` | No |  |
+| `weight` | `dict` | No |  |
+| `wingspan` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Bird().list({})
+results = client.Bird().list()
 for bird in results:
     print(bird)
 ```
@@ -166,23 +166,23 @@ species = client.Species()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `characteristic` | ``$OBJECT`` | No |  |
-| `common_name` | ``$OBJECT`` | No |  |
-| `conservation_status` | ``$STRING`` | No |  |
-| `distribution` | ``$OBJECT`` | No |  |
-| `observation_count` | ``$INTEGER`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `species_id` | ``$STRING`` | No |  |
-| `taxonomy` | ``$OBJECT`` | No |  |
+| `characteristic` | `dict` | No |  |
+| `common_name` | `dict` | No |  |
+| `conservation_status` | `str` | No |  |
+| `distribution` | `dict` | No |  |
+| `observation_count` | `int` | No |  |
+| `scientific_name` | `str` | No |  |
+| `species_id` | `str` | No |  |
+| `taxonomy` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Species().list({})
+results = client.Species().list()
 for species in results:
     print(species)
 ```

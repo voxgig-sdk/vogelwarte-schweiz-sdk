@@ -8,7 +8,7 @@ Complete API reference for the VogelwarteSchweiz PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/vogelwarte-schweiz_sdk.php';
+require_once __DIR__ . '/vogelwarteschweiz_sdk.php';
 
 $client = new VogelwarteSchweizSDK($options);
 ```
@@ -49,11 +49,11 @@ Create a new `BirdEntity` instance. Pass `null` for no initial data.
 
 Create a new `SpeciesEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): VogelwarteSchweizUtility`
 
 Return a copy of the SDK utility object.
 
@@ -96,30 +96,30 @@ $bird = $client->Bird();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `common_name_de` | ``$STRING`` | No |  |
-| `common_name_en` | ``$STRING`` | No |  |
-| `common_name_fr` | ``$STRING`` | No |  |
-| `common_name_it` | ``$STRING`` | No |  |
-| `conservation_status` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `family` | ``$STRING`` | No |  |
-| `habitat` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `length` | ``$OBJECT`` | No |  |
-| `order` | ``$STRING`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `weight` | ``$OBJECT`` | No |  |
-| `wingspan` | ``$OBJECT`` | No |  |
+| `common_name_de` | `string` | No |  |
+| `common_name_en` | `string` | No |  |
+| `common_name_fr` | `string` | No |  |
+| `common_name_it` | `string` | No |  |
+| `conservation_status` | `string` | No |  |
+| `description` | `string` | No |  |
+| `family` | `string` | No |  |
+| `habitat` | `array` | No |  |
+| `id` | `string` | No |  |
+| `image_url` | `string` | No |  |
+| `length` | `array` | No |  |
+| `order` | `string` | No |  |
+| `scientific_name` | `string` | No |  |
+| `weight` | `array` | No |  |
+| `wingspan` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Bird()->list([]);
+$results = $client->Bird()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -132,19 +132,19 @@ $result = $client->Bird()->load(["id" => "bird_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -153,7 +153,7 @@ Set the entity match criteria.
 Create a new `BirdEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -170,40 +170,40 @@ $species = $client->Species();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `characteristic` | ``$OBJECT`` | No |  |
-| `common_name` | ``$OBJECT`` | No |  |
-| `conservation_status` | ``$STRING`` | No |  |
-| `distribution` | ``$OBJECT`` | No |  |
-| `observation_count` | ``$INTEGER`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `species_id` | ``$STRING`` | No |  |
-| `taxonomy` | ``$OBJECT`` | No |  |
+| `characteristic` | `array` | No |  |
+| `common_name` | `array` | No |  |
+| `conservation_status` | `string` | No |  |
+| `distribution` | `array` | No |  |
+| `observation_count` | `int` | No |  |
+| `scientific_name` | `string` | No |  |
+| `species_id` | `string` | No |  |
+| `taxonomy` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Species()->list([]);
+$results = $client->Species()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -212,7 +212,7 @@ Set the entity match criteria.
 Create a new `SpeciesEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

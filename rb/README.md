@@ -4,6 +4,8 @@
 
 The Ruby SDK for the VogelwarteSchweiz API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Bird` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,7 +37,7 @@ begin
   # list returns an Array of Bird records — iterate directly.
   birds = client.Bird.list
   birds.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["id"]} #{item["common_name_de"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -52,6 +54,33 @@ begin
 rescue => err
   warn "load failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  birds = client.Bird.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -72,7 +101,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -103,8 +134,8 @@ client = VogelwarteSchweizSDK.test({
   "entity" => { "bird" => { "test01" => { "id" => "test01" } } },
 })
 
-# load returns the bare mock record (raises on error).
-bird = client.Bird.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+bird = client.Bird.list()
 puts bird
 ```
 
@@ -191,10 +222,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -282,21 +310,21 @@ Create an instance: `bird = client.Bird`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `common_name_de` | ``$STRING`` |  |
-| `common_name_en` | ``$STRING`` |  |
-| `common_name_fr` | ``$STRING`` |  |
-| `common_name_it` | ``$STRING`` |  |
-| `conservation_status` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `family` | ``$STRING`` |  |
-| `habitat` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_url` | ``$STRING`` |  |
-| `length` | ``$OBJECT`` |  |
-| `order` | ``$STRING`` |  |
-| `scientific_name` | ``$STRING`` |  |
-| `weight` | ``$OBJECT`` |  |
-| `wingspan` | ``$OBJECT`` |  |
+| `common_name_de` | `String` |  |
+| `common_name_en` | `String` |  |
+| `common_name_fr` | `String` |  |
+| `common_name_it` | `String` |  |
+| `conservation_status` | `String` |  |
+| `description` | `String` |  |
+| `family` | `String` |  |
+| `habitat` | `Array` |  |
+| `id` | `String` |  |
+| `image_url` | `String` |  |
+| `length` | `Hash` |  |
+| `order` | `String` |  |
+| `scientific_name` | `String` |  |
+| `weight` | `Hash` |  |
+| `wingspan` | `Hash` |  |
 
 #### Example: Load
 
@@ -327,14 +355,14 @@ Create an instance: `species = client.Species`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `characteristic` | ``$OBJECT`` |  |
-| `common_name` | ``$OBJECT`` |  |
-| `conservation_status` | ``$STRING`` |  |
-| `distribution` | ``$OBJECT`` |  |
-| `observation_count` | ``$INTEGER`` |  |
-| `scientific_name` | ``$STRING`` |  |
-| `species_id` | ``$STRING`` |  |
-| `taxonomy` | ``$OBJECT`` |  |
+| `characteristic` | `Hash` |  |
+| `common_name` | `Hash` |  |
+| `conservation_status` | `String` |  |
+| `distribution` | `Hash` |  |
+| `observation_count` | `Integer` |  |
+| `scientific_name` | `String` |  |
+| `species_id` | `String` |  |
+| `taxonomy` | `Hash` |  |
 
 #### Example: List
 
@@ -344,12 +372,16 @@ speciess = client.Species.list
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -366,8 +398,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -411,14 +444,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 bird = client.Bird
-bird.load({ "id" => "example_id" })
+bird.list()
 
-# bird.data_get now returns the loaded bird data
+# bird.data_get now returns the bird data from the last list
 # bird.match_get returns the last match criteria
 ```
 

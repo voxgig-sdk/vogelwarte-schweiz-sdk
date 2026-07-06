@@ -82,7 +82,7 @@ BirdLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Bird#list (any subset of Bird fields).
+# Request payload for Bird#list.
 #
 # @!attribute [rw] common_name_de
 #   @return [String, nil]
@@ -184,7 +184,7 @@ Species = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Species#list (any subset of Species fields).
+# Request payload for Species#list.
 #
 # @!attribute [rw] characteristic
 #   @return [Hash, nil]

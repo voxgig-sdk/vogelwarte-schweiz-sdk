@@ -38,7 +38,7 @@ class BirdLoadMatch
     public string $id;
 }
 
-/** Match filter for Bird#list (any subset of Bird fields). */
+/** Request payload for Bird#list. */
 class BirdListMatch
 {
     public ?string $common_name_de = null;
@@ -71,7 +71,7 @@ class Species
     public ?array $taxonomy = null;
 }
 
-/** Match filter for Species#list (any subset of Species fields). */
+/** Request payload for Species#list. */
 class SpeciesListMatch
 {
     public ?array $characteristic = null;

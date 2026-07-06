@@ -32,8 +32,7 @@ type BirdLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// BirdListMatch mirrors the bird fields as an all-optional match
-// filter (Go analog of Partial<Bird>).
+// BirdListMatch is the typed request payload for Bird.ListTyped.
 type BirdListMatch struct {
 	CommonNameDe *string `json:"common_name_de,omitempty"`
 	CommonNameEn *string `json:"common_name_en,omitempty"`
@@ -64,8 +63,7 @@ type Species struct {
 	Taxonomy *map[string]any `json:"taxonomy,omitempty"`
 }
 
-// SpeciesListMatch mirrors the species fields as an all-optional match
-// filter (Go analog of Partial<Species>).
+// SpeciesListMatch is the typed request payload for Species.ListTyped.
 type SpeciesListMatch struct {
 	Characteristic *map[string]any `json:"characteristic,omitempty"`
 	CommonName *map[string]any `json:"common_name,omitempty"`

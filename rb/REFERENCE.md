@@ -8,7 +8,7 @@ Complete API reference for the VogelwarteSchweiz Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'vogelwarte-schweiz_sdk'
+require_relative 'VogelwarteSchweiz_sdk'
 
 client = VogelwarteSchweizSDK.new(options)
 ```
@@ -97,30 +97,30 @@ bird = client.Bird
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `common_name_de` | ``$STRING`` | No |  |
-| `common_name_en` | ``$STRING`` | No |  |
-| `common_name_fr` | ``$STRING`` | No |  |
-| `common_name_it` | ``$STRING`` | No |  |
-| `conservation_status` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `family` | ``$STRING`` | No |  |
-| `habitat` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$STRING`` | No |  |
-| `length` | ``$OBJECT`` | No |  |
-| `order` | ``$STRING`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `weight` | ``$OBJECT`` | No |  |
-| `wingspan` | ``$OBJECT`` | No |  |
+| `common_name_de` | `String` | No |  |
+| `common_name_en` | `String` | No |  |
+| `common_name_fr` | `String` | No |  |
+| `common_name_it` | `String` | No |  |
+| `conservation_status` | `String` | No |  |
+| `description` | `String` | No |  |
+| `family` | `String` | No |  |
+| `habitat` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `image_url` | `String` | No |  |
+| `length` | `Hash` | No |  |
+| `order` | `String` | No |  |
+| `scientific_name` | `String` | No |  |
+| `weight` | `Hash` | No |  |
+| `wingspan` | `Hash` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Bird.list(nil)
+results = client.Bird.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -171,23 +171,23 @@ species = client.Species
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `characteristic` | ``$OBJECT`` | No |  |
-| `common_name` | ``$OBJECT`` | No |  |
-| `conservation_status` | ``$STRING`` | No |  |
-| `distribution` | ``$OBJECT`` | No |  |
-| `observation_count` | ``$INTEGER`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `species_id` | ``$STRING`` | No |  |
-| `taxonomy` | ``$OBJECT`` | No |  |
+| `characteristic` | `Hash` | No |  |
+| `common_name` | `Hash` | No |  |
+| `conservation_status` | `String` | No |  |
+| `distribution` | `Hash` | No |  |
+| `observation_count` | `Integer` | No |  |
+| `scientific_name` | `String` | No |  |
+| `species_id` | `String` | No |  |
+| `taxonomy` | `Hash` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Species.list(nil)
+results = client.Species.list
 ```
 
 ### Common Methods
