@@ -16,9 +16,9 @@ main: {
           url: "https://www.vogelwarte.ch"
         }
       ]
+      summary: "Reverse-Engineered Vogel-Datenbank der Schweiz mit verschiedenen Endpoints - Bird Database API for Switzerland providing access to bird species information and data"
       title: "Vogelwarte Schweiz"
       version: "1.0.0"
+      website: "https://vogelwarte.ch"
     }
   }
-}
-

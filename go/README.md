@@ -60,7 +60,7 @@ func main() {
     }
 
     // Load a single bird — the value is the loaded record.
-    bird, err := client.Bird(nil).Load(map[string]any{"id": "example"}, nil)
+    bird, err := client.Bird(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
