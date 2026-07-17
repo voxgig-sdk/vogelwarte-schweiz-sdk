@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- VogelwarteSchweiz SDK exists test
 
 local sdk = require("vogelwarte-schweiz_sdk")
 
