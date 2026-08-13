@@ -28,35 +28,35 @@ module VogelwarteSchweizConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "common_name_de",
+              "name" => "commonNameDe",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "common_name_en",
+              "name" => "commonNameEn",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "common_name_fr",
+              "name" => "commonNameFr",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 2,
             },
             {
               "active" => true,
-              "name" => "common_name_it",
+              "name" => "commonNameIt",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 3,
             },
             {
               "active" => true,
-              "name" => "conservation_status",
+              "name" => "conservationStatus",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 4,
@@ -91,7 +91,7 @@ module VogelwarteSchweizConfig
             },
             {
               "active" => true,
-              "name" => "image_url",
+              "name" => "imageUrl",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 9,
@@ -112,7 +112,7 @@ module VogelwarteSchweizConfig
             },
             {
               "active" => true,
-              "name" => "scientific_name",
+              "name" => "scientificName",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 12,
@@ -170,6 +170,7 @@ module VogelwarteSchweizConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/birds",
                   "parts" => [
@@ -185,7 +186,7 @@ module VogelwarteSchweizConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -211,6 +212,7 @@ module VogelwarteSchweizConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/birds/{birdId}",
                   "parts" => [
@@ -246,21 +248,21 @@ module VogelwarteSchweizConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "characteristic",
+              "name" => "characteristics",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "common_name",
+              "name" => "commonNames",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "conservation_status",
+              "name" => "conservationStatus",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 2,
@@ -274,21 +276,21 @@ module VogelwarteSchweizConfig
             },
             {
               "active" => true,
-              "name" => "observation_count",
+              "name" => "observationCount",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 4,
             },
             {
               "active" => true,
-              "name" => "scientific_name",
+              "name" => "scientificName",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 5,
             },
             {
               "active" => true,
-              "name" => "species_id",
+              "name" => "speciesId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 6,
@@ -337,6 +339,7 @@ module VogelwarteSchweizConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/species",
                   "parts" => [

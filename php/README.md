@@ -38,7 +38,7 @@ try {
     // list() returns an array of Bird records — iterate directly.
     $birds = $client->Bird()->list();
     foreach ($birds as $item) {
-        echo $item["id"] . " " . $item["common_name_de"] . "\n";
+        echo $item["id"] . " " . $item["commonNameDe"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Bird record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Bird record (throws on error).
     $bird = $client->Bird()->load(["id" => "example_id"]);
     print_r($bird);
 } catch (\Throwable $err) {
@@ -140,7 +140,8 @@ $client = VogelwarteSchweizSDK::test([
     "entity" => ["bird" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $bird = $client->Bird()->list();
 print_r($bird);
 ```
@@ -241,7 +242,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -263,19 +264,19 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `common_name_de` |  |
-| `common_name_en` |  |
-| `common_name_fr` |  |
-| `common_name_it` |  |
-| `conservation_status` |  |
+| `commonNameDe` |  |
+| `commonNameEn` |  |
+| `commonNameFr` |  |
+| `commonNameIt` |  |
+| `conservationStatus` |  |
 | `description` |  |
 | `family` |  |
 | `habitat` |  |
 | `id` |  |
-| `image_url` |  |
+| `imageUrl` |  |
 | `length` |  |
 | `order` |  |
-| `scientific_name` |  |
+| `scientificName` |  |
 | `weight` |  |
 | `wingspan` |  |
 
@@ -287,13 +288,13 @@ API path: `/api/birds`
 
 | Field | Description |
 | --- | --- |
-| `characteristic` |  |
-| `common_name` |  |
-| `conservation_status` |  |
+| `characteristics` |  |
+| `commonNames` |  |
+| `conservationStatus` |  |
 | `distribution` |  |
-| `observation_count` |  |
-| `scientific_name` |  |
-| `species_id` |  |
+| `observationCount` |  |
+| `scientificName` |  |
+| `speciesId` |  |
 | `taxonomy` |  |
 
 Operations: List.
@@ -320,26 +321,26 @@ Create an instance: `$bird = $client->Bird();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `common_name_de` | `string` |  |
-| `common_name_en` | `string` |  |
-| `common_name_fr` | `string` |  |
-| `common_name_it` | `string` |  |
-| `conservation_status` | `string` |  |
+| `commonNameDe` | `string` |  |
+| `commonNameEn` | `string` |  |
+| `commonNameFr` | `string` |  |
+| `commonNameIt` | `string` |  |
+| `conservationStatus` | `string` |  |
 | `description` | `string` |  |
 | `family` | `string` |  |
 | `habitat` | `array` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
+| `imageUrl` | `string` |  |
 | `length` | `array` |  |
 | `order` | `string` |  |
-| `scientific_name` | `string` |  |
+| `scientificName` | `string` |  |
 | `weight` | `array` |  |
 | `wingspan` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Bird record (throws on error).
+// load() returns the ENTITY — call data_get() for the Bird record (throws on error).
 $bird = $client->Bird()->load(["id" => "bird_id"]);
 ```
 
@@ -365,13 +366,13 @@ Create an instance: `$species = $client->Species();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `characteristic` | `array` |  |
-| `common_name` | `array` |  |
-| `conservation_status` | `string` |  |
+| `characteristics` | `array` |  |
+| `commonNames` | `array` |  |
+| `conservationStatus` | `string` |  |
 | `distribution` | `array` |  |
-| `observation_count` | `int` |  |
-| `scientific_name` | `string` |  |
-| `species_id` | `string` |  |
+| `observationCount` | `int` |  |
+| `scientificName` | `string` |  |
+| `speciesId` | `string` |  |
 | `taxonomy` | `array` |  |
 
 #### Example: List

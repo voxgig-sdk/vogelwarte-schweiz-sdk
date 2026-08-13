@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = VogelwarteSchweizSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = VogelwarteSchweizSDK.test({
+  entity: {
+    bird: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const birds = await client.Bird().list()
-// birds is an array of bare Bird records populated with mock data
+// birds is an array of Bird entities, populated with mock data
+// — call birds[0].data() for the record itself
 console.log(birds)
 ```
 
@@ -110,7 +119,7 @@ import { VogelwarteSchweizSDK } from '@voxgig-sdk/vogelwarte-schweiz'
 
 const client = new VogelwarteSchweizSDK()
 
-// List all birds (returns Bird[])
+// List all birds (returns BirdEntity[] — .data() for the record)
 const birds = await client.Bird().list()
 for (const bird of birds) {
   console.log(bird)
@@ -192,7 +201,7 @@ $client = new VogelwarteSchweizSDK();
 $birds = $client->Bird()->list();
 print_r($birds);
 
-// Load a specific bird (returns the bare record; throws on error)
+// Load a specific bird (returns the ENTITY; call data_get() for the record; throws on error)
 $bird = $client->Bird()->load(["id" => "example_id"]);
 print_r($bird);
 ```
@@ -223,7 +232,7 @@ client = VogelwarteSchweizSDK.new
 birds = client.Bird.list
 puts birds
 
-# Load a specific bird (returns the bare record; raises on error)
+# Load a specific bird (returns the ENTITY; call data_get for the record)
 bird = client.Bird.load({ "id" => "example_id" })
 puts bird
 ```
@@ -360,6 +369,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.vogelwarte.ch/](https://www.vogelwarte.ch/)
 

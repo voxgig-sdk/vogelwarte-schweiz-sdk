@@ -6,17 +6,17 @@ main: kit: entity: species: {
 
   fields: [
     {
-      name: "characteristic"
+      name: "characteristics"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "common_name"
+      name: "commonNames"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "conservation_status"
+      name: "conservationStatus"
       req: false
       type: "`$STRING`"
     }
@@ -26,17 +26,17 @@ main: kit: entity: species: {
       type: "`$OBJECT`"
     }
     {
-      name: "observation_count"
+      name: "observationCount"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "scientific_name"
+      name: "scientificName"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "species_id"
+      name: "speciesId"
       req: false
       type: "`$STRING`"
     }

@@ -6,23 +6,27 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go/core"
+)
 
 // Bird is the typed data model for the bird entity.
 type Bird struct {
-	CommonNameDe *string `json:"common_name_de,omitempty"`
-	CommonNameEn *string `json:"common_name_en,omitempty"`
-	CommonNameFr *string `json:"common_name_fr,omitempty"`
-	CommonNameIt *string `json:"common_name_it,omitempty"`
-	ConservationStatus *string `json:"conservation_status,omitempty"`
+	CommonNameDe *string `json:"commonNameDe,omitempty"`
+	CommonNameEn *string `json:"commonNameEn,omitempty"`
+	CommonNameFr *string `json:"commonNameFr,omitempty"`
+	CommonNameIt *string `json:"commonNameIt,omitempty"`
+	ConservationStatus *string `json:"conservationStatus,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Family *string `json:"family,omitempty"`
 	Habitat *[]any `json:"habitat,omitempty"`
 	Id *string `json:"id,omitempty"`
-	ImageUrl *string `json:"image_url,omitempty"`
+	ImageUrl *string `json:"imageUrl,omitempty"`
 	Length *map[string]any `json:"length,omitempty"`
 	Order *string `json:"order,omitempty"`
-	ScientificName *string `json:"scientific_name,omitempty"`
+	ScientificName *string `json:"scientificName,omitempty"`
 	Weight *map[string]any `json:"weight,omitempty"`
 	Wingspan *map[string]any `json:"wingspan,omitempty"`
 }
@@ -34,44 +38,44 @@ type BirdLoadMatch struct {
 
 // BirdListMatch is the typed request payload for Bird.ListTyped.
 type BirdListMatch struct {
-	CommonNameDe *string `json:"common_name_de,omitempty"`
-	CommonNameEn *string `json:"common_name_en,omitempty"`
-	CommonNameFr *string `json:"common_name_fr,omitempty"`
-	CommonNameIt *string `json:"common_name_it,omitempty"`
-	ConservationStatus *string `json:"conservation_status,omitempty"`
+	CommonNameDe *string `json:"commonNameDe,omitempty"`
+	CommonNameEn *string `json:"commonNameEn,omitempty"`
+	CommonNameFr *string `json:"commonNameFr,omitempty"`
+	CommonNameIt *string `json:"commonNameIt,omitempty"`
+	ConservationStatus *string `json:"conservationStatus,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Family *string `json:"family,omitempty"`
 	Habitat *[]any `json:"habitat,omitempty"`
 	Id *string `json:"id,omitempty"`
-	ImageUrl *string `json:"image_url,omitempty"`
+	ImageUrl *string `json:"imageUrl,omitempty"`
 	Length *map[string]any `json:"length,omitempty"`
 	Order *string `json:"order,omitempty"`
-	ScientificName *string `json:"scientific_name,omitempty"`
+	ScientificName *string `json:"scientificName,omitempty"`
 	Weight *map[string]any `json:"weight,omitempty"`
 	Wingspan *map[string]any `json:"wingspan,omitempty"`
 }
 
 // Species is the typed data model for the species entity.
 type Species struct {
-	Characteristic *map[string]any `json:"characteristic,omitempty"`
-	CommonName *map[string]any `json:"common_name,omitempty"`
-	ConservationStatus *string `json:"conservation_status,omitempty"`
+	Characteristics *map[string]any `json:"characteristics,omitempty"`
+	CommonNames *map[string]any `json:"commonNames,omitempty"`
+	ConservationStatus *string `json:"conservationStatus,omitempty"`
 	Distribution *map[string]any `json:"distribution,omitempty"`
-	ObservationCount *int `json:"observation_count,omitempty"`
-	ScientificName *string `json:"scientific_name,omitempty"`
-	SpeciesId *string `json:"species_id,omitempty"`
+	ObservationCount *int `json:"observationCount,omitempty"`
+	ScientificName *string `json:"scientificName,omitempty"`
+	SpeciesId *string `json:"speciesId,omitempty"`
 	Taxonomy *map[string]any `json:"taxonomy,omitempty"`
 }
 
 // SpeciesListMatch is the typed request payload for Species.ListTyped.
 type SpeciesListMatch struct {
-	Characteristic *map[string]any `json:"characteristic,omitempty"`
-	CommonName *map[string]any `json:"common_name,omitempty"`
-	ConservationStatus *string `json:"conservation_status,omitempty"`
+	Characteristics *map[string]any `json:"characteristics,omitempty"`
+	CommonNames *map[string]any `json:"commonNames,omitempty"`
+	ConservationStatus *string `json:"conservationStatus,omitempty"`
 	Distribution *map[string]any `json:"distribution,omitempty"`
-	ObservationCount *int `json:"observation_count,omitempty"`
-	ScientificName *string `json:"scientific_name,omitempty"`
-	SpeciesId *string `json:"species_id,omitempty"`
+	ObservationCount *int `json:"observationCount,omitempty"`
+	ScientificName *string `json:"scientificName,omitempty"`
+	SpeciesId *string `json:"speciesId,omitempty"`
 	Taxonomy *map[string]any `json:"taxonomy,omitempty"`
 }
 
@@ -87,12 +91,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -104,12 +122,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

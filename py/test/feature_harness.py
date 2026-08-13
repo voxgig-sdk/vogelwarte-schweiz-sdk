@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import VogelwarteSchweizControl
-from core.error import VogelwarteSchweizError
-from core.result import VogelwarteSchweizResult
-from core.spec import VogelwarteSchweizSpec
+from vogelwarteschweiz_sdk.config import make_config
+from vogelwarteschweiz_sdk.features import _make_feature
+from vogelwarteschweiz_sdk.core.control import VogelwarteSchweizControl
+from vogelwarteschweiz_sdk.core.error import VogelwarteSchweizError
+from vogelwarteschweiz_sdk.core.result import VogelwarteSchweizResult
+from vogelwarteschweiz_sdk.core.spec import VogelwarteSchweizSpec
 
 
 # True when this SDK was generated with the named feature.

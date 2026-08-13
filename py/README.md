@@ -52,7 +52,7 @@ except Exception as err:
 
 ### 3. Load a bird
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -136,7 +136,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = VogelwarteSchweizSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 bird = client.Bird().list()
 # bird contains the mock response record
 ```
@@ -234,7 +235,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -256,19 +257,19 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `common_name_de` |  |
-| `common_name_en` |  |
-| `common_name_fr` |  |
-| `common_name_it` |  |
-| `conservation_status` |  |
+| `commonNameDe` |  |
+| `commonNameEn` |  |
+| `commonNameFr` |  |
+| `commonNameIt` |  |
+| `conservationStatus` |  |
 | `description` |  |
 | `family` |  |
 | `habitat` |  |
 | `id` |  |
-| `image_url` |  |
+| `imageUrl` |  |
 | `length` |  |
 | `order` |  |
-| `scientific_name` |  |
+| `scientificName` |  |
 | `weight` |  |
 | `wingspan` |  |
 
@@ -280,13 +281,13 @@ API path: `/api/birds`
 
 | Field | Description |
 | --- | --- |
-| `characteristic` |  |
-| `common_name` |  |
-| `conservation_status` |  |
+| `characteristics` |  |
+| `commonNames` |  |
+| `conservationStatus` |  |
 | `distribution` |  |
-| `observation_count` |  |
-| `scientific_name` |  |
-| `species_id` |  |
+| `observationCount` |  |
+| `scientificName` |  |
+| `speciesId` |  |
 | `taxonomy` |  |
 
 Operations: List.
@@ -313,19 +314,19 @@ Create an instance: `bird = client.Bird()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `common_name_de` | `str` |  |
-| `common_name_en` | `str` |  |
-| `common_name_fr` | `str` |  |
-| `common_name_it` | `str` |  |
-| `conservation_status` | `str` |  |
+| `commonNameDe` | `str` |  |
+| `commonNameEn` | `str` |  |
+| `commonNameFr` | `str` |  |
+| `commonNameIt` | `str` |  |
+| `conservationStatus` | `str` |  |
 | `description` | `str` |  |
 | `family` | `str` |  |
 | `habitat` | `list` |  |
 | `id` | `str` |  |
-| `image_url` | `str` |  |
+| `imageUrl` | `str` |  |
 | `length` | `dict` |  |
 | `order` | `str` |  |
-| `scientific_name` | `str` |  |
+| `scientificName` | `str` |  |
 | `weight` | `dict` |  |
 | `wingspan` | `dict` |  |
 
@@ -356,13 +357,13 @@ Create an instance: `species = client.Species()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `characteristic` | `dict` |  |
-| `common_name` | `dict` |  |
-| `conservation_status` | `str` |  |
+| `characteristics` | `dict` |  |
+| `commonNames` | `dict` |  |
+| `conservationStatus` | `str` |  |
 | `distribution` | `dict` |  |
-| `observation_count` | `int` |  |
-| `scientific_name` | `str` |  |
-| `species_id` | `str` |  |
+| `observationCount` | `int` |  |
+| `scientificName` | `str` |  |
+| `speciesId` | `str` |  |
 | `taxonomy` | `dict` |  |
 
 #### Example: List

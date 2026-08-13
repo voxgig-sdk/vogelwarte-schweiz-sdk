@@ -10,19 +10,19 @@
 
 # Bird entity data model.
 #
-# @!attribute [rw] common_name_de
+# @!attribute [rw] commonNameDe
 #   @return [String, nil]
 #
-# @!attribute [rw] common_name_en
+# @!attribute [rw] commonNameEn
 #   @return [String, nil]
 #
-# @!attribute [rw] common_name_fr
+# @!attribute [rw] commonNameFr
 #   @return [String, nil]
 #
-# @!attribute [rw] common_name_it
+# @!attribute [rw] commonNameIt
 #   @return [String, nil]
 #
-# @!attribute [rw] conservation_status
+# @!attribute [rw] conservationStatus
 #   @return [String, nil]
 #
 # @!attribute [rw] description
@@ -37,7 +37,7 @@
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] length
@@ -46,7 +46,7 @@
 # @!attribute [rw] order
 #   @return [String, nil]
 #
-# @!attribute [rw] scientific_name
+# @!attribute [rw] scientificName
 #   @return [String, nil]
 #
 # @!attribute [rw] weight
@@ -55,19 +55,19 @@
 # @!attribute [rw] wingspan
 #   @return [Hash, nil]
 Bird = Struct.new(
-  :common_name_de,
-  :common_name_en,
-  :common_name_fr,
-  :common_name_it,
-  :conservation_status,
+  :commonNameDe,
+  :commonNameEn,
+  :commonNameFr,
+  :commonNameIt,
+  :conservationStatus,
   :description,
   :family,
   :habitat,
   :id,
-  :image_url,
+  :imageUrl,
   :length,
   :order,
-  :scientific_name,
+  :scientificName,
   :weight,
   :wingspan,
   keyword_init: true
@@ -84,19 +84,19 @@ BirdLoadMatch = Struct.new(
 
 # Request payload for Bird#list.
 #
-# @!attribute [rw] common_name_de
+# @!attribute [rw] commonNameDe
 #   @return [String, nil]
 #
-# @!attribute [rw] common_name_en
+# @!attribute [rw] commonNameEn
 #   @return [String, nil]
 #
-# @!attribute [rw] common_name_fr
+# @!attribute [rw] commonNameFr
 #   @return [String, nil]
 #
-# @!attribute [rw] common_name_it
+# @!attribute [rw] commonNameIt
 #   @return [String, nil]
 #
-# @!attribute [rw] conservation_status
+# @!attribute [rw] conservationStatus
 #   @return [String, nil]
 #
 # @!attribute [rw] description
@@ -111,7 +111,7 @@ BirdLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] image_url
+# @!attribute [rw] imageUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] length
@@ -120,7 +120,7 @@ BirdLoadMatch = Struct.new(
 # @!attribute [rw] order
 #   @return [String, nil]
 #
-# @!attribute [rw] scientific_name
+# @!attribute [rw] scientificName
 #   @return [String, nil]
 #
 # @!attribute [rw] weight
@@ -129,19 +129,19 @@ BirdLoadMatch = Struct.new(
 # @!attribute [rw] wingspan
 #   @return [Hash, nil]
 BirdListMatch = Struct.new(
-  :common_name_de,
-  :common_name_en,
-  :common_name_fr,
-  :common_name_it,
-  :conservation_status,
+  :commonNameDe,
+  :commonNameEn,
+  :commonNameFr,
+  :commonNameIt,
+  :conservationStatus,
   :description,
   :family,
   :habitat,
   :id,
-  :image_url,
+  :imageUrl,
   :length,
   :order,
-  :scientific_name,
+  :scientificName,
   :weight,
   :wingspan,
   keyword_init: true
@@ -149,74 +149,74 @@ BirdListMatch = Struct.new(
 
 # Species entity data model.
 #
-# @!attribute [rw] characteristic
+# @!attribute [rw] characteristics
 #   @return [Hash, nil]
 #
-# @!attribute [rw] common_name
+# @!attribute [rw] commonNames
 #   @return [Hash, nil]
 #
-# @!attribute [rw] conservation_status
+# @!attribute [rw] conservationStatus
 #   @return [String, nil]
 #
 # @!attribute [rw] distribution
 #   @return [Hash, nil]
 #
-# @!attribute [rw] observation_count
+# @!attribute [rw] observationCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] scientific_name
+# @!attribute [rw] scientificName
 #   @return [String, nil]
 #
-# @!attribute [rw] species_id
+# @!attribute [rw] speciesId
 #   @return [String, nil]
 #
 # @!attribute [rw] taxonomy
 #   @return [Hash, nil]
 Species = Struct.new(
-  :characteristic,
-  :common_name,
-  :conservation_status,
+  :characteristics,
+  :commonNames,
+  :conservationStatus,
   :distribution,
-  :observation_count,
-  :scientific_name,
-  :species_id,
+  :observationCount,
+  :scientificName,
+  :speciesId,
   :taxonomy,
   keyword_init: true
 )
 
 # Request payload for Species#list.
 #
-# @!attribute [rw] characteristic
+# @!attribute [rw] characteristics
 #   @return [Hash, nil]
 #
-# @!attribute [rw] common_name
+# @!attribute [rw] commonNames
 #   @return [Hash, nil]
 #
-# @!attribute [rw] conservation_status
+# @!attribute [rw] conservationStatus
 #   @return [String, nil]
 #
 # @!attribute [rw] distribution
 #   @return [Hash, nil]
 #
-# @!attribute [rw] observation_count
+# @!attribute [rw] observationCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] scientific_name
+# @!attribute [rw] scientificName
 #   @return [String, nil]
 #
-# @!attribute [rw] species_id
+# @!attribute [rw] speciesId
 #   @return [String, nil]
 #
 # @!attribute [rw] taxonomy
 #   @return [Hash, nil]
 SpeciesListMatch = Struct.new(
-  :characteristic,
-  :common_name,
-  :conservation_status,
+  :characteristics,
+  :commonNames,
+  :conservationStatus,
   :distribution,
-  :observation_count,
-  :scientific_name,
-  :species_id,
+  :observationCount,
+  :scientificName,
+  :speciesId,
   :taxonomy,
   keyword_init: true
 )

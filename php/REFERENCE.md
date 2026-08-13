@@ -96,19 +96,19 @@ $bird = $client->Bird();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `common_name_de` | `string` | No |  |
-| `common_name_en` | `string` | No |  |
-| `common_name_fr` | `string` | No |  |
-| `common_name_it` | `string` | No |  |
-| `conservation_status` | `string` | No |  |
+| `commonNameDe` | `string` | No |  |
+| `commonNameEn` | `string` | No |  |
+| `commonNameFr` | `string` | No |  |
+| `commonNameIt` | `string` | No |  |
+| `conservationStatus` | `string` | No |  |
 | `description` | `string` | No |  |
 | `family` | `string` | No |  |
 | `habitat` | `array` | No |  |
 | `id` | `string` | No |  |
-| `image_url` | `string` | No |  |
+| `imageUrl` | `string` | No |  |
 | `length` | `array` | No |  |
 | `order` | `string` | No |  |
-| `scientific_name` | `string` | No |  |
+| `scientificName` | `string` | No |  |
 | `weight` | `array` | No |  |
 | `wingspan` | `array` | No |  |
 
@@ -170,13 +170,13 @@ $species = $client->Species();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `characteristic` | `array` | No |  |
-| `common_name` | `array` | No |  |
-| `conservation_status` | `string` | No |  |
+| `characteristics` | `array` | No |  |
+| `commonNames` | `array` | No |  |
+| `conservationStatus` | `string` | No |  |
 | `distribution` | `array` | No |  |
-| `observation_count` | `int` | No |  |
-| `scientific_name` | `string` | No |  |
-| `species_id` | `string` | No |  |
+| `observationCount` | `int` | No |  |
+| `scientificName` | `string` | No |  |
+| `speciesId` | `string` | No |  |
 | `taxonomy` | `array` | No |  |
 
 ### Operations

@@ -43,8 +43,8 @@ class VogelwarteSchweizTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('VOGELWARTESCHWEIZ_TEST_LIVE');
-        $override = self::getenv('VOGELWARTESCHWEIZ_TEST_OVERRIDE');
+        $live = self::getenv('VOGELWARTE_SCHWEIZ_TEST_LIVE');
+        $override = self::getenv('VOGELWARTE_SCHWEIZ_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class VogelwarteSchweizTestRunner
             }
         }
 
-        $explain = self::getenv('VOGELWARTESCHWEIZ_TEST_EXPLAIN');
+        $explain = self::getenv('VOGELWARTE_SCHWEIZ_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['VOGELWARTESCHWEIZ_TEST_EXPLAIN'] = $explain;
+            $m['VOGELWARTE_SCHWEIZ_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

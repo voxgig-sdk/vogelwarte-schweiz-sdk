@@ -37,7 +37,7 @@ class SpeciesEntity extends VogelwarteSchweizEntityBase<Species> {
 
 
 
-  async list(this: any, reqmatch?: SpeciesListMatch, ctrl?: Control): Promise<Species[]> {
+  async list(this: any, reqmatch?: SpeciesListMatch, ctrl?: Control): Promise<SpeciesEntity[]> {
 
     const utility = this._utility
 

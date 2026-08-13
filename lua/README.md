@@ -43,7 +43,7 @@ local birds, err = client:Bird():list()
 if err then error(err) end
 
 for _, item in ipairs(birds) do
-  print(item["id"], item["common_name_de"])
+  print(item["id"], item["commonNameDe"])
 end
 ```
 
@@ -242,19 +242,19 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `common_name_de` |  |
-| `common_name_en` |  |
-| `common_name_fr` |  |
-| `common_name_it` |  |
-| `conservation_status` |  |
+| `commonNameDe` |  |
+| `commonNameEn` |  |
+| `commonNameFr` |  |
+| `commonNameIt` |  |
+| `conservationStatus` |  |
 | `description` |  |
 | `family` |  |
 | `habitat` |  |
 | `id` |  |
-| `image_url` |  |
+| `imageUrl` |  |
 | `length` |  |
 | `order` |  |
-| `scientific_name` |  |
+| `scientificName` |  |
 | `weight` |  |
 | `wingspan` |  |
 
@@ -266,13 +266,13 @@ API path: `/api/birds`
 
 | Field | Description |
 | --- | --- |
-| `characteristic` |  |
-| `common_name` |  |
-| `conservation_status` |  |
+| `characteristics` |  |
+| `commonNames` |  |
+| `conservationStatus` |  |
 | `distribution` |  |
-| `observation_count` |  |
-| `scientific_name` |  |
-| `species_id` |  |
+| `observationCount` |  |
+| `scientificName` |  |
+| `speciesId` |  |
 | `taxonomy` |  |
 
 Operations: List.
@@ -299,19 +299,19 @@ Create an instance: `local bird = client:Bird(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `common_name_de` | `string` |  |
-| `common_name_en` | `string` |  |
-| `common_name_fr` | `string` |  |
-| `common_name_it` | `string` |  |
-| `conservation_status` | `string` |  |
+| `commonNameDe` | `string` |  |
+| `commonNameEn` | `string` |  |
+| `commonNameFr` | `string` |  |
+| `commonNameIt` | `string` |  |
+| `conservationStatus` | `string` |  |
 | `description` | `string` |  |
 | `family` | `string` |  |
 | `habitat` | `table` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
+| `imageUrl` | `string` |  |
 | `length` | `table` |  |
 | `order` | `string` |  |
-| `scientific_name` | `string` |  |
+| `scientificName` | `string` |  |
 | `weight` | `table` |  |
 | `wingspan` | `table` |  |
 
@@ -342,13 +342,13 @@ Create an instance: `local species = client:Species(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `characteristic` | `table` |  |
-| `common_name` | `table` |  |
-| `conservation_status` | `string` |  |
+| `characteristics` | `table` |  |
+| `commonNames` | `table` |  |
+| `conservationStatus` | `string` |  |
 | `distribution` | `table` |  |
-| `observation_count` | `number` |  |
-| `scientific_name` | `string` |  |
-| `species_id` | `string` |  |
+| `observationCount` | `number` |  |
+| `scientificName` | `string` |  |
+| `speciesId` | `string` |  |
 | `taxonomy` | `table` |  |
 
 #### Example: List

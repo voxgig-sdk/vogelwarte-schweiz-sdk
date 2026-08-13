@@ -97,19 +97,19 @@ bird = client.Bird
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `common_name_de` | `String` | No |  |
-| `common_name_en` | `String` | No |  |
-| `common_name_fr` | `String` | No |  |
-| `common_name_it` | `String` | No |  |
-| `conservation_status` | `String` | No |  |
+| `commonNameDe` | `String` | No |  |
+| `commonNameEn` | `String` | No |  |
+| `commonNameFr` | `String` | No |  |
+| `commonNameIt` | `String` | No |  |
+| `conservationStatus` | `String` | No |  |
 | `description` | `String` | No |  |
 | `family` | `String` | No |  |
 | `habitat` | `Array` | No |  |
 | `id` | `String` | No |  |
-| `image_url` | `String` | No |  |
+| `imageUrl` | `String` | No |  |
 | `length` | `Hash` | No |  |
 | `order` | `String` | No |  |
-| `scientific_name` | `String` | No |  |
+| `scientificName` | `String` | No |  |
 | `weight` | `Hash` | No |  |
 | `wingspan` | `Hash` | No |  |
 
@@ -171,13 +171,13 @@ species = client.Species
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `characteristic` | `Hash` | No |  |
-| `common_name` | `Hash` | No |  |
-| `conservation_status` | `String` | No |  |
+| `characteristics` | `Hash` | No |  |
+| `commonNames` | `Hash` | No |  |
+| `conservationStatus` | `String` | No |  |
 | `distribution` | `Hash` | No |  |
-| `observation_count` | `Integer` | No |  |
-| `scientific_name` | `String` | No |  |
-| `species_id` | `String` | No |  |
+| `observationCount` | `Integer` | No |  |
+| `scientificName` | `String` | No |  |
+| `speciesId` | `String` | No |  |
 | `taxonomy` | `Hash` | No |  |
 
 ### Operations

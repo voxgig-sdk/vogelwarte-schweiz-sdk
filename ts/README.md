@@ -35,7 +35,9 @@ const client = new VogelwarteSchweizSDK()
 
 ### 2. List bird records
 
-`list()` resolves to an array of Bird objects — iterate it directly:
+`list()` resolves to an array of Bird ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const birds = await client.Bird().list()
@@ -133,7 +135,8 @@ Create a mock client for unit testing — no server required:
 const client = VogelwarteSchweizSDK.test()
 
 const bird = await client.Bird().list()
-// bird is a bare entity populated with mock response data
+// bird is the entity, populated with mock response data
+// — call bird.data() for the record itself
 console.log(bird)
 ```
 
@@ -300,19 +303,19 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `common_name_de` |  |
-| `common_name_en` |  |
-| `common_name_fr` |  |
-| `common_name_it` |  |
-| `conservation_status` |  |
+| `commonNameDe` |  |
+| `commonNameEn` |  |
+| `commonNameFr` |  |
+| `commonNameIt` |  |
+| `conservationStatus` |  |
 | `description` |  |
 | `family` |  |
 | `habitat` |  |
 | `id` |  |
-| `image_url` |  |
+| `imageUrl` |  |
 | `length` |  |
 | `order` |  |
-| `scientific_name` |  |
+| `scientificName` |  |
 | `weight` |  |
 | `wingspan` |  |
 
@@ -324,13 +327,13 @@ API path: `/api/birds`
 
 | Field | Description |
 | --- | --- |
-| `characteristic` |  |
-| `common_name` |  |
-| `conservation_status` |  |
+| `characteristics` |  |
+| `commonNames` |  |
+| `conservationStatus` |  |
 | `distribution` |  |
-| `observation_count` |  |
-| `scientific_name` |  |
-| `species_id` |  |
+| `observationCount` |  |
+| `scientificName` |  |
+| `speciesId` |  |
 | `taxonomy` |  |
 
 Operations: list.
@@ -357,19 +360,19 @@ Create an instance: `const bird = client.Bird()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `common_name_de` | `string` |  |
-| `common_name_en` | `string` |  |
-| `common_name_fr` | `string` |  |
-| `common_name_it` | `string` |  |
-| `conservation_status` | `string` |  |
+| `commonNameDe` | `string` |  |
+| `commonNameEn` | `string` |  |
+| `commonNameFr` | `string` |  |
+| `commonNameIt` | `string` |  |
+| `conservationStatus` | `string` |  |
 | `description` | `string` |  |
 | `family` | `string` |  |
 | `habitat` | `any[]` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
+| `imageUrl` | `string` |  |
 | `length` | `Record<string, any>` |  |
 | `order` | `string` |  |
-| `scientific_name` | `string` |  |
+| `scientificName` | `string` |  |
 | `weight` | `Record<string, any>` |  |
 | `wingspan` | `Record<string, any>` |  |
 
@@ -400,13 +403,13 @@ Create an instance: `const species = client.Species()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `characteristic` | `Record<string, any>` |  |
-| `common_name` | `Record<string, any>` |  |
-| `conservation_status` | `string` |  |
+| `characteristics` | `Record<string, any>` |  |
+| `commonNames` | `Record<string, any>` |  |
+| `conservationStatus` | `string` |  |
 | `distribution` | `Record<string, any>` |  |
-| `observation_count` | `number` |  |
-| `scientific_name` | `string` |  |
-| `species_id` | `string` |  |
+| `observationCount` | `number` |  |
+| `scientificName` | `string` |  |
+| `speciesId` | `string` |  |
 | `taxonomy` | `Record<string, any>` |  |
 
 #### Example: List

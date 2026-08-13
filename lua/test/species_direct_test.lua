@@ -61,11 +61,11 @@ function species_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID"] = {},
-    ["VOGELWARTESCHWEIZ_TEST_LIVE"] = "FALSE",
+    ["VOGELWARTE_SCHWEIZ_TEST_SPECIES_ENTID"] = {},
+    ["VOGELWARTE_SCHWEIZ_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["VOGELWARTESCHWEIZ_TEST_LIVE"] == "TRUE"
+  local live = env["VOGELWARTE_SCHWEIZ_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

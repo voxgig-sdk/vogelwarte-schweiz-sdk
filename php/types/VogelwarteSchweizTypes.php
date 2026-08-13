@@ -15,19 +15,19 @@ declare(strict_types=1);
 /** Bird entity data model. */
 class Bird
 {
-    public ?string $common_name_de = null;
-    public ?string $common_name_en = null;
-    public ?string $common_name_fr = null;
-    public ?string $common_name_it = null;
-    public ?string $conservation_status = null;
+    public ?string $commonNameDe = null;
+    public ?string $commonNameEn = null;
+    public ?string $commonNameFr = null;
+    public ?string $commonNameIt = null;
+    public ?string $conservationStatus = null;
     public ?string $description = null;
     public ?string $family = null;
     public ?array $habitat = null;
     public ?string $id = null;
-    public ?string $image_url = null;
+    public ?string $imageUrl = null;
     public ?array $length = null;
     public ?string $order = null;
-    public ?string $scientific_name = null;
+    public ?string $scientificName = null;
     public ?array $weight = null;
     public ?array $wingspan = null;
 }
@@ -41,19 +41,19 @@ class BirdLoadMatch
 /** Request payload for Bird#list. */
 class BirdListMatch
 {
-    public ?string $common_name_de = null;
-    public ?string $common_name_en = null;
-    public ?string $common_name_fr = null;
-    public ?string $common_name_it = null;
-    public ?string $conservation_status = null;
+    public ?string $commonNameDe = null;
+    public ?string $commonNameEn = null;
+    public ?string $commonNameFr = null;
+    public ?string $commonNameIt = null;
+    public ?string $conservationStatus = null;
     public ?string $description = null;
     public ?string $family = null;
     public ?array $habitat = null;
     public ?string $id = null;
-    public ?string $image_url = null;
+    public ?string $imageUrl = null;
     public ?array $length = null;
     public ?string $order = null;
-    public ?string $scientific_name = null;
+    public ?string $scientificName = null;
     public ?array $weight = null;
     public ?array $wingspan = null;
 }
@@ -61,26 +61,26 @@ class BirdListMatch
 /** Species entity data model. */
 class Species
 {
-    public ?array $characteristic = null;
-    public ?array $common_name = null;
-    public ?string $conservation_status = null;
+    public ?array $characteristics = null;
+    public ?array $commonNames = null;
+    public ?string $conservationStatus = null;
     public ?array $distribution = null;
-    public ?int $observation_count = null;
-    public ?string $scientific_name = null;
-    public ?string $species_id = null;
+    public ?int $observationCount = null;
+    public ?string $scientificName = null;
+    public ?string $speciesId = null;
     public ?array $taxonomy = null;
 }
 
 /** Request payload for Species#list. */
 class SpeciesListMatch
 {
-    public ?array $characteristic = null;
-    public ?array $common_name = null;
-    public ?string $conservation_status = null;
+    public ?array $characteristics = null;
+    public ?array $commonNames = null;
+    public ?string $conservationStatus = null;
     public ?array $distribution = null;
-    public ?int $observation_count = null;
-    public ?string $scientific_name = null;
-    public ?string $species_id = null;
+    public ?int $observationCount = null;
+    public ?string $scientificName = null;
+    public ?string $speciesId = null;
     public ?array $taxonomy = null;
 }
 

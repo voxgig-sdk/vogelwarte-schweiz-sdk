@@ -23,8 +23,8 @@ module VogelwarteSchweizTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("VOGELWARTESCHWEIZ_TEST_LIVE")
-    override = getenv("VOGELWARTESCHWEIZ_TEST_OVERRIDE")
+    live = getenv("VOGELWARTE_SCHWEIZ_TEST_LIVE")
+    override = getenv("VOGELWARTE_SCHWEIZ_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module VogelwarteSchweizTestRunner
       end
     end
 
-    explain = getenv("VOGELWARTESCHWEIZ_TEST_EXPLAIN")
-    m["VOGELWARTESCHWEIZ_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("VOGELWARTE_SCHWEIZ_TEST_EXPLAIN")
+    m["VOGELWARTE_SCHWEIZ_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

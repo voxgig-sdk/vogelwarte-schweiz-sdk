@@ -270,19 +270,19 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"common_name_de"` |  |
-| `"common_name_en"` |  |
-| `"common_name_fr"` |  |
-| `"common_name_it"` |  |
-| `"conservation_status"` |  |
+| `"commonNameDe"` |  |
+| `"commonNameEn"` |  |
+| `"commonNameFr"` |  |
+| `"commonNameIt"` |  |
+| `"conservationStatus"` |  |
 | `"description"` |  |
 | `"family"` |  |
 | `"habitat"` |  |
 | `"id"` |  |
-| `"image_url"` |  |
+| `"imageUrl"` |  |
 | `"length"` |  |
 | `"order"` |  |
-| `"scientific_name"` |  |
+| `"scientificName"` |  |
 | `"weight"` |  |
 | `"wingspan"` |  |
 
@@ -294,13 +294,13 @@ API path: `/api/birds`
 
 | Field | Description |
 | --- | --- |
-| `"characteristic"` |  |
-| `"common_name"` |  |
-| `"conservation_status"` |  |
+| `"characteristics"` |  |
+| `"commonNames"` |  |
+| `"conservationStatus"` |  |
 | `"distribution"` |  |
-| `"observation_count"` |  |
-| `"scientific_name"` |  |
-| `"species_id"` |  |
+| `"observationCount"` |  |
+| `"scientificName"` |  |
+| `"speciesId"` |  |
 | `"taxonomy"` |  |
 
 Operations: List.
@@ -327,19 +327,19 @@ Create an instance: `bird := client.Bird(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `common_name_de` | `string` |  |
-| `common_name_en` | `string` |  |
-| `common_name_fr` | `string` |  |
-| `common_name_it` | `string` |  |
-| `conservation_status` | `string` |  |
+| `commonNameDe` | `string` |  |
+| `commonNameEn` | `string` |  |
+| `commonNameFr` | `string` |  |
+| `commonNameIt` | `string` |  |
+| `conservationStatus` | `string` |  |
 | `description` | `string` |  |
 | `family` | `string` |  |
 | `habitat` | `[]any` |  |
 | `id` | `string` |  |
-| `image_url` | `string` |  |
+| `imageUrl` | `string` |  |
 | `length` | `map[string]any` |  |
 | `order` | `string` |  |
-| `scientific_name` | `string` |  |
+| `scientificName` | `string` |  |
 | `weight` | `map[string]any` |  |
 | `wingspan` | `map[string]any` |  |
 
@@ -378,13 +378,13 @@ Create an instance: `species := client.Species(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `characteristic` | `map[string]any` |  |
-| `common_name` | `map[string]any` |  |
-| `conservation_status` | `string` |  |
+| `characteristics` | `map[string]any` |  |
+| `commonNames` | `map[string]any` |  |
+| `conservationStatus` | `string` |  |
 | `distribution` | `map[string]any` |  |
-| `observation_count` | `int` |  |
-| `scientific_name` | `string` |  |
-| `species_id` | `string` |  |
+| `observationCount` | `int` |  |
+| `scientificName` | `string` |  |
+| `speciesId` | `string` |  |
 | `taxonomy` | `map[string]any` |  |
 
 #### Example: List

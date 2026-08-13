@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# VogelwarteSchweiz SDK exists test
 
 import pytest
 from vogelwarteschweiz_sdk import VogelwarteSchweizSDK

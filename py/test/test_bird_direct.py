@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from vogelwarteschweiz_sdk.utility.voxgig_struct import voxgig_struct as vs
 from vogelwarteschweiz_sdk import VogelwarteSchweizSDK
-from core import helpers
+from vogelwarteschweiz_sdk.core import helpers
 from test import runner
 
 
@@ -105,11 +105,11 @@ def _bird_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "VOGELWARTESCHWEIZ_TEST_BIRD_ENTID": {},
-        "VOGELWARTESCHWEIZ_TEST_LIVE": "FALSE",
+        "VOGELWARTE_SCHWEIZ_TEST_BIRD_ENTID": {},
+        "VOGELWARTE_SCHWEIZ_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("VOGELWARTESCHWEIZ_TEST_LIVE") == "TRUE"
+    live = env.get("VOGELWARTE_SCHWEIZ_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

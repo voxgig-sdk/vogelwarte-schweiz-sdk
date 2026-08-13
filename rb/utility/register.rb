@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ VogelwarteSchweizUtility.registrar = ->(u) {
   u.prepare_params = VogelwarteSchweizUtilities::PrepareParams
   u.prepare_path = VogelwarteSchweizUtilities::PreparePath
   u.prepare_query = VogelwarteSchweizUtilities::PrepareQuery
+  u.graphql_body = VogelwarteSchweizUtilities::GraphqlBody
+  u.graphql_errors = VogelwarteSchweizUtilities::GraphqlErrors
   u.result_basic = VogelwarteSchweizUtilities::ResultBasic
   u.result_body = VogelwarteSchweizUtilities::ResultBody
   u.result_headers = VogelwarteSchweizUtilities::ResultHeaders

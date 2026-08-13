@@ -6,27 +6,27 @@ main: kit: entity: bird: {
 
   fields: [
     {
-      name: "common_name_de"
+      name: "commonNameDe"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "common_name_en"
+      name: "commonNameEn"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "common_name_fr"
+      name: "commonNameFr"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "common_name_it"
+      name: "commonNameIt"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "conservation_status"
+      name: "conservationStatus"
       req: false
       type: "`$STRING`"
     }
@@ -51,7 +51,7 @@ main: kit: entity: bird: {
       type: "`$STRING`"
     }
     {
-      name: "image_url"
+      name: "imageUrl"
       req: false
       type: "`$STRING`"
     }
@@ -66,7 +66,7 @@ main: kit: entity: bird: {
       type: "`$STRING`"
     }
     {
-      name: "scientific_name"
+      name: "scientificName"
       req: false
       type: "`$STRING`"
     }
@@ -135,7 +135,7 @@ main: kit: entity: bird: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

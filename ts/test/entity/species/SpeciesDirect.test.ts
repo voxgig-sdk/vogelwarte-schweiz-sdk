@@ -19,11 +19,15 @@ import {
 describe('SpeciesDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when VOGELWARTESCHWEIZ_TEST_LIVE=TRUE.
-  afterEach(liveDelay('VOGELWARTESCHWEIZ_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when VOGELWARTE_SCHWEIZ_TEST_LIVE=TRUE.
+  afterEach(liveDelay('VOGELWARTE_SCHWEIZ_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new VogelwarteSchweizSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -77,17 +81,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID': {},
-    'VOGELWARTESCHWEIZ_TEST_LIVE': 'FALSE',
+    'VOGELWARTE_SCHWEIZ_TEST_SPECIES_ENTID': {},
+    'VOGELWARTE_SCHWEIZ_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.VOGELWARTESCHWEIZ_TEST_LIVE
+  const live = 'TRUE' === env.VOGELWARTE_SCHWEIZ_TEST_LIVE
 
   if (live) {
     const client = new VogelwarteSchweizSDK({
     })
 
-    let idmap: any = env['VOGELWARTESCHWEIZ_TEST_SPECIES_ENTID']
+    let idmap: any = env['VOGELWARTE_SCHWEIZ_TEST_SPECIES_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

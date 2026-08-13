@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import VogelwarteSchweizSDK
-from core.error import VogelwarteSchweizError
-from core.result import VogelwarteSchweizResult
-from core.response import VogelwarteSchweizResponse
-from core.spec import VogelwarteSchweizSpec
-from feature.base_feature import VogelwarteSchweizBaseFeature
+from projectname_sdk.core.error import VogelwarteSchweizError
+from projectname_sdk.core.result import VogelwarteSchweizResult
+from projectname_sdk.core.response import VogelwarteSchweizResponse
+from projectname_sdk.core.spec import VogelwarteSchweizSpec
+from projectname_sdk.feature.base_feature import VogelwarteSchweizBaseFeature
 
 
 def _client():

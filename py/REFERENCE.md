@@ -91,19 +91,19 @@ bird = client.Bird()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `common_name_de` | `str` | No |  |
-| `common_name_en` | `str` | No |  |
-| `common_name_fr` | `str` | No |  |
-| `common_name_it` | `str` | No |  |
-| `conservation_status` | `str` | No |  |
+| `commonNameDe` | `str` | No |  |
+| `commonNameEn` | `str` | No |  |
+| `commonNameFr` | `str` | No |  |
+| `commonNameIt` | `str` | No |  |
+| `conservationStatus` | `str` | No |  |
 | `description` | `str` | No |  |
 | `family` | `str` | No |  |
 | `habitat` | `list` | No |  |
 | `id` | `str` | No |  |
-| `image_url` | `str` | No |  |
+| `imageUrl` | `str` | No |  |
 | `length` | `dict` | No |  |
 | `order` | `str` | No |  |
-| `scientific_name` | `str` | No |  |
+| `scientificName` | `str` | No |  |
 | `weight` | `dict` | No |  |
 | `wingspan` | `dict` | No |  |
 
@@ -166,13 +166,13 @@ species = client.Species()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `characteristic` | `dict` | No |  |
-| `common_name` | `dict` | No |  |
-| `conservation_status` | `str` | No |  |
+| `characteristics` | `dict` | No |  |
+| `commonNames` | `dict` | No |  |
+| `conservationStatus` | `str` | No |  |
 | `distribution` | `dict` | No |  |
-| `observation_count` | `int` | No |  |
-| `scientific_name` | `str` | No |  |
-| `species_id` | `str` | No |  |
+| `observationCount` | `int` | No |  |
+| `scientificName` | `str` | No |  |
+| `speciesId` | `str` | No |  |
 | `taxonomy` | `dict` | No |  |
 
 ### Operations

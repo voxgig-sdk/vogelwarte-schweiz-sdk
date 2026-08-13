@@ -8,6 +8,7 @@ guide: {
   entity: bird: {
     path: "/api/birds": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/api/birds/{birdId}": {
       rename: param: "birdId": *"id"

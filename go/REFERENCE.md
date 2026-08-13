@@ -102,19 +102,19 @@ fmt.Println(bird.GetName()) // "bird"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `common_name_de` | `string` | No |  |
-| `common_name_en` | `string` | No |  |
-| `common_name_fr` | `string` | No |  |
-| `common_name_it` | `string` | No |  |
-| `conservation_status` | `string` | No |  |
+| `commonNameDe` | `string` | No |  |
+| `commonNameEn` | `string` | No |  |
+| `commonNameFr` | `string` | No |  |
+| `commonNameIt` | `string` | No |  |
+| `conservationStatus` | `string` | No |  |
 | `description` | `string` | No |  |
 | `family` | `string` | No |  |
 | `habitat` | `[]any` | No |  |
 | `id` | `string` | No |  |
-| `image_url` | `string` | No |  |
+| `imageUrl` | `string` | No |  |
 | `length` | `map[string]any` | No |  |
 | `order` | `string` | No |  |
-| `scientific_name` | `string` | No |  |
+| `scientificName` | `string` | No |  |
 | `weight` | `map[string]any` | No |  |
 | `wingspan` | `map[string]any` | No |  |
 
@@ -179,13 +179,13 @@ fmt.Println(species.GetName()) // "species"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `characteristic` | `map[string]any` | No |  |
-| `common_name` | `map[string]any` | No |  |
-| `conservation_status` | `string` | No |  |
+| `characteristics` | `map[string]any` | No |  |
+| `commonNames` | `map[string]any` | No |  |
+| `conservationStatus` | `string` | No |  |
 | `distribution` | `map[string]any` | No |  |
-| `observation_count` | `int` | No |  |
-| `scientific_name` | `string` | No |  |
-| `species_id` | `string` | No |  |
+| `observationCount` | `int` | No |  |
+| `scientificName` | `string` | No |  |
+| `speciesId` | `string` | No |  |
 | `taxonomy` | `map[string]any` | No |  |
 
 ### Operations

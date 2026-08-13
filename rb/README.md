@@ -37,7 +37,7 @@ begin
   # list returns an Array of Bird records — iterate directly.
   birds = client.Bird.list
   birds.each do |item|
-    puts "#{item["id"]} #{item["common_name_de"]}"
+    puts "#{item["id"]} #{item["commonNameDe"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Bird record (raises on error).
+  # load returns the ENTITY — call data_get for the Bird record (raises on error).
   bird = client.Bird.load({ "id" => "example_id" })
   puts bird
 rescue => err
@@ -134,7 +134,8 @@ client = VogelwarteSchweizSDK.test({
   "entity" => { "bird" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 bird = client.Bird.list()
 puts bird
 ```
@@ -253,19 +254,19 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `common_name_de` |  |
-| `common_name_en` |  |
-| `common_name_fr` |  |
-| `common_name_it` |  |
-| `conservation_status` |  |
+| `commonNameDe` |  |
+| `commonNameEn` |  |
+| `commonNameFr` |  |
+| `commonNameIt` |  |
+| `conservationStatus` |  |
 | `description` |  |
 | `family` |  |
 | `habitat` |  |
 | `id` |  |
-| `image_url` |  |
+| `imageUrl` |  |
 | `length` |  |
 | `order` |  |
-| `scientific_name` |  |
+| `scientificName` |  |
 | `weight` |  |
 | `wingspan` |  |
 
@@ -277,13 +278,13 @@ API path: `/api/birds`
 
 | Field | Description |
 | --- | --- |
-| `characteristic` |  |
-| `common_name` |  |
-| `conservation_status` |  |
+| `characteristics` |  |
+| `commonNames` |  |
+| `conservationStatus` |  |
 | `distribution` |  |
-| `observation_count` |  |
-| `scientific_name` |  |
-| `species_id` |  |
+| `observationCount` |  |
+| `scientificName` |  |
+| `speciesId` |  |
 | `taxonomy` |  |
 
 Operations: List.
@@ -310,26 +311,26 @@ Create an instance: `bird = client.Bird`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `common_name_de` | `String` |  |
-| `common_name_en` | `String` |  |
-| `common_name_fr` | `String` |  |
-| `common_name_it` | `String` |  |
-| `conservation_status` | `String` |  |
+| `commonNameDe` | `String` |  |
+| `commonNameEn` | `String` |  |
+| `commonNameFr` | `String` |  |
+| `commonNameIt` | `String` |  |
+| `conservationStatus` | `String` |  |
 | `description` | `String` |  |
 | `family` | `String` |  |
 | `habitat` | `Array` |  |
 | `id` | `String` |  |
-| `image_url` | `String` |  |
+| `imageUrl` | `String` |  |
 | `length` | `Hash` |  |
 | `order` | `String` |  |
-| `scientific_name` | `String` |  |
+| `scientificName` | `String` |  |
 | `weight` | `Hash` |  |
 | `wingspan` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Bird record (raises on error).
+# load returns the ENTITY — call data_get for the Bird record (raises on error).
 bird = client.Bird.load({ "id" => "bird_id" })
 ```
 
@@ -355,13 +356,13 @@ Create an instance: `species = client.Species`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `characteristic` | `Hash` |  |
-| `common_name` | `Hash` |  |
-| `conservation_status` | `String` |  |
+| `characteristics` | `Hash` |  |
+| `commonNames` | `Hash` |  |
+| `conservationStatus` | `String` |  |
 | `distribution` | `Hash` |  |
-| `observation_count` | `Integer` |  |
-| `scientific_name` | `String` |  |
-| `species_id` | `String` |  |
+| `observationCount` | `Integer` |  |
+| `scientificName` | `String` |  |
+| `speciesId` | `String` |  |
 | `taxonomy` | `Hash` |  |
 
 #### Example: List
