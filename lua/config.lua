@@ -1,5 +1,8 @@
 -- VogelwarteSchweiz SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -26,109 +29,64 @@ local function make_config()
       ["bird"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "commonNameDe",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "commonNameEn",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "commonNameFr",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "commonNameIt",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "conservationStatus",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "description",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "family",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 6,
           },
           {
-            ["active"] = true,
             ["name"] = "habitat",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 7,
           },
           {
-            ["active"] = true,
             ["name"] = "id",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 8,
           },
           {
-            ["active"] = true,
             ["name"] = "imageUrl",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 9,
           },
           {
-            ["active"] = true,
             ["name"] = "length",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 10,
           },
           {
-            ["active"] = true,
             ["name"] = "order",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 11,
           },
           {
-            ["active"] = true,
             ["name"] = "scientificName",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 12,
           },
           {
-            ["active"] = true,
             ["name"] = "weight",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 13,
           },
           {
-            ["active"] = true,
             ["name"] = "wingspan",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 14,
           },
         },
         ["name"] = "bird",
@@ -138,33 +96,26 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = 100,
                       ["kind"] = "query",
                       ["name"] = "limit",
                       ["orig"] = "limit",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = 0,
                       ["kind"] = "query",
                       ["name"] = "offset",
                       ["orig"] = "offset",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "search",
                       ["orig"] = "search",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -187,27 +138,22 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
           ["load"] = {
             ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "bird_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                 },
@@ -233,10 +179,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -246,60 +190,36 @@ local function make_config()
       ["species"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "characteristics",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "commonNames",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "conservationStatus",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "distribution",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "observationCount",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "scientificName",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "speciesId",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 6,
           },
           {
-            ["active"] = true,
             ["name"] = "taxonomy",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 7,
           },
         },
         ["name"] = "species",
@@ -309,31 +229,24 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "family",
                       ["orig"] = "family",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "habitat",
                       ["orig"] = "habitat",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "status",
                       ["orig"] = "status",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -356,10 +269,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.species`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {

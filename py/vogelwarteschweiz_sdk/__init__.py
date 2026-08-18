@@ -23,8 +23,8 @@ class VogelwarteSchweizSDK:
         utility = VogelwarteSchweizUtility()
         self._utility = utility
 
-        from vogelwarteschweiz_sdk.config import make_config
-        config = make_config()
+        from vogelwarteschweiz_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

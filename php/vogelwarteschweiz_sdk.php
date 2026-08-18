@@ -40,7 +40,7 @@ class VogelwarteSchweizSDK
         $utility = new VogelwarteSchweizUtility();
         $this->_utility = $utility;
 
-        $config = VogelwarteSchweizConfig::make_config();
+        $config = VogelwarteSchweizConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

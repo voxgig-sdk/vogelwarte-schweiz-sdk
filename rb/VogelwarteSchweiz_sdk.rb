@@ -28,7 +28,7 @@ class VogelwarteSchweizSDK
     utility = VogelwarteSchweizUtility.new
     @_utility = utility
 
-    config = VogelwarteSchweizConfig.make_config
+    config = VogelwarteSchweizConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

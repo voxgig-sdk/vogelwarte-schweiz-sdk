@@ -33,7 +33,7 @@ class BirdEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = VogelwarteSchweizConfig.make_config
+    cfg = VogelwarteSchweizConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = VogelwarteSchweizSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from vogelwarteschweiz_sdk.config import make_config
+from vogelwarteschweiz_sdk.config import shared_config
 from vogelwarteschweiz_sdk.features import _make_feature
 from vogelwarteschweiz_sdk.core.control import VogelwarteSchweizControl
 from vogelwarteschweiz_sdk.core.error import VogelwarteSchweizError
@@ -24,7 +24,7 @@ from vogelwarteschweiz_sdk.core.spec import VogelwarteSchweizSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 
