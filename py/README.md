@@ -257,19 +257,19 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `commonNameDe` |  |
-| `commonNameEn` |  |
-| `commonNameFr` |  |
-| `commonNameIt` |  |
-| `conservationStatus` |  |
-| `description` |  |
-| `family` |  |
-| `habitat` |  |
-| `id` |  |
-| `imageUrl` |  |
+| `commonNameDe` | German common name |
+| `commonNameEn` | English common name |
+| `commonNameFr` | French common name |
+| `commonNameIt` | Italian common name |
+| `conservationStatus` | IUCN conservation status |
+| `description` | Detailed description of the bird |
+| `family` | Taxonomic family |
+| `habitat` | Preferred habitats |
+| `id` | Unique identifier for the bird |
+| `imageUrl` | URL to bird image |
 | `length` |  |
-| `order` |  |
-| `scientificName` |  |
+| `order` | Taxonomic order |
+| `scientificName` | Scientific name of the bird species |
 | `weight` |  |
 | `wingspan` |  |
 
@@ -283,11 +283,11 @@ API path: `/api/birds`
 | --- | --- |
 | `characteristics` |  |
 | `commonNames` |  |
-| `conservationStatus` |  |
+| `conservationStatus` | Conservation status code |
 | `distribution` |  |
-| `observationCount` |  |
-| `scientificName` |  |
-| `speciesId` |  |
+| `observationCount` | Number of recorded observations |
+| `scientificName` | Scientific name |
+| `speciesId` | Unique species identifier |
 | `taxonomy` |  |
 
 Operations: List.
@@ -314,19 +314,19 @@ Create an instance: `bird = client.Bird()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `commonNameDe` | `str` |  |
-| `commonNameEn` | `str` |  |
-| `commonNameFr` | `str` |  |
-| `commonNameIt` | `str` |  |
-| `conservationStatus` | `str` |  |
-| `description` | `str` |  |
-| `family` | `str` |  |
-| `habitat` | `list` |  |
-| `id` | `str` |  |
-| `imageUrl` | `str` |  |
+| `commonNameDe` | `str` | German common name |
+| `commonNameEn` | `str` | English common name |
+| `commonNameFr` | `str` | French common name |
+| `commonNameIt` | `str` | Italian common name |
+| `conservationStatus` | `str` | IUCN conservation status |
+| `description` | `str` | Detailed description of the bird |
+| `family` | `str` | Taxonomic family |
+| `habitat` | `list` | Preferred habitats |
+| `id` | `str` | Unique identifier for the bird |
+| `imageUrl` | `str` | URL to bird image |
 | `length` | `dict` |  |
-| `order` | `str` |  |
-| `scientificName` | `str` |  |
+| `order` | `str` | Taxonomic order |
+| `scientificName` | `str` | Scientific name of the bird species |
 | `weight` | `dict` |  |
 | `wingspan` | `dict` |  |
 
@@ -359,11 +359,11 @@ Create an instance: `species = client.Species()`
 | --- | --- | --- |
 | `characteristics` | `dict` |  |
 | `commonNames` | `dict` |  |
-| `conservationStatus` | `str` |  |
+| `conservationStatus` | `str` | Conservation status code |
 | `distribution` | `dict` |  |
-| `observationCount` | `int` |  |
-| `scientificName` | `str` |  |
-| `speciesId` | `str` |  |
+| `observationCount` | `int` | Number of recorded observations |
+| `scientificName` | `str` | Scientific name |
+| `speciesId` | `str` | Unique species identifier |
 | `taxonomy` | `dict` |  |
 
 #### Example: List

@@ -6,7 +6,7 @@ The Golang SDK for the VogelwarteSchweiz API — an entity-oriented client using
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Bird(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -270,19 +270,19 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"commonNameDe"` |  |
-| `"commonNameEn"` |  |
-| `"commonNameFr"` |  |
-| `"commonNameIt"` |  |
-| `"conservationStatus"` |  |
-| `"description"` |  |
-| `"family"` |  |
-| `"habitat"` |  |
-| `"id"` |  |
-| `"imageUrl"` |  |
+| `"commonNameDe"` | German common name |
+| `"commonNameEn"` | English common name |
+| `"commonNameFr"` | French common name |
+| `"commonNameIt"` | Italian common name |
+| `"conservationStatus"` | IUCN conservation status |
+| `"description"` | Detailed description of the bird |
+| `"family"` | Taxonomic family |
+| `"habitat"` | Preferred habitats |
+| `"id"` | Unique identifier for the bird |
+| `"imageUrl"` | URL to bird image |
 | `"length"` |  |
-| `"order"` |  |
-| `"scientificName"` |  |
+| `"order"` | Taxonomic order |
+| `"scientificName"` | Scientific name of the bird species |
 | `"weight"` |  |
 | `"wingspan"` |  |
 
@@ -296,11 +296,11 @@ API path: `/api/birds`
 | --- | --- |
 | `"characteristics"` |  |
 | `"commonNames"` |  |
-| `"conservationStatus"` |  |
+| `"conservationStatus"` | Conservation status code |
 | `"distribution"` |  |
-| `"observationCount"` |  |
-| `"scientificName"` |  |
-| `"speciesId"` |  |
+| `"observationCount"` | Number of recorded observations |
+| `"scientificName"` | Scientific name |
+| `"speciesId"` | Unique species identifier |
 | `"taxonomy"` |  |
 
 Operations: List.
@@ -327,19 +327,19 @@ Create an instance: `bird := client.Bird(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `commonNameDe` | `string` |  |
-| `commonNameEn` | `string` |  |
-| `commonNameFr` | `string` |  |
-| `commonNameIt` | `string` |  |
-| `conservationStatus` | `string` |  |
-| `description` | `string` |  |
-| `family` | `string` |  |
-| `habitat` | `[]any` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
+| `commonNameDe` | `string` | German common name |
+| `commonNameEn` | `string` | English common name |
+| `commonNameFr` | `string` | French common name |
+| `commonNameIt` | `string` | Italian common name |
+| `conservationStatus` | `string` | IUCN conservation status |
+| `description` | `string` | Detailed description of the bird |
+| `family` | `string` | Taxonomic family |
+| `habitat` | `[]any` | Preferred habitats |
+| `id` | `string` | Unique identifier for the bird |
+| `imageUrl` | `string` | URL to bird image |
 | `length` | `map[string]any` |  |
-| `order` | `string` |  |
-| `scientificName` | `string` |  |
+| `order` | `string` | Taxonomic order |
+| `scientificName` | `string` | Scientific name of the bird species |
 | `weight` | `map[string]any` |  |
 | `wingspan` | `map[string]any` |  |
 
@@ -380,11 +380,11 @@ Create an instance: `species := client.Species(nil)`
 | --- | --- | --- |
 | `characteristics` | `map[string]any` |  |
 | `commonNames` | `map[string]any` |  |
-| `conservationStatus` | `string` |  |
+| `conservationStatus` | `string` | Conservation status code |
 | `distribution` | `map[string]any` |  |
-| `observationCount` | `int` |  |
-| `scientificName` | `string` |  |
-| `speciesId` | `string` |  |
+| `observationCount` | `int` | Number of recorded observations |
+| `scientificName` | `string` | Scientific name |
+| `speciesId` | `string` | Unique species identifier |
 | `taxonomy` | `map[string]any` |  |
 
 #### Example: List

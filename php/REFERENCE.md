@@ -96,19 +96,19 @@ $bird = $client->Bird();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `commonNameDe` | `string` | No |  |
-| `commonNameEn` | `string` | No |  |
-| `commonNameFr` | `string` | No |  |
-| `commonNameIt` | `string` | No |  |
-| `conservationStatus` | `string` | No |  |
-| `description` | `string` | No |  |
-| `family` | `string` | No |  |
-| `habitat` | `array` | No |  |
-| `id` | `string` | No |  |
-| `imageUrl` | `string` | No |  |
+| `commonNameDe` | `string` | No | German common name |
+| `commonNameEn` | `string` | No | English common name |
+| `commonNameFr` | `string` | No | French common name |
+| `commonNameIt` | `string` | No | Italian common name |
+| `conservationStatus` | `string` | No | IUCN conservation status |
+| `description` | `string` | No | Detailed description of the bird |
+| `family` | `string` | No | Taxonomic family |
+| `habitat` | `array` | No | Preferred habitats |
+| `id` | `string` | No | Unique identifier for the bird |
+| `imageUrl` | `string` | No | URL to bird image |
 | `length` | `array` | No |  |
-| `order` | `string` | No |  |
-| `scientificName` | `string` | No |  |
+| `order` | `string` | No | Taxonomic order |
+| `scientificName` | `string` | No | Scientific name of the bird species |
 | `weight` | `array` | No |  |
 | `wingspan` | `array` | No |  |
 
@@ -172,11 +172,11 @@ $species = $client->Species();
 | --- | --- | --- | --- |
 | `characteristics` | `array` | No |  |
 | `commonNames` | `array` | No |  |
-| `conservationStatus` | `string` | No |  |
+| `conservationStatus` | `string` | No | Conservation status code |
 | `distribution` | `array` | No |  |
-| `observationCount` | `int` | No |  |
-| `scientificName` | `string` | No |  |
-| `speciesId` | `string` | No |  |
+| `observationCount` | `int` | No | Number of recorded observations |
+| `scientificName` | `string` | No | Scientific name |
+| `speciesId` | `string` | No | Unique species identifier |
 | `taxonomy` | `array` | No |  |
 
 ### Operations

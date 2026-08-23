@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'VogelwarteSchweiz',
+        slug: "vogelwarte-schweiz",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -59,42 +70,52 @@ class Config {
       "fields": [
         {
           "name": "commonNameDe",
+          "short": "German common name",
           "type": "`$STRING`"
         },
         {
           "name": "commonNameEn",
+          "short": "English common name",
           "type": "`$STRING`"
         },
         {
           "name": "commonNameFr",
+          "short": "French common name",
           "type": "`$STRING`"
         },
         {
           "name": "commonNameIt",
+          "short": "Italian common name",
           "type": "`$STRING`"
         },
         {
           "name": "conservationStatus",
+          "short": "IUCN conservation status",
           "type": "`$STRING`"
         },
         {
           "name": "description",
+          "short": "Detailed description of the bird",
           "type": "`$STRING`"
         },
         {
           "name": "family",
+          "short": "Taxonomic family",
           "type": "`$STRING`"
         },
         {
           "name": "habitat",
+          "short": "Preferred habitats",
           "type": "`$ARRAY`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the bird",
           "type": "`$STRING`"
         },
         {
           "name": "imageUrl",
+          "short": "URL to bird image",
           "type": "`$STRING`"
         },
         {
@@ -103,10 +124,12 @@ class Config {
         },
         {
           "name": "order",
+          "short": "Taxonomic order",
           "type": "`$STRING`"
         },
         {
           "name": "scientificName",
+          "short": "Scientific name of the bird species",
           "type": "`$STRING`"
         },
         {
@@ -228,6 +251,7 @@ class Config {
         },
         {
           "name": "conservationStatus",
+          "short": "Conservation status code",
           "type": "`$STRING`"
         },
         {
@@ -236,14 +260,17 @@ class Config {
         },
         {
           "name": "observationCount",
+          "short": "Number of recorded observations",
           "type": "`$INTEGER`"
         },
         {
           "name": "scientificName",
+          "short": "Scientific name",
           "type": "`$STRING`"
         },
         {
           "name": "speciesId",
+          "short": "Unique species identifier",
           "type": "`$STRING`"
         },
         {

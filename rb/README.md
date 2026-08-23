@@ -254,19 +254,19 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `commonNameDe` |  |
-| `commonNameEn` |  |
-| `commonNameFr` |  |
-| `commonNameIt` |  |
-| `conservationStatus` |  |
-| `description` |  |
-| `family` |  |
-| `habitat` |  |
-| `id` |  |
-| `imageUrl` |  |
+| `commonNameDe` | German common name |
+| `commonNameEn` | English common name |
+| `commonNameFr` | French common name |
+| `commonNameIt` | Italian common name |
+| `conservationStatus` | IUCN conservation status |
+| `description` | Detailed description of the bird |
+| `family` | Taxonomic family |
+| `habitat` | Preferred habitats |
+| `id` | Unique identifier for the bird |
+| `imageUrl` | URL to bird image |
 | `length` |  |
-| `order` |  |
-| `scientificName` |  |
+| `order` | Taxonomic order |
+| `scientificName` | Scientific name of the bird species |
 | `weight` |  |
 | `wingspan` |  |
 
@@ -280,11 +280,11 @@ API path: `/api/birds`
 | --- | --- |
 | `characteristics` |  |
 | `commonNames` |  |
-| `conservationStatus` |  |
+| `conservationStatus` | Conservation status code |
 | `distribution` |  |
-| `observationCount` |  |
-| `scientificName` |  |
-| `speciesId` |  |
+| `observationCount` | Number of recorded observations |
+| `scientificName` | Scientific name |
+| `speciesId` | Unique species identifier |
 | `taxonomy` |  |
 
 Operations: List.
@@ -311,19 +311,19 @@ Create an instance: `bird = client.Bird`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `commonNameDe` | `String` |  |
-| `commonNameEn` | `String` |  |
-| `commonNameFr` | `String` |  |
-| `commonNameIt` | `String` |  |
-| `conservationStatus` | `String` |  |
-| `description` | `String` |  |
-| `family` | `String` |  |
-| `habitat` | `Array` |  |
-| `id` | `String` |  |
-| `imageUrl` | `String` |  |
+| `commonNameDe` | `String` | German common name |
+| `commonNameEn` | `String` | English common name |
+| `commonNameFr` | `String` | French common name |
+| `commonNameIt` | `String` | Italian common name |
+| `conservationStatus` | `String` | IUCN conservation status |
+| `description` | `String` | Detailed description of the bird |
+| `family` | `String` | Taxonomic family |
+| `habitat` | `Array` | Preferred habitats |
+| `id` | `String` | Unique identifier for the bird |
+| `imageUrl` | `String` | URL to bird image |
 | `length` | `Hash` |  |
-| `order` | `String` |  |
-| `scientificName` | `String` |  |
+| `order` | `String` | Taxonomic order |
+| `scientificName` | `String` | Scientific name of the bird species |
 | `weight` | `Hash` |  |
 | `wingspan` | `Hash` |  |
 
@@ -358,11 +358,11 @@ Create an instance: `species = client.Species`
 | --- | --- | --- |
 | `characteristics` | `Hash` |  |
 | `commonNames` | `Hash` |  |
-| `conservationStatus` | `String` |  |
+| `conservationStatus` | `String` | Conservation status code |
 | `distribution` | `Hash` |  |
-| `observationCount` | `Integer` |  |
-| `scientificName` | `String` |  |
-| `speciesId` | `String` |  |
+| `observationCount` | `Integer` | Number of recorded observations |
+| `scientificName` | `String` | Scientific name |
+| `speciesId` | `String` | Unique species identifier |
 | `taxonomy` | `Hash` |  |
 
 #### Example: List

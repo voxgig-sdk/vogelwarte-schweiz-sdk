@@ -36,60 +36,70 @@
               "active": true,
               "name": "commonNameDe",
               "req": false,
+              "short": "German common name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "commonNameEn",
               "req": false,
+              "short": "English common name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "commonNameFr",
               "req": false,
+              "short": "French common name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "commonNameIt",
               "req": false,
+              "short": "Italian common name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "conservationStatus",
               "req": false,
+              "short": "IUCN conservation status",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "description",
               "req": false,
+              "short": "Detailed description of the bird",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "family",
               "req": false,
+              "short": "Taxonomic family",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "habitat",
               "req": false,
+              "short": "Preferred habitats",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the bird",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "imageUrl",
               "req": false,
+              "short": "URL to bird image",
               "type": "`$STRING`"
             },
             {
@@ -102,12 +112,14 @@
               "active": true,
               "name": "order",
               "req": false,
+              "short": "Taxonomic order",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "scientificName",
               "req": false,
+              "short": "Scientific name of the bird species",
               "type": "`$STRING`"
             },
             {
@@ -256,6 +268,7 @@
               "active": true,
               "name": "conservationStatus",
               "req": false,
+              "short": "Conservation status code",
               "type": "`$STRING`"
             },
             {
@@ -268,18 +281,21 @@
               "active": true,
               "name": "observationCount",
               "req": false,
+              "short": "Number of recorded observations",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "scientificName",
               "req": false,
+              "short": "Scientific name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "speciesId",
               "req": false,
+              "short": "Unique species identifier",
               "type": "`$STRING`"
             },
             {

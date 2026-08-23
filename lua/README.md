@@ -242,19 +242,19 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `commonNameDe` |  |
-| `commonNameEn` |  |
-| `commonNameFr` |  |
-| `commonNameIt` |  |
-| `conservationStatus` |  |
-| `description` |  |
-| `family` |  |
-| `habitat` |  |
-| `id` |  |
-| `imageUrl` |  |
+| `commonNameDe` | German common name |
+| `commonNameEn` | English common name |
+| `commonNameFr` | French common name |
+| `commonNameIt` | Italian common name |
+| `conservationStatus` | IUCN conservation status |
+| `description` | Detailed description of the bird |
+| `family` | Taxonomic family |
+| `habitat` | Preferred habitats |
+| `id` | Unique identifier for the bird |
+| `imageUrl` | URL to bird image |
 | `length` |  |
-| `order` |  |
-| `scientificName` |  |
+| `order` | Taxonomic order |
+| `scientificName` | Scientific name of the bird species |
 | `weight` |  |
 | `wingspan` |  |
 
@@ -268,11 +268,11 @@ API path: `/api/birds`
 | --- | --- |
 | `characteristics` |  |
 | `commonNames` |  |
-| `conservationStatus` |  |
+| `conservationStatus` | Conservation status code |
 | `distribution` |  |
-| `observationCount` |  |
-| `scientificName` |  |
-| `speciesId` |  |
+| `observationCount` | Number of recorded observations |
+| `scientificName` | Scientific name |
+| `speciesId` | Unique species identifier |
 | `taxonomy` |  |
 
 Operations: List.
@@ -299,19 +299,19 @@ Create an instance: `local bird = client:Bird(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `commonNameDe` | `string` |  |
-| `commonNameEn` | `string` |  |
-| `commonNameFr` | `string` |  |
-| `commonNameIt` | `string` |  |
-| `conservationStatus` | `string` |  |
-| `description` | `string` |  |
-| `family` | `string` |  |
-| `habitat` | `table` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
+| `commonNameDe` | `string` | German common name |
+| `commonNameEn` | `string` | English common name |
+| `commonNameFr` | `string` | French common name |
+| `commonNameIt` | `string` | Italian common name |
+| `conservationStatus` | `string` | IUCN conservation status |
+| `description` | `string` | Detailed description of the bird |
+| `family` | `string` | Taxonomic family |
+| `habitat` | `table` | Preferred habitats |
+| `id` | `string` | Unique identifier for the bird |
+| `imageUrl` | `string` | URL to bird image |
 | `length` | `table` |  |
-| `order` | `string` |  |
-| `scientificName` | `string` |  |
+| `order` | `string` | Taxonomic order |
+| `scientificName` | `string` | Scientific name of the bird species |
 | `weight` | `table` |  |
 | `wingspan` | `table` |  |
 
@@ -344,11 +344,11 @@ Create an instance: `local species = client:Species(nil)`
 | --- | --- | --- |
 | `characteristics` | `table` |  |
 | `commonNames` | `table` |  |
-| `conservationStatus` | `string` |  |
+| `conservationStatus` | `string` | Conservation status code |
 | `distribution` | `table` |  |
-| `observationCount` | `number` |  |
-| `scientificName` | `string` |  |
-| `speciesId` | `string` |  |
+| `observationCount` | `number` | Number of recorded observations |
+| `scientificName` | `string` | Scientific name |
+| `speciesId` | `string` | Unique species identifier |
 | `taxonomy` | `table` |  |
 
 #### Example: List

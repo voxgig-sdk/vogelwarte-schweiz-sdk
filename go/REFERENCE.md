@@ -102,19 +102,19 @@ fmt.Println(bird.GetName()) // "bird"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `commonNameDe` | `string` | No |  |
-| `commonNameEn` | `string` | No |  |
-| `commonNameFr` | `string` | No |  |
-| `commonNameIt` | `string` | No |  |
-| `conservationStatus` | `string` | No |  |
-| `description` | `string` | No |  |
-| `family` | `string` | No |  |
-| `habitat` | `[]any` | No |  |
-| `id` | `string` | No |  |
-| `imageUrl` | `string` | No |  |
+| `commonNameDe` | `string` | No | German common name |
+| `commonNameEn` | `string` | No | English common name |
+| `commonNameFr` | `string` | No | French common name |
+| `commonNameIt` | `string` | No | Italian common name |
+| `conservationStatus` | `string` | No | IUCN conservation status |
+| `description` | `string` | No | Detailed description of the bird |
+| `family` | `string` | No | Taxonomic family |
+| `habitat` | `[]any` | No | Preferred habitats |
+| `id` | `string` | No | Unique identifier for the bird |
+| `imageUrl` | `string` | No | URL to bird image |
 | `length` | `map[string]any` | No |  |
-| `order` | `string` | No |  |
-| `scientificName` | `string` | No |  |
+| `order` | `string` | No | Taxonomic order |
+| `scientificName` | `string` | No | Scientific name of the bird species |
 | `weight` | `map[string]any` | No |  |
 | `wingspan` | `map[string]any` | No |  |
 
@@ -181,11 +181,11 @@ fmt.Println(species.GetName()) // "species"
 | --- | --- | --- | --- |
 | `characteristics` | `map[string]any` | No |  |
 | `commonNames` | `map[string]any` | No |  |
-| `conservationStatus` | `string` | No |  |
+| `conservationStatus` | `string` | No | Conservation status code |
 | `distribution` | `map[string]any` | No |  |
-| `observationCount` | `int` | No |  |
-| `scientificName` | `string` | No |  |
-| `speciesId` | `string` | No |  |
+| `observationCount` | `int` | No | Number of recorded observations |
+| `scientificName` | `string` | No | Scientific name |
+| `speciesId` | `string` | No | Unique species identifier |
 | `taxonomy` | `map[string]any` | No |  |
 
 ### Operations

@@ -91,19 +91,19 @@ bird = client.Bird()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `commonNameDe` | `str` | No |  |
-| `commonNameEn` | `str` | No |  |
-| `commonNameFr` | `str` | No |  |
-| `commonNameIt` | `str` | No |  |
-| `conservationStatus` | `str` | No |  |
-| `description` | `str` | No |  |
-| `family` | `str` | No |  |
-| `habitat` | `list` | No |  |
-| `id` | `str` | No |  |
-| `imageUrl` | `str` | No |  |
+| `commonNameDe` | `str` | No | German common name |
+| `commonNameEn` | `str` | No | English common name |
+| `commonNameFr` | `str` | No | French common name |
+| `commonNameIt` | `str` | No | Italian common name |
+| `conservationStatus` | `str` | No | IUCN conservation status |
+| `description` | `str` | No | Detailed description of the bird |
+| `family` | `str` | No | Taxonomic family |
+| `habitat` | `list` | No | Preferred habitats |
+| `id` | `str` | No | Unique identifier for the bird |
+| `imageUrl` | `str` | No | URL to bird image |
 | `length` | `dict` | No |  |
-| `order` | `str` | No |  |
-| `scientificName` | `str` | No |  |
+| `order` | `str` | No | Taxonomic order |
+| `scientificName` | `str` | No | Scientific name of the bird species |
 | `weight` | `dict` | No |  |
 | `wingspan` | `dict` | No |  |
 
@@ -168,11 +168,11 @@ species = client.Species()
 | --- | --- | --- | --- |
 | `characteristics` | `dict` | No |  |
 | `commonNames` | `dict` | No |  |
-| `conservationStatus` | `str` | No |  |
+| `conservationStatus` | `str` | No | Conservation status code |
 | `distribution` | `dict` | No |  |
-| `observationCount` | `int` | No |  |
-| `scientificName` | `str` | No |  |
-| `speciesId` | `str` | No |  |
+| `observationCount` | `int` | No | Number of recorded observations |
+| `scientificName` | `str` | No | Scientific name |
+| `speciesId` | `str` | No | Unique species identifier |
 | `taxonomy` | `dict` | No |  |
 
 ### Operations

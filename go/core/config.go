@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "VogelwarteSchweiz",
+			"slug": "vogelwarte-schweiz",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,42 +37,52 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "commonNameDe",
+						"short": "German common name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "commonNameEn",
+						"short": "English common name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "commonNameFr",
+						"short": "French common name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "commonNameIt",
+						"short": "Italian common name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "conservationStatus",
+						"short": "IUCN conservation status",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "description",
+						"short": "Detailed description of the bird",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "family",
+						"short": "Taxonomic family",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "habitat",
+						"short": "Preferred habitats",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the bird",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "imageUrl",
+						"short": "URL to bird image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -78,10 +91,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "order",
+						"short": "Taxonomic order",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "scientificName",
+						"short": "Scientific name of the bird species",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -203,6 +218,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "conservationStatus",
+						"short": "Conservation status code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -211,14 +227,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "observationCount",
+						"short": "Number of recorded observations",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "scientificName",
+						"short": "Scientific name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "speciesId",
+						"short": "Unique species identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{

@@ -19,6 +19,9 @@ module VogelwarteSchweizConfig
     {
       "main" => {
         "name" => "VogelwarteSchweiz",
+        "slug" => "vogelwarte-schweiz",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -42,42 +45,52 @@ module VogelwarteSchweizConfig
           "fields" => [
             {
               "name" => "commonNameDe",
+              "short" => "German common name",
               "type" => "`$STRING`",
             },
             {
               "name" => "commonNameEn",
+              "short" => "English common name",
               "type" => "`$STRING`",
             },
             {
               "name" => "commonNameFr",
+              "short" => "French common name",
               "type" => "`$STRING`",
             },
             {
               "name" => "commonNameIt",
+              "short" => "Italian common name",
               "type" => "`$STRING`",
             },
             {
               "name" => "conservationStatus",
+              "short" => "IUCN conservation status",
               "type" => "`$STRING`",
             },
             {
               "name" => "description",
+              "short" => "Detailed description of the bird",
               "type" => "`$STRING`",
             },
             {
               "name" => "family",
+              "short" => "Taxonomic family",
               "type" => "`$STRING`",
             },
             {
               "name" => "habitat",
+              "short" => "Preferred habitats",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "id",
+              "short" => "Unique identifier for the bird",
               "type" => "`$STRING`",
             },
             {
               "name" => "imageUrl",
+              "short" => "URL to bird image",
               "type" => "`$STRING`",
             },
             {
@@ -86,10 +99,12 @@ module VogelwarteSchweizConfig
             },
             {
               "name" => "order",
+              "short" => "Taxonomic order",
               "type" => "`$STRING`",
             },
             {
               "name" => "scientificName",
+              "short" => "Scientific name of the bird species",
               "type" => "`$STRING`",
             },
             {
@@ -211,6 +226,7 @@ module VogelwarteSchweizConfig
             },
             {
               "name" => "conservationStatus",
+              "short" => "Conservation status code",
               "type" => "`$STRING`",
             },
             {
@@ -219,14 +235,17 @@ module VogelwarteSchweizConfig
             },
             {
               "name" => "observationCount",
+              "short" => "Number of recorded observations",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "scientificName",
+              "short" => "Scientific name",
               "type" => "`$STRING`",
             },
             {
               "name" => "speciesId",
+              "short" => "Unique species identifier",
               "type" => "`$STRING`",
             },
             {

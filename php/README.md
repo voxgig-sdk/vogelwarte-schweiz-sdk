@@ -264,19 +264,19 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `commonNameDe` |  |
-| `commonNameEn` |  |
-| `commonNameFr` |  |
-| `commonNameIt` |  |
-| `conservationStatus` |  |
-| `description` |  |
-| `family` |  |
-| `habitat` |  |
-| `id` |  |
-| `imageUrl` |  |
+| `commonNameDe` | German common name |
+| `commonNameEn` | English common name |
+| `commonNameFr` | French common name |
+| `commonNameIt` | Italian common name |
+| `conservationStatus` | IUCN conservation status |
+| `description` | Detailed description of the bird |
+| `family` | Taxonomic family |
+| `habitat` | Preferred habitats |
+| `id` | Unique identifier for the bird |
+| `imageUrl` | URL to bird image |
 | `length` |  |
-| `order` |  |
-| `scientificName` |  |
+| `order` | Taxonomic order |
+| `scientificName` | Scientific name of the bird species |
 | `weight` |  |
 | `wingspan` |  |
 
@@ -290,11 +290,11 @@ API path: `/api/birds`
 | --- | --- |
 | `characteristics` |  |
 | `commonNames` |  |
-| `conservationStatus` |  |
+| `conservationStatus` | Conservation status code |
 | `distribution` |  |
-| `observationCount` |  |
-| `scientificName` |  |
-| `speciesId` |  |
+| `observationCount` | Number of recorded observations |
+| `scientificName` | Scientific name |
+| `speciesId` | Unique species identifier |
 | `taxonomy` |  |
 
 Operations: List.
@@ -321,19 +321,19 @@ Create an instance: `$bird = $client->Bird();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `commonNameDe` | `string` |  |
-| `commonNameEn` | `string` |  |
-| `commonNameFr` | `string` |  |
-| `commonNameIt` | `string` |  |
-| `conservationStatus` | `string` |  |
-| `description` | `string` |  |
-| `family` | `string` |  |
-| `habitat` | `array` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
+| `commonNameDe` | `string` | German common name |
+| `commonNameEn` | `string` | English common name |
+| `commonNameFr` | `string` | French common name |
+| `commonNameIt` | `string` | Italian common name |
+| `conservationStatus` | `string` | IUCN conservation status |
+| `description` | `string` | Detailed description of the bird |
+| `family` | `string` | Taxonomic family |
+| `habitat` | `array` | Preferred habitats |
+| `id` | `string` | Unique identifier for the bird |
+| `imageUrl` | `string` | URL to bird image |
 | `length` | `array` |  |
-| `order` | `string` |  |
-| `scientificName` | `string` |  |
+| `order` | `string` | Taxonomic order |
+| `scientificName` | `string` | Scientific name of the bird species |
 | `weight` | `array` |  |
 | `wingspan` | `array` |  |
 
@@ -368,11 +368,11 @@ Create an instance: `$species = $client->Species();`
 | --- | --- | --- |
 | `characteristics` | `array` |  |
 | `commonNames` | `array` |  |
-| `conservationStatus` | `string` |  |
+| `conservationStatus` | `string` | Conservation status code |
 | `distribution` | `array` |  |
-| `observationCount` | `int` |  |
-| `scientificName` | `string` |  |
-| `speciesId` | `string` |  |
+| `observationCount` | `int` | Number of recorded observations |
+| `scientificName` | `string` | Scientific name |
+| `speciesId` | `string` | Unique species identifier |
 | `taxonomy` | `array` |  |
 
 #### Example: List

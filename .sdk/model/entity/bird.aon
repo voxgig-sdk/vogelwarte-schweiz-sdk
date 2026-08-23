@@ -8,51 +8,61 @@ main: kit: entity: bird: {
     {
       name: "commonNameDe"
       req: false
+      short: "German common name"
       type: "`$STRING`"
     }
     {
       name: "commonNameEn"
       req: false
+      short: "English common name"
       type: "`$STRING`"
     }
     {
       name: "commonNameFr"
       req: false
+      short: "French common name"
       type: "`$STRING`"
     }
     {
       name: "commonNameIt"
       req: false
+      short: "Italian common name"
       type: "`$STRING`"
     }
     {
       name: "conservationStatus"
       req: false
+      short: "IUCN conservation status"
       type: "`$STRING`"
     }
     {
       name: "description"
       req: false
+      short: "Detailed description of the bird"
       type: "`$STRING`"
     }
     {
       name: "family"
       req: false
+      short: "Taxonomic family"
       type: "`$STRING`"
     }
     {
       name: "habitat"
       req: false
+      short: "Preferred habitats"
       type: "`$ARRAY`"
     }
     {
       name: "id"
       req: false
+      short: "Unique identifier for the bird"
       type: "`$STRING`"
     }
     {
       name: "imageUrl"
       req: false
+      short: "URL to bird image"
       type: "`$STRING`"
     }
     {
@@ -63,11 +73,13 @@ main: kit: entity: bird: {
     {
       name: "order"
       req: false
+      short: "Taxonomic order"
       type: "`$STRING`"
     }
     {
       name: "scientificName"
       req: false
+      short: "Scientific name of the bird species"
       type: "`$STRING`"
     }
     {

@@ -18,6 +18,7 @@ main: kit: entity: species: {
     {
       name: "conservationStatus"
       req: false
+      short: "Conservation status code"
       type: "`$STRING`"
     }
     {
@@ -28,16 +29,19 @@ main: kit: entity: species: {
     {
       name: "observationCount"
       req: false
+      short: "Number of recorded observations"
       type: "`$INTEGER`"
     }
     {
       name: "scientificName"
       req: false
+      short: "Scientific name"
       type: "`$STRING`"
     }
     {
       name: "speciesId"
       req: false
+      short: "Unique species identifier"
       type: "`$STRING`"
     }
     {

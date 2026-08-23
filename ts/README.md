@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -303,19 +303,19 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `commonNameDe` |  |
-| `commonNameEn` |  |
-| `commonNameFr` |  |
-| `commonNameIt` |  |
-| `conservationStatus` |  |
-| `description` |  |
-| `family` |  |
-| `habitat` |  |
-| `id` |  |
-| `imageUrl` |  |
+| `commonNameDe` | German common name |
+| `commonNameEn` | English common name |
+| `commonNameFr` | French common name |
+| `commonNameIt` | Italian common name |
+| `conservationStatus` | IUCN conservation status |
+| `description` | Detailed description of the bird |
+| `family` | Taxonomic family |
+| `habitat` | Preferred habitats |
+| `id` | Unique identifier for the bird |
+| `imageUrl` | URL to bird image |
 | `length` |  |
-| `order` |  |
-| `scientificName` |  |
+| `order` | Taxonomic order |
+| `scientificName` | Scientific name of the bird species |
 | `weight` |  |
 | `wingspan` |  |
 
@@ -329,11 +329,11 @@ API path: `/api/birds`
 | --- | --- |
 | `characteristics` |  |
 | `commonNames` |  |
-| `conservationStatus` |  |
+| `conservationStatus` | Conservation status code |
 | `distribution` |  |
-| `observationCount` |  |
-| `scientificName` |  |
-| `speciesId` |  |
+| `observationCount` | Number of recorded observations |
+| `scientificName` | Scientific name |
+| `speciesId` | Unique species identifier |
 | `taxonomy` |  |
 
 Operations: list.
@@ -360,19 +360,19 @@ Create an instance: `const bird = client.Bird()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `commonNameDe` | `string` |  |
-| `commonNameEn` | `string` |  |
-| `commonNameFr` | `string` |  |
-| `commonNameIt` | `string` |  |
-| `conservationStatus` | `string` |  |
-| `description` | `string` |  |
-| `family` | `string` |  |
-| `habitat` | `any[]` |  |
-| `id` | `string` |  |
-| `imageUrl` | `string` |  |
+| `commonNameDe` | `string` | German common name |
+| `commonNameEn` | `string` | English common name |
+| `commonNameFr` | `string` | French common name |
+| `commonNameIt` | `string` | Italian common name |
+| `conservationStatus` | `string` | IUCN conservation status |
+| `description` | `string` | Detailed description of the bird |
+| `family` | `string` | Taxonomic family |
+| `habitat` | `any[]` | Preferred habitats |
+| `id` | `string` | Unique identifier for the bird |
+| `imageUrl` | `string` | URL to bird image |
 | `length` | `Record<string, any>` |  |
-| `order` | `string` |  |
-| `scientificName` | `string` |  |
+| `order` | `string` | Taxonomic order |
+| `scientificName` | `string` | Scientific name of the bird species |
 | `weight` | `Record<string, any>` |  |
 | `wingspan` | `Record<string, any>` |  |
 
@@ -405,11 +405,11 @@ Create an instance: `const species = client.Species()`
 | --- | --- | --- |
 | `characteristics` | `Record<string, any>` |  |
 | `commonNames` | `Record<string, any>` |  |
-| `conservationStatus` | `string` |  |
+| `conservationStatus` | `string` | Conservation status code |
 | `distribution` | `Record<string, any>` |  |
-| `observationCount` | `number` |  |
-| `scientificName` | `string` |  |
-| `speciesId` | `string` |  |
+| `observationCount` | `number` | Number of recorded observations |
+| `scientificName` | `string` | Scientific name |
+| `speciesId` | `string` | Unique species identifier |
 | `taxonomy` | `Record<string, any>` |  |
 
 #### Example: List
