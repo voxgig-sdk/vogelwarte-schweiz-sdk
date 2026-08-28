@@ -38,21 +38,9 @@ type BirdLoadMatch struct {
 
 // BirdListMatch is the typed request payload for Bird.ListTyped.
 type BirdListMatch struct {
-	CommonNameDe *string `json:"commonNameDe,omitempty"`
-	CommonNameEn *string `json:"commonNameEn,omitempty"`
-	CommonNameFr *string `json:"commonNameFr,omitempty"`
-	CommonNameIt *string `json:"commonNameIt,omitempty"`
-	ConservationStatus *string `json:"conservationStatus,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Family *string `json:"family,omitempty"`
-	Habitat *[]any `json:"habitat,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ImageUrl *string `json:"imageUrl,omitempty"`
-	Length *map[string]any `json:"length,omitempty"`
-	Order *string `json:"order,omitempty"`
-	ScientificName *string `json:"scientificName,omitempty"`
-	Weight *map[string]any `json:"weight,omitempty"`
-	Wingspan *map[string]any `json:"wingspan,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
+	Search *string `json:"search,omitempty"`
 }
 
 // Species is the typed data model for the species entity.
@@ -69,14 +57,9 @@ type Species struct {
 
 // SpeciesListMatch is the typed request payload for Species.ListTyped.
 type SpeciesListMatch struct {
-	Characteristics *map[string]any `json:"characteristics,omitempty"`
-	CommonNames *map[string]any `json:"commonNames,omitempty"`
-	ConservationStatus *string `json:"conservationStatus,omitempty"`
-	Distribution *map[string]any `json:"distribution,omitempty"`
-	ObservationCount *int `json:"observationCount,omitempty"`
-	ScientificName *string `json:"scientificName,omitempty"`
-	SpeciesId *string `json:"speciesId,omitempty"`
-	Taxonomy *map[string]any `json:"taxonomy,omitempty"`
+	Family *string `json:"family,omitempty"`
+	Habitat *string `json:"habitat,omitempty"`
+	Status *string `json:"status,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

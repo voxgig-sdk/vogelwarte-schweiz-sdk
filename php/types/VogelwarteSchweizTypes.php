@@ -41,21 +41,9 @@ class BirdLoadMatch
 /** Request payload for Bird#list. */
 class BirdListMatch
 {
-    public ?string $commonNameDe = null;
-    public ?string $commonNameEn = null;
-    public ?string $commonNameFr = null;
-    public ?string $commonNameIt = null;
-    public ?string $conservationStatus = null;
-    public ?string $description = null;
-    public ?string $family = null;
-    public ?array $habitat = null;
-    public ?string $id = null;
-    public ?string $imageUrl = null;
-    public ?array $length = null;
-    public ?string $order = null;
-    public ?string $scientificName = null;
-    public ?array $weight = null;
-    public ?array $wingspan = null;
+    public ?int $limit = null;
+    public ?int $offset = null;
+    public ?string $search = null;
 }
 
 /** Species entity data model. */
@@ -74,13 +62,8 @@ class Species
 /** Request payload for Species#list. */
 class SpeciesListMatch
 {
-    public ?array $characteristics = null;
-    public ?array $commonNames = null;
-    public ?string $conservationStatus = null;
-    public ?array $distribution = null;
-    public ?int $observationCount = null;
-    public ?string $scientificName = null;
-    public ?string $speciesId = null;
-    public ?array $taxonomy = null;
+    public ?string $family = null;
+    public ?string $habitat = null;
+    public ?string $status = null;
 }
 

@@ -28,21 +28,9 @@ export interface BirdLoadMatch {
 }
 
 export interface BirdListMatch {
-  commonNameDe?: string
-  commonNameEn?: string
-  commonNameFr?: string
-  commonNameIt?: string
-  conservationStatus?: string
-  description?: string
-  family?: string
-  habitat?: any[]
-  id?: string
-  imageUrl?: string
-  length?: Record<string, any>
-  order?: string
-  scientificName?: string
-  weight?: Record<string, any>
-  wingspan?: Record<string, any>
+  limit?: number
+  offset?: number
+  search?: string
 }
 
 export interface Species {
@@ -57,13 +45,8 @@ export interface Species {
 }
 
 export interface SpeciesListMatch {
-  characteristics?: Record<string, any>
-  commonNames?: Record<string, any>
-  conservationStatus?: string
-  distribution?: Record<string, any>
-  observationCount?: number
-  scientificName?: string
-  speciesId?: string
-  taxonomy?: Record<string, any>
+  family?: string
+  habitat?: string
+  status?: string
 }
 

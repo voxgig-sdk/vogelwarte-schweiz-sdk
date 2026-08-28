@@ -39,21 +39,9 @@ class BirdLoadMatch(TypedDict):
 
 
 class BirdListMatch(TypedDict, total=False):
-    commonNameDe: str
-    commonNameEn: str
-    commonNameFr: str
-    commonNameIt: str
-    conservationStatus: str
-    description: str
-    family: str
-    habitat: list
-    id: str
-    imageUrl: str
-    length: dict
-    order: str
-    scientificName: str
-    weight: dict
-    wingspan: dict
+    limit: int
+    offset: int
+    search: str
 
 
 class Species(TypedDict, total=False):
@@ -68,11 +56,6 @@ class Species(TypedDict, total=False):
 
 
 class SpeciesListMatch(TypedDict, total=False):
-    characteristics: dict
-    commonNames: dict
-    conservationStatus: str
-    distribution: dict
-    observationCount: int
-    scientificName: str
-    speciesId: str
-    taxonomy: dict
+    family: str
+    habitat: str
+    status: str

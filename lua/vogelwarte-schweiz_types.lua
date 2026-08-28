@@ -27,21 +27,9 @@
 ---@field id string
 
 ---@class BirdListMatch
----@field commonNameDe? string
----@field commonNameEn? string
----@field commonNameFr? string
----@field commonNameIt? string
----@field conservationStatus? string
----@field description? string
----@field family? string
----@field habitat? table
----@field id? string
----@field imageUrl? string
----@field length? table
----@field order? string
----@field scientificName? string
----@field weight? table
----@field wingspan? table
+---@field limit? number
+---@field offset? number
+---@field search? string
 
 ---@class Species
 ---@field characteristics? table
@@ -54,14 +42,9 @@
 ---@field taxonomy? table
 
 ---@class SpeciesListMatch
----@field characteristics? table
----@field commonNames? table
----@field conservationStatus? string
----@field distribution? table
----@field observationCount? number
----@field scientificName? string
----@field speciesId? string
----@field taxonomy? table
+---@field family? string
+---@field habitat? string
+---@field status? string
 
 local M = {}
 
