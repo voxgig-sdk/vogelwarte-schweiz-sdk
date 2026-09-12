@@ -82,6 +82,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "imageUrl",
 						"short": "URL to bird image",
 						"type": "`$STRING`",
@@ -108,6 +109,10 @@ func MakeConfig() map[string]any {
 						"name": "wingspan",
 						"type": "`$OBJECT`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "bird",
 				"op": map[string]any{
@@ -143,9 +148,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/birds",
-								"parts": []any{
-									"api",
-									"birds",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "birds",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -157,6 +166,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"api",
+									"birds",
 								},
 							},
 						},
@@ -180,14 +193,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/birds/{birdId}",
-								"parts": []any{
-									"api",
-									"birds",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"birdId": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "birds",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -198,6 +217,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"birds",
+									"{id}",
 								},
 							},
 						},
@@ -278,9 +302,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/species",
-								"parts": []any{
-									"api",
-									"species",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "species",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -293,6 +321,10 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.species`",
 								},
+								"parts": []any{
+									"api",
+									"species",
+								},
 							},
 						},
 					},
@@ -303,6 +335,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

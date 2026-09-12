@@ -78,6 +78,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "imageUrl",
             ["short"] = "URL to bird image",
             ["type"] = "`$STRING`",
@@ -104,6 +105,10 @@ local function make_config()
             ["name"] = "wingspan",
             ["type"] = "`$OBJECT`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "bird",
         ["op"] = {
@@ -139,9 +144,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/birds",
-                ["parts"] = {
-                  "api",
-                  "birds",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "birds",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -153,6 +162,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "api",
+                  "birds",
                 },
               },
             },
@@ -176,14 +189,20 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/birds/{birdId}",
-                ["parts"] = {
-                  "api",
-                  "birds",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["birdId"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "birds",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -194,6 +213,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "birds",
+                  "{id}",
                 },
               },
             },
@@ -274,9 +298,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/species",
-                ["parts"] = {
-                  "api",
-                  "species",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "species",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -288,6 +316,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.species`",
+                },
+                ["parts"] = {
+                  "api",
+                  "species",
                 },
               },
             },

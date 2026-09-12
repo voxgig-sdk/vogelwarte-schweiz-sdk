@@ -60,6 +60,7 @@ main: kit: entity: bird: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "imageUrl"
       req: false
       short: "URL to bird image"
@@ -134,9 +135,13 @@ main: kit: entity: bird: {
           }
           method: "GET"
           orig: "/api/birds"
-          parts: [
-            "api"
-            "birds"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "birds"
+            }
           ]
           select: {
             exist: [
@@ -169,16 +174,22 @@ main: kit: entity: bird: {
           }
           method: "GET"
           orig: "/api/birds/{birdId}"
-          parts: [
-            "api"
-            "birds"
-            "{id}"
-          ]
           rename: {
             param: {
               birdId: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "birds"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

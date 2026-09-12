@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -115,6 +126,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "imageUrl",
           "short": "URL to bird image",
           "type": "`$STRING`"
@@ -142,6 +154,10 @@ class Config {
           "type": "`$OBJECT`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "bird",
       "op": {
         "list": {
@@ -176,9 +192,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/birds",
-              "parts": [
-                "api",
-                "birds"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "birds"
+                }
               ],
               "select": {
                 "exist": [
@@ -190,7 +210,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "api",
+                "birds"
+              ]
             }
           ]
         },
@@ -213,16 +237,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/birds/{birdId}",
-              "parts": [
-                "api",
-                "birds",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "birdId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "birds"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -231,7 +261,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "birds",
+                "{id}"
+              ]
             }
           ]
         }
@@ -311,9 +346,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/species",
-              "parts": [
-                "api",
-                "species"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "species"
+                }
               ],
               "select": {
                 "exist": [
@@ -325,7 +364,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.species`"
-              }
+              },
+              "parts": [
+                "api",
+                "species"
+              ]
             }
           ]
         }
@@ -341,6 +384,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

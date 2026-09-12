@@ -84,9 +84,13 @@ main: kit: entity: species: {
           }
           method: "GET"
           orig: "/api/species"
-          parts: [
-            "api"
-            "species"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "species"
+            }
           ]
           select: {
             exist: [
