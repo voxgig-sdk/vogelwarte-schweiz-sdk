@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { VogelwarteSchweizSDK } from '@voxgig-sdk/vogelwarte-schweiz'
+import { VogelwarteSchweizSDK } from '@voxgig-sdk/vogelwarte-schweiz-sdk'
 
 const client = new VogelwarteSchweizSDK()
 ```
@@ -501,7 +501,7 @@ vogelwarte-schweiz/
 Import the SDK from the package root:
 
 ```ts
-import { VogelwarteSchweizSDK } from '@voxgig-sdk/vogelwarte-schweiz'
+import { VogelwarteSchweizSDK } from '@voxgig-sdk/vogelwarte-schweiz-sdk'
 ```
 
 ### Entity state

@@ -105,7 +105,7 @@ local results, err = client:Bird():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/vogelwarte-schweiz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases) |
+| TypeScript | `@voxgig-sdk/vogelwarte-schweiz-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases) |
 | Python | `voxgig-sdk-vogelwarte-schweiz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases) |
 | PHP | `voxgig-sdk/vogelwarte-schweiz` | publish pending — [install from git tag](https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go` | `go get github.com/voxgig-sdk/vogelwarte-schweiz-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Bird():list()
 ### TypeScript
 
 ```ts
-import { VogelwarteSchweizSDK } from '@voxgig-sdk/vogelwarte-schweiz'
+import { VogelwarteSchweizSDK } from '@voxgig-sdk/vogelwarte-schweiz-sdk'
 
 const client = new VogelwarteSchweizSDK()
 
