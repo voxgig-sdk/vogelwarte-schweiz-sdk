@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { VogelwarteSchweizSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('SpeciesEntity', async () => {
 
     const live = 'TRUE' === process.env.VOGELWARTE_SCHWEIZ_TEST_LIVE
     for (const op of ['list']) {
-      if (maybeSkipControl(t, 'entityOp', 'species.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'species.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set VOGELWARTE_SCHWEIZ_TEST_SPECIES_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"characteristics","req":false,"type":"`$OBJECT`","index$":0},{"active":true,"name":"commonNames","req":false,"type":"`$OBJECT`","index$":1},{"active":true,"name":"conservationStatus","req":false,"short":"Conservation status code","type":"`$STRING`","index$":2},{"active":true,"name":"distribution","req":false,"type":"`$OBJECT`","index$":3},{"active":true,"name":"observationCount","req":false,"short":"Number of recorded observations","type":"`$INTEGER`","index$":4},{"active":true,"name":"scientificName","req":false,"short":"Scientific name","type":"`$STRING`","index$":5},{"active":true,"name":"speciesId","req":false,"short":"Unique species identifier","type":"`$STRING`","index$":6},{"active":true,"name":"taxonomy","req":false,"type":"`$OBJECT`","index$":7}],"name":"species","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"family","orig":"family","reqd":false,"type":"`$STRING`","index$":0},{"active":true,"kind":"query","name":"habitat","orig":"habitat","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"kind":"query","name":"status","orig":"status","reqd":false,"type":"`$STRING`","index$":2}]},"contract":{"id":"GET /api/species","json":"{\"operationId\":\"getSpecies\",\"parameters\":[{\"description\":\"Filter by bird family\",\"in\":\"query\",\"name\":\"family\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by habitat type\",\"in\":\"query\",\"name\":\"habitat\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by conservation status\",\"in\":\"query\",\"name\":\"status\",\"required\":false,\"schema\":{\"enum\":[\"LC\",\"NT\",\"VU\",\"EN\",\"CR\",\"EW\",\"EX\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"count\":{\"type\":\"integer\"},\"species\":{\"items\":{\"properties\":{\"characteristics\":{\"properties\":{\"behavior\":{\"type\":\"string\"},\"diet\":{\"type\":\"string\"},\"plumage\":{\"type\":\"string\"},\"size\":{\"type\":\"string\"}},\"type\":\"object\"},\"commonNames\":{\"properties\":{\"de\":{\"type\":\"string\"},\"en\":{\"type\":\"string\"},\"fr\":{\"type\":\"string\"},\"it\":{\"type\":\"string\"}},\"type\":\"object\"},\"conservationStatus\":{\"description\":\"Conservation status code\",\"type\":\"string\"},\"distribution\":{\"properties\":{\"breedingRange\":{\"type\":\"string\"},\"regions\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"winteringRange\":{\"type\":\"string\"}},\"type\":\"object\"},\"observationCount\":{\"description\":\"Number of recorded observations\",\"type\":\"integer\"},\"scientificName\":{\"description\":\"Scientific name\",\"type\":\"string\"},\"speciesId\":{\"description\":\"Unique species identifier\",\"type\":\"string\"},\"taxonomy\":{\"properties\":{\"class\":{\"type\":\"string\"},\"family\":{\"type\":\"string\"},\"genus\":{\"type\":\"string\"},\"kingdom\":{\"type\":\"string\"},\"order\":{\"type\":\"string\"},\"phylum\":{\"type\":\"string\"},\"species\":{\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with species data\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"timestamp\":{\"description\":\"Timestamp of the error\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"timestamp\":{\"description\":\"Timestamp of the error\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/api/species","segments":[{"lit":"api"},{"lit":"species"}],"select":{"exist":["family","habitat","status"]},"transform":{"req":"`reqdata`","res":"`body.species`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"species","name__orig":"species","Name":"Species","name_":"species","name-":"species","NAME":"SPECIES","index$":1}, {"active":true,"entity":"species","key$":"BasicSpeciesFlow","kind":"basic","name":"BasicSpeciesFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"species_ref01"}}],"index$":0}]}, 'Species')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['VOGELWARTE_SCHWEIZ_TEST_SPECIES_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'VOGELWARTE_SCHWEIZ_TEST_SPECIES_ENTID': idmap,
     'VOGELWARTE_SCHWEIZ_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.VOGELWARTE_SCHWEIZ_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['VOGELWARTE_SCHWEIZ_TEST_SPECIES_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new VogelwarteSchweizSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.VOGELWARTE_SCHWEIZ_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 
