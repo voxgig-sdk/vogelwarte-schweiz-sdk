@@ -127,12 +127,12 @@ class Config {
 
     entity: {
       
-      bird: {
-      },
-
-      species: {
-      },
-
+        bird: {
+        },
+  
+        species: {
+        },
+  
     }
   }
 

@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicBirdFlow.aon"
-@"BasicSpeciesFlow.aon"
+@"./BasicBirdFlow.aon"
+@"./BasicSpeciesFlow.aon"

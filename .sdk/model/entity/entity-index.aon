@@ -1,4 +1,4 @@
 # Entity Models
 
-@"bird.aon"
-@"species.aon"
+@"./bird.aon"
+@"./species.aon"
