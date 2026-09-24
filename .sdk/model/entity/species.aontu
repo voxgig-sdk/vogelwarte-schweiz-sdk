@@ -1,0 +1,126 @@
+# Entity: species
+
+main: kit: entity: species: {
+
+  alias: field: {}
+
+  fields: {
+    characteristics: {
+      h: "Characteristics"
+      n: "characteristics"
+      r: false
+      t: "`$OBJECT`"
+    }
+    commonNames: {
+      h: "Common Names"
+      n: "commonNames"
+      r: false
+      t: "`$OBJECT`"
+    }
+    conservationStatus: {
+      h: "Conservation Status"
+      n: "conservationStatus"
+      r: false
+      sh: "Conservation status code"
+      t: "`$STRING`"
+    }
+    distribution: {
+      h: "Distribution"
+      n: "distribution"
+      r: false
+      t: "`$OBJECT`"
+    }
+    observationCount: {
+      h: "Observation Count"
+      n: "observationCount"
+      r: false
+      sh: "Number of recorded observations"
+      t: "`$INTEGER`"
+    }
+    scientificName: {
+      h: "Scientific Name"
+      n: "scientificName"
+      r: false
+      sh: "Scientific name"
+      t: "`$STRING`"
+    }
+    speciesId: {
+      h: "Species Id"
+      n: "speciesId"
+      r: false
+      sh: "Unique species identifier"
+      t: "`$STRING`"
+    }
+    taxonomy: {
+      h: "Taxonomy"
+      n: "taxonomy"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "species"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/species"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "family"
+                or: "family"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "habitat"
+                or: "habitat"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "status"
+                or: "status"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/species"
+          q: {
+            exist: [
+              "family"
+              "habitat"
+              "status"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "species"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.species`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpeciesEntity = void 0;
 const VogelwarteSchweizEntityBase_1 = require("../VogelwarteSchweizEntityBase");
-// TODO: needs Entity superclass
 class SpeciesEntity extends VogelwarteSchweizEntityBase_1.VogelwarteSchweizEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

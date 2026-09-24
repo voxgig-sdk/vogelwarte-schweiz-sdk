@@ -19,7 +19,6 @@ import type {
   SpeciesListMatch,
 } from '../VogelwarteSchweizTypes'
 
-// TODO: needs Entity superclass
 class SpeciesEntity extends VogelwarteSchweizEntityBase<Species> {
 
   constructor(client: VogelwarteSchweizSDK, entopts: any) {

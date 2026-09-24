@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -115,75 +108,90 @@ class Config {
             "fields": [
                 {
                     "name": "commonNameDe",
-                    "short": "German common name",
-                    "type": "`$STRING`"
+                    "title": "Common Name De",
+                    "type": "`$STRING`",
+                    "short": "German common name"
                 },
                 {
                     "name": "commonNameEn",
-                    "short": "English common name",
-                    "type": "`$STRING`"
+                    "title": "Common Name En",
+                    "type": "`$STRING`",
+                    "short": "English common name"
                 },
                 {
                     "name": "commonNameFr",
-                    "short": "French common name",
-                    "type": "`$STRING`"
+                    "title": "Common Name Fr",
+                    "type": "`$STRING`",
+                    "short": "French common name"
                 },
                 {
                     "name": "commonNameIt",
-                    "short": "Italian common name",
-                    "type": "`$STRING`"
+                    "title": "Common Name It",
+                    "type": "`$STRING`",
+                    "short": "Italian common name"
                 },
                 {
                     "name": "conservationStatus",
-                    "short": "IUCN conservation status",
-                    "type": "`$STRING`"
+                    "title": "Conservation Status",
+                    "type": "`$STRING`",
+                    "short": "IUCN conservation status"
                 },
                 {
                     "name": "description",
-                    "short": "Detailed description of the bird",
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "short": "Detailed description of the bird"
                 },
                 {
                     "name": "family",
-                    "short": "Taxonomic family",
-                    "type": "`$STRING`"
+                    "title": "Family",
+                    "type": "`$STRING`",
+                    "short": "Taxonomic family"
                 },
                 {
                     "name": "habitat",
-                    "short": "Preferred habitats",
-                    "type": "`$ARRAY`"
+                    "title": "Habitat",
+                    "type": "`$ARRAY`",
+                    "short": "Preferred habitats"
                 },
                 {
                     "name": "id",
-                    "short": "Unique identifier for the bird",
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "short": "Unique identifier for the bird"
                 },
                 {
-                    "format": "uri",
                     "name": "imageUrl",
+                    "title": "Image Url",
+                    "type": "`$STRING`",
                     "short": "URL to bird image",
-                    "type": "`$STRING`"
+                    "format": "uri"
                 },
                 {
                     "name": "length",
+                    "title": "Length",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "order",
-                    "short": "Taxonomic order",
-                    "type": "`$STRING`"
+                    "title": "Order",
+                    "type": "`$STRING`",
+                    "short": "Taxonomic order"
                 },
                 {
                     "name": "scientificName",
-                    "short": "Scientific name of the bird species",
-                    "type": "`$STRING`"
+                    "title": "Scientific Name",
+                    "type": "`$STRING`",
+                    "short": "Scientific name of the bird species"
                 },
                 {
                     "name": "weight",
+                    "title": "Weight",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "wingspan",
+                    "title": "Wingspan",
                     "type": "`$OBJECT`"
                 }
             ],
@@ -198,30 +206,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 100,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 0,
-                                        "kind": "query",
-                                        "name": "offset",
-                                        "orig": "offset",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "search",
-                                        "orig": "search",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/birds",
@@ -233,21 +217,46 @@ class Config {
                                     "lit": "birds"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "birds"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.data`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 100
+                                    },
+                                    {
+                                        "name": "offset",
+                                        "orig": "offset",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 0
+                                    },
+                                    {
+                                        "name": "search",
+                                        "orig": "search",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "limit",
                                     "offset",
                                     "search"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.data`"
-                            },
-                            "parts": [
-                                "api",
-                                "birds"
-                            ]
+                            }
                         }
                     ]
                 },
@@ -256,25 +265,9 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "bird_id",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/birds/{birdId}",
-                            "rename": {
-                                "param": {
-                                    "birdId": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -286,20 +279,36 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
+                            "parts": [
+                                "api",
+                                "birds",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "birdId": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "api",
-                                "birds",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "bird_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -312,38 +321,46 @@ class Config {
             "fields": [
                 {
                     "name": "characteristics",
+                    "title": "Characteristics",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "commonNames",
+                    "title": "Common Names",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "conservationStatus",
-                    "short": "Conservation status code",
-                    "type": "`$STRING`"
+                    "title": "Conservation Status",
+                    "type": "`$STRING`",
+                    "short": "Conservation status code"
                 },
                 {
                     "name": "distribution",
+                    "title": "Distribution",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "observationCount",
-                    "short": "Number of recorded observations",
-                    "type": "`$INTEGER`"
+                    "title": "Observation Count",
+                    "type": "`$INTEGER`",
+                    "short": "Number of recorded observations"
                 },
                 {
                     "name": "scientificName",
-                    "short": "Scientific name",
-                    "type": "`$STRING`"
+                    "title": "Scientific Name",
+                    "type": "`$STRING`",
+                    "short": "Scientific name"
                 },
                 {
                     "name": "speciesId",
-                    "short": "Unique species identifier",
-                    "type": "`$STRING`"
+                    "title": "Species Id",
+                    "type": "`$STRING`",
+                    "short": "Unique species identifier"
                 },
                 {
                     "name": "taxonomy",
+                    "title": "Taxonomy",
                     "type": "`$OBJECT`"
                 }
             ],
@@ -354,28 +371,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "family",
-                                        "orig": "family",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "habitat",
-                                        "orig": "habitat",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "status",
-                                        "orig": "status",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/species",
@@ -387,21 +382,44 @@ class Config {
                                     "lit": "species"
                                 }
                             ],
+                            "parts": [
+                                "api",
+                                "species"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.species`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "family",
+                                        "orig": "family",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "habitat",
+                                        "orig": "habitat",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "status",
+                                        "orig": "status",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "family",
                                     "habitat",
                                     "status"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.species`"
-                            },
-                            "parts": [
-                                "api",
-                                "species"
-                            ]
+                            }
                         }
                     ]
                 }

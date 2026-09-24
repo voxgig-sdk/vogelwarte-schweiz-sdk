@@ -1,0 +1,234 @@
+# Entity: bird
+
+main: kit: entity: bird: {
+
+  alias: field: {}
+
+  fields: {
+    commonNameDe: {
+      h: "Common Name De"
+      n: "commonNameDe"
+      r: false
+      sh: "German common name"
+      t: "`$STRING`"
+    }
+    commonNameEn: {
+      h: "Common Name En"
+      n: "commonNameEn"
+      r: false
+      sh: "English common name"
+      t: "`$STRING`"
+    }
+    commonNameFr: {
+      h: "Common Name Fr"
+      n: "commonNameFr"
+      r: false
+      sh: "French common name"
+      t: "`$STRING`"
+    }
+    commonNameIt: {
+      h: "Common Name It"
+      n: "commonNameIt"
+      r: false
+      sh: "Italian common name"
+      t: "`$STRING`"
+    }
+    conservationStatus: {
+      h: "Conservation Status"
+      n: "conservationStatus"
+      r: false
+      sh: "IUCN conservation status"
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Detailed description of the bird"
+      t: "`$STRING`"
+    }
+    family: {
+      h: "Family"
+      n: "family"
+      r: false
+      sh: "Taxonomic family"
+      t: "`$STRING`"
+    }
+    habitat: {
+      h: "Habitat"
+      n: "habitat"
+      r: false
+      sh: "Preferred habitats"
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the bird"
+      t: "`$STRING`"
+    }
+    imageUrl: {
+      fo: "uri"
+      h: "Image Url"
+      n: "imageUrl"
+      r: false
+      sh: "URL to bird image"
+      t: "`$STRING`"
+    }
+    length: {
+      h: "Length"
+      n: "length"
+      r: false
+      t: "`$OBJECT`"
+    }
+    order: {
+      h: "Order"
+      n: "order"
+      r: false
+      sh: "Taxonomic order"
+      t: "`$STRING`"
+    }
+    scientificName: {
+      h: "Scientific Name"
+      n: "scientificName"
+      r: false
+      sh: "Scientific name of the bird species"
+      t: "`$STRING`"
+    }
+    weight: {
+      h: "Weight"
+      n: "weight"
+      r: false
+      t: "`$OBJECT`"
+    }
+    wingspan: {
+      h: "Wingspan"
+      n: "wingspan"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "bird"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/birds"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 100
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "search"
+                or: "search"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/birds"
+          q: {
+            exist: [
+              "limit"
+              "offset"
+              "search"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "birds"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/birds/{birdId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "bird_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/birds/{birdId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              birdId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "birds"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

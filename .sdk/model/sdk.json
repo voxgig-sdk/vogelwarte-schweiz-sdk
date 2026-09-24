@@ -24,117 +24,198 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "bird": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "commonNameDe",
-              "req": false,
-              "short": "German common name",
-              "type": "`$STRING`"
+          "fields": {
+            "commonNameDe": {
+              "a": true,
+              "h": "Common Name De",
+              "n": "commonNameDe",
+              "r": false,
+              "sh": "German common name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "commonNameEn",
-              "req": false,
-              "short": "English common name",
-              "type": "`$STRING`"
+            "commonNameEn": {
+              "a": true,
+              "h": "Common Name En",
+              "n": "commonNameEn",
+              "r": false,
+              "sh": "English common name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "commonNameFr",
-              "req": false,
-              "short": "French common name",
-              "type": "`$STRING`"
+            "commonNameFr": {
+              "a": true,
+              "h": "Common Name Fr",
+              "n": "commonNameFr",
+              "r": false,
+              "sh": "French common name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "commonNameIt",
-              "req": false,
-              "short": "Italian common name",
-              "type": "`$STRING`"
+            "commonNameIt": {
+              "a": true,
+              "h": "Common Name It",
+              "n": "commonNameIt",
+              "r": false,
+              "sh": "Italian common name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "conservationStatus",
-              "req": false,
-              "short": "IUCN conservation status",
-              "type": "`$STRING`"
+            "conservationStatus": {
+              "a": true,
+              "h": "Conservation Status",
+              "n": "conservationStatus",
+              "r": false,
+              "sh": "IUCN conservation status",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Detailed description of the bird",
-              "type": "`$STRING`"
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Detailed description of the bird",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "family",
-              "req": false,
-              "short": "Taxonomic family",
-              "type": "`$STRING`"
+            "family": {
+              "a": true,
+              "h": "Family",
+              "n": "family",
+              "r": false,
+              "sh": "Taxonomic family",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "habitat",
-              "req": false,
-              "short": "Preferred habitats",
-              "type": "`$ARRAY`"
+            "habitat": {
+              "a": true,
+              "h": "Habitat",
+              "n": "habitat",
+              "r": false,
+              "sh": "Preferred habitats",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique identifier for the bird",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique identifier for the bird",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "imageUrl",
-              "req": false,
-              "short": "URL to bird image",
-              "type": "`$STRING`"
+            "imageUrl": {
+              "a": true,
+              "fo": "uri",
+              "h": "Image Url",
+              "n": "imageUrl",
+              "r": false,
+              "sh": "URL to bird image",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "length",
-              "req": false,
-              "type": "`$OBJECT`"
+            "length": {
+              "a": true,
+              "h": "Length",
+              "n": "length",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "order",
-              "req": false,
-              "short": "Taxonomic order",
-              "type": "`$STRING`"
+            "order": {
+              "a": true,
+              "h": "Order",
+              "n": "order",
+              "r": false,
+              "sh": "Taxonomic order",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "scientificName",
-              "req": false,
-              "short": "Scientific name of the bird species",
-              "type": "`$STRING`"
+            "scientificName": {
+              "a": true,
+              "h": "Scientific Name",
+              "n": "scientificName",
+              "r": false,
+              "sh": "Scientific name of the bird species",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "weight",
-              "req": false,
-              "type": "`$OBJECT`"
+            "weight": {
+              "a": true,
+              "h": "Weight",
+              "n": "weight",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "wingspan",
-              "req": false,
-              "type": "`$OBJECT`"
+            "wingspan": {
+              "a": true,
+              "h": "Wingspan",
+              "n": "wingspan",
+              "r": false,
+              "t": "`$OBJECT`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -146,47 +227,54 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/birds",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 100,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 100,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 0,
-                        "kind": "query",
-                        "name": "offset",
-                        "orig": "offset",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 0,
+                        "k": "query",
+                        "n": "offset",
+                        "or": "offset",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "search",
-                        "orig": "search",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "search",
+                        "or": "search",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /api/birds",
-                    "json": "{\"operationId\":\"getBirds\",\"parameters\":[{\"description\":\"Maximum number of results to return\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":100,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of results to skip for pagination\",\"in\":\"query\",\"name\":\"offset\",\"required\":false,\"schema\":{\"default\":0,\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Search term to filter bird species by name\",\"in\":\"query\",\"name\":\"search\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"commonNameDe\":{\"description\":\"German common name\",\"type\":\"string\"},\"commonNameEn\":{\"description\":\"English common name\",\"type\":\"string\"},\"commonNameFr\":{\"description\":\"French common name\",\"type\":\"string\"},\"commonNameIt\":{\"description\":\"Italian common name\",\"type\":\"string\"},\"conservationStatus\":{\"description\":\"IUCN conservation status\",\"type\":\"string\"},\"description\":{\"description\":\"Detailed description of the bird\",\"type\":\"string\"},\"family\":{\"description\":\"Taxonomic family\",\"type\":\"string\"},\"habitat\":{\"description\":\"Preferred habitats\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique identifier for the bird\",\"type\":\"string\"},\"imageUrl\":{\"description\":\"URL to bird image\",\"format\":\"uri\",\"type\":\"string\"},\"length\":{\"properties\":{\"max\":{\"description\":\"Maximum length in cm\",\"type\":\"number\"},\"min\":{\"description\":\"Minimum length in cm\",\"type\":\"number\"}},\"type\":\"object\"},\"order\":{\"description\":\"Taxonomic order\",\"type\":\"string\"},\"scientificName\":{\"description\":\"Scientific name of the bird species\",\"type\":\"string\"},\"weight\":{\"properties\":{\"max\":{\"description\":\"Maximum weight in grams\",\"type\":\"number\"},\"min\":{\"description\":\"Minimum weight in grams\",\"type\":\"number\"}},\"type\":\"object\"},\"wingspan\":{\"properties\":{\"max\":{\"description\":\"Maximum wingspan in cm\",\"type\":\"number\"},\"min\":{\"description\":\"Minimum wingspan in cm\",\"type\":\"number\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"},\"limit\":{\"type\":\"integer\"},\"offset\":{\"type\":\"integer\"},\"total\":{\"description\":\"Total number of birds matching the query\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of birds\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"timestamp\":{\"description\":\"Timestamp of the error\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"timestamp\":{\"description\":\"Timestamp of the error\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/birds",
+                  "q": {
+                    "exist": [
+                      "limit",
+                      "offset",
+                      "search"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/birds",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -194,14 +282,7 @@
                       "lit": "birds"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "limit",
-                      "offset",
-                      "search"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -213,34 +294,38 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/birds/{birdId}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "bird_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "bird_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /api/birds/{birdId}",
-                    "json": "{\"operationId\":\"getBirdById\",\"parameters\":[{\"description\":\"Unique identifier of the bird species\",\"in\":\"path\",\"name\":\"birdId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"commonNameDe\":{\"description\":\"German common name\",\"type\":\"string\"},\"commonNameEn\":{\"description\":\"English common name\",\"type\":\"string\"},\"commonNameFr\":{\"description\":\"French common name\",\"type\":\"string\"},\"commonNameIt\":{\"description\":\"Italian common name\",\"type\":\"string\"},\"conservationStatus\":{\"description\":\"IUCN conservation status\",\"type\":\"string\"},\"description\":{\"description\":\"Detailed description of the bird\",\"type\":\"string\"},\"family\":{\"description\":\"Taxonomic family\",\"type\":\"string\"},\"habitat\":{\"description\":\"Preferred habitats\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique identifier for the bird\",\"type\":\"string\"},\"imageUrl\":{\"description\":\"URL to bird image\",\"format\":\"uri\",\"type\":\"string\"},\"length\":{\"properties\":{\"max\":{\"description\":\"Maximum length in cm\",\"type\":\"number\"},\"min\":{\"description\":\"Minimum length in cm\",\"type\":\"number\"}},\"type\":\"object\"},\"order\":{\"description\":\"Taxonomic order\",\"type\":\"string\"},\"scientificName\":{\"description\":\"Scientific name of the bird species\",\"type\":\"string\"},\"weight\":{\"properties\":{\"max\":{\"description\":\"Maximum weight in grams\",\"type\":\"number\"},\"min\":{\"description\":\"Minimum weight in grams\",\"type\":\"number\"}},\"type\":\"object\"},\"wingspan\":{\"properties\":{\"max\":{\"description\":\"Maximum wingspan in cm\",\"type\":\"number\"},\"min\":{\"description\":\"Minimum wingspan in cm\",\"type\":\"number\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with bird details\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"timestamp\":{\"description\":\"Timestamp of the error\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bird not found\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"timestamp\":{\"description\":\"Timestamp of the error\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/birds/{birdId}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/birds/{birdId}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "birdId": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -251,12 +336,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -273,60 +353,68 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "characteristics",
-              "req": false,
-              "type": "`$OBJECT`"
+          "fields": {
+            "characteristics": {
+              "a": true,
+              "h": "Characteristics",
+              "n": "characteristics",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "commonNames",
-              "req": false,
-              "type": "`$OBJECT`"
+            "commonNames": {
+              "a": true,
+              "h": "Common Names",
+              "n": "commonNames",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "conservationStatus",
-              "req": false,
-              "short": "Conservation status code",
-              "type": "`$STRING`"
+            "conservationStatus": {
+              "a": true,
+              "h": "Conservation Status",
+              "n": "conservationStatus",
+              "r": false,
+              "sh": "Conservation status code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "distribution",
-              "req": false,
-              "type": "`$OBJECT`"
+            "distribution": {
+              "a": true,
+              "h": "Distribution",
+              "n": "distribution",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "observationCount",
-              "req": false,
-              "short": "Number of recorded observations",
-              "type": "`$INTEGER`"
+            "observationCount": {
+              "a": true,
+              "h": "Observation Count",
+              "n": "observationCount",
+              "r": false,
+              "sh": "Number of recorded observations",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "scientificName",
-              "req": false,
-              "short": "Scientific name",
-              "type": "`$STRING`"
+            "scientificName": {
+              "a": true,
+              "h": "Scientific Name",
+              "n": "scientificName",
+              "r": false,
+              "sh": "Scientific name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "speciesId",
-              "req": false,
-              "short": "Unique species identifier",
-              "type": "`$STRING`"
+            "speciesId": {
+              "a": true,
+              "h": "Species Id",
+              "n": "speciesId",
+              "r": false,
+              "sh": "Unique species identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "taxonomy",
-              "req": false,
-              "type": "`$OBJECT`"
+            "taxonomy": {
+              "a": true,
+              "h": "Taxonomy",
+              "n": "taxonomy",
+              "r": false,
+              "t": "`$OBJECT`"
             }
-          ],
+          },
           "name": "species",
           "op": {
             "list": {
@@ -334,45 +422,52 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/species",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "family",
-                        "orig": "family",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "family",
+                        "or": "family",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "habitat",
-                        "orig": "habitat",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "habitat",
+                        "or": "habitat",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "status",
-                        "orig": "status",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "status",
+                        "or": "status",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /api/species",
-                    "json": "{\"operationId\":\"getSpecies\",\"parameters\":[{\"description\":\"Filter by bird family\",\"in\":\"query\",\"name\":\"family\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by habitat type\",\"in\":\"query\",\"name\":\"habitat\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by conservation status\",\"in\":\"query\",\"name\":\"status\",\"required\":false,\"schema\":{\"enum\":[\"LC\",\"NT\",\"VU\",\"EN\",\"CR\",\"EW\",\"EX\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"count\":{\"type\":\"integer\"},\"species\":{\"items\":{\"properties\":{\"characteristics\":{\"properties\":{\"behavior\":{\"type\":\"string\"},\"diet\":{\"type\":\"string\"},\"plumage\":{\"type\":\"string\"},\"size\":{\"type\":\"string\"}},\"type\":\"object\"},\"commonNames\":{\"properties\":{\"de\":{\"type\":\"string\"},\"en\":{\"type\":\"string\"},\"fr\":{\"type\":\"string\"},\"it\":{\"type\":\"string\"}},\"type\":\"object\"},\"conservationStatus\":{\"description\":\"Conservation status code\",\"type\":\"string\"},\"distribution\":{\"properties\":{\"breedingRange\":{\"type\":\"string\"},\"regions\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"winteringRange\":{\"type\":\"string\"}},\"type\":\"object\"},\"observationCount\":{\"description\":\"Number of recorded observations\",\"type\":\"integer\"},\"scientificName\":{\"description\":\"Scientific name\",\"type\":\"string\"},\"speciesId\":{\"description\":\"Unique species identifier\",\"type\":\"string\"},\"taxonomy\":{\"properties\":{\"class\":{\"type\":\"string\"},\"family\":{\"type\":\"string\"},\"genus\":{\"type\":\"string\"},\"kingdom\":{\"type\":\"string\"},\"order\":{\"type\":\"string\"},\"phylum\":{\"type\":\"string\"},\"species\":{\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with species data\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"timestamp\":{\"description\":\"Timestamp of the error\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"timestamp\":{\"description\":\"Timestamp of the error\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/species",
+                  "q": {
+                    "exist": [
+                      "family",
+                      "habitat",
+                      "status"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/species",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -380,14 +475,7 @@
                       "lit": "species"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "family",
-                      "habitat",
-                      "status"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.species`"
                   }
@@ -816,13 +904,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -832,19 +920,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "bird_ref01",
                 "srcdatavar": "bird_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "bird01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -864,13 +952,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

@@ -92,75 +92,90 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "commonNameDe",
-						"short": "German common name",
+						"title": "Common Name De",
 						"type": "`$STRING`",
+						"short": "German common name",
 					},
 					map[string]any{
 						"name": "commonNameEn",
-						"short": "English common name",
+						"title": "Common Name En",
 						"type": "`$STRING`",
+						"short": "English common name",
 					},
 					map[string]any{
 						"name": "commonNameFr",
-						"short": "French common name",
+						"title": "Common Name Fr",
 						"type": "`$STRING`",
+						"short": "French common name",
 					},
 					map[string]any{
 						"name": "commonNameIt",
-						"short": "Italian common name",
+						"title": "Common Name It",
 						"type": "`$STRING`",
+						"short": "Italian common name",
 					},
 					map[string]any{
 						"name": "conservationStatus",
-						"short": "IUCN conservation status",
+						"title": "Conservation Status",
 						"type": "`$STRING`",
+						"short": "IUCN conservation status",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Detailed description of the bird",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Detailed description of the bird",
 					},
 					map[string]any{
 						"name": "family",
-						"short": "Taxonomic family",
+						"title": "Family",
 						"type": "`$STRING`",
+						"short": "Taxonomic family",
 					},
 					map[string]any{
 						"name": "habitat",
-						"short": "Preferred habitats",
+						"title": "Habitat",
 						"type": "`$ARRAY`",
+						"short": "Preferred habitats",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the bird",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the bird",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "imageUrl",
-						"short": "URL to bird image",
+						"title": "Image Url",
 						"type": "`$STRING`",
+						"short": "URL to bird image",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "length",
+						"title": "Length",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "order",
-						"short": "Taxonomic order",
+						"title": "Order",
 						"type": "`$STRING`",
+						"short": "Taxonomic order",
 					},
 					map[string]any{
 						"name": "scientificName",
-						"short": "Scientific name of the bird species",
+						"title": "Scientific Name",
 						"type": "`$STRING`",
+						"short": "Scientific name of the bird species",
 					},
 					map[string]any{
 						"name": "weight",
+						"title": "Weight",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "wingspan",
+						"title": "Wingspan",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -175,30 +190,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 100,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "search",
-											"orig": "search",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/birds",
@@ -210,20 +201,45 @@ func MakeConfig() map[string]any {
 										"lit": "birds",
 									},
 								},
+								"parts": []any{
+									"api",
+									"birds",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 100,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 0,
+										},
+										map[string]any{
+											"name": "search",
+											"orig": "search",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"limit",
 										"offset",
 										"search",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"api",
-									"birds",
 								},
 							},
 						},
@@ -233,25 +249,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "bird_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/birds/{birdId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"birdId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -263,19 +263,35 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"api",
+									"birds",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"birdId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"api",
-									"birds",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "bird_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -289,38 +305,46 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "characteristics",
+						"title": "Characteristics",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "commonNames",
+						"title": "Common Names",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "conservationStatus",
-						"short": "Conservation status code",
+						"title": "Conservation Status",
 						"type": "`$STRING`",
+						"short": "Conservation status code",
 					},
 					map[string]any{
 						"name": "distribution",
+						"title": "Distribution",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "observationCount",
-						"short": "Number of recorded observations",
+						"title": "Observation Count",
 						"type": "`$INTEGER`",
+						"short": "Number of recorded observations",
 					},
 					map[string]any{
 						"name": "scientificName",
-						"short": "Scientific name",
+						"title": "Scientific Name",
 						"type": "`$STRING`",
+						"short": "Scientific name",
 					},
 					map[string]any{
 						"name": "speciesId",
-						"short": "Unique species identifier",
+						"title": "Species Id",
 						"type": "`$STRING`",
+						"short": "Unique species identifier",
 					},
 					map[string]any{
 						"name": "taxonomy",
+						"title": "Taxonomy",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -331,28 +355,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "family",
-											"orig": "family",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "habitat",
-											"orig": "habitat",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "status",
-											"orig": "status",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/species",
@@ -364,20 +366,43 @@ func MakeConfig() map[string]any {
 										"lit": "species",
 									},
 								},
+								"parts": []any{
+									"api",
+									"species",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.species`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "family",
+											"orig": "family",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "habitat",
+											"orig": "habitat",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "status",
+											"orig": "status",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"family",
 										"habitat",
 										"status",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.species`",
-								},
-								"parts": []any{
-									"api",
-									"species",
 								},
 							},
 						},

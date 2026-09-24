@@ -1,7 +1,7 @@
 // Typed models for the VogelwarteSchweiz SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,21 +14,6 @@ import (
 
 // Bird is the typed data model for the bird entity.
 type Bird struct {
-	CommonNameDe *string `json:"commonNameDe,omitempty"`
-	CommonNameEn *string `json:"commonNameEn,omitempty"`
-	CommonNameFr *string `json:"commonNameFr,omitempty"`
-	CommonNameIt *string `json:"commonNameIt,omitempty"`
-	ConservationStatus *string `json:"conservationStatus,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Family *string `json:"family,omitempty"`
-	Habitat *[]any `json:"habitat,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ImageUrl *string `json:"imageUrl,omitempty"`
-	Length *map[string]any `json:"length,omitempty"`
-	Order *string `json:"order,omitempty"`
-	ScientificName *string `json:"scientificName,omitempty"`
-	Weight *map[string]any `json:"weight,omitempty"`
-	Wingspan *map[string]any `json:"wingspan,omitempty"`
 }
 
 // BirdLoadMatch is the typed request payload for Bird.LoadTyped.
@@ -45,14 +30,6 @@ type BirdListMatch struct {
 
 // Species is the typed data model for the species entity.
 type Species struct {
-	Characteristics *map[string]any `json:"characteristics,omitempty"`
-	CommonNames *map[string]any `json:"commonNames,omitempty"`
-	ConservationStatus *string `json:"conservationStatus,omitempty"`
-	Distribution *map[string]any `json:"distribution,omitempty"`
-	ObservationCount *int `json:"observationCount,omitempty"`
-	ScientificName *string `json:"scientificName,omitempty"`
-	SpeciesId *string `json:"speciesId,omitempty"`
-	Taxonomy *map[string]any `json:"taxonomy,omitempty"`
 }
 
 // SpeciesListMatch is the typed request payload for Species.ListTyped.

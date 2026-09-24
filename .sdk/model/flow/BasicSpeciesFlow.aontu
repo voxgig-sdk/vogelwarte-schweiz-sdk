@@ -1,0 +1,22 @@
+# BasicSpeciesFlow
+
+main: kit: flow: BasicSpeciesFlow:
+{
+  entity: "species",
+  kind: "basic",
+  name: "BasicSpeciesFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "species_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSpeciesFlow"
+}
