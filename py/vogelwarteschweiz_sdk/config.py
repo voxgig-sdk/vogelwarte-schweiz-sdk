@@ -306,7 +306,7 @@ def make_config():
                   "params": [
                     {
                       "name": "id",
-                      "orig": "bird_id",
+                      "orig": "birdId",
                       "type": "`$STRING`",
                       "kind": "param",
                       "reqd": True,

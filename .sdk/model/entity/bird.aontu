@@ -191,7 +191,7 @@ main: kit: entity: bird: {
               {
                 k: "param"
                 n: "id"
-                or: "bird_id"
+                or: "birdId"
                 r: true
                 t: "`$STRING`"
               }

@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 VogelwarteSchweizUtility.registrar = ->(u) {
   u.clean = VogelwarteSchweizUtilities::Clean
+  u.clean_add = VogelwarteSchweizUtilities::CleanAdd
+  u.clean_explain = VogelwarteSchweizUtilities::CleanExplain
   u.done = VogelwarteSchweizUtilities::Done
   u.make_error = VogelwarteSchweizUtilities::MakeError
   u.feature_add = VogelwarteSchweizUtilities::FeatureAdd

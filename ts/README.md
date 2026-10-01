@@ -15,9 +15,13 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`):
+release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases)), or from a
+clone, which carries the compiled `dist/`:
 
-- Releases: [https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases](https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk
+npm install ./vogelwarte-schweiz-sdk/ts
+```
 
 
 ## Tutorial: your first API call

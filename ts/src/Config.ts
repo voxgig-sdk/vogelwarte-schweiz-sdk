@@ -324,7 +324,7 @@ class Config {
                 "params": [
                   {
                     "name": "id",
-                    "orig": "bird_id",
+                    "orig": "birdId",
                     "type": "`$STRING`",
                     "kind": "param",
                     "reqd": true

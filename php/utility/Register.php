@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 VogelwarteSchweizUtility::setRegistrar(function (VogelwarteSchweizUtility $u): void {
     $u->clean = [VogelwarteSchweizClean::class, 'call'];
+    $u->clean_add = [VogelwarteSchweizClean::class, 'add'];
+    $u->clean_explain = [VogelwarteSchweizDone::class, 'clean_explain'];
     $u->done = [VogelwarteSchweizDone::class, 'call'];
     $u->make_error = [VogelwarteSchweizMakeError::class, 'call'];
     $u->feature_add = [VogelwarteSchweizFeatureAdd::class, 'call'];
