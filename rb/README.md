@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/vogelwarte-schweiz-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = VogelwarteSchweizSDK.new
 
 ```ruby
 begin
-  # list returns an Array of Bird records — iterate directly.
+  # list returns an Array of Bird entities, one per record; data_get reads the record.
   birds = client.Bird.list
   birds.each do |item|
-    puts "#{item["id"]} #{item["commonNameDe"]}"
+    record = item.data_get
+    puts "#{record["id"]} #{record["commonNameDe"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -59,7 +60,7 @@ end
 begin
   # load returns the ENTITY — call data_get for the Bird record (raises on error).
   bird = client.Bird.load({ "id" => "example_id" })
-  puts bird
+  puts bird.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -143,10 +144,10 @@ client = VogelwarteSchweizSDK.test({
   "entity" => { "bird" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-bird = client.Bird.list()
-puts bird
+# list returns an Array of Bird entities, one per mock record (raises on
+# error); data_get reads each record.
+birds = client.Bird.list()
+birds.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -231,8 +232,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -242,9 +243,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `VogelwarteSchweizError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`VogelwarteSchweizError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -346,8 +348,9 @@ bird = client.Bird.load({ "id" => "bird_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Bird records (raises on error).
+# list returns an Array of Bird entities, one per record (raises on error).
 birds = client.Bird.list
+birds.each { |item| puts item.data_get }
 ```
 
 
@@ -377,8 +380,9 @@ Create an instance: `species = client.Species`
 #### Example: List
 
 ```ruby
-# list returns an Array of Species records (raises on error).
+# list returns an Array of Species entities, one per record (raises on error).
 speciess = client.Species.list
+speciess.each { |item| puts item.data_get }
 ```
 
 ## Features

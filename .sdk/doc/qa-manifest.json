@@ -3,5 +3,23 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Conservation status code",
+      "English common name",
+      "French common name",
+      "German common name",
+      "IUCN conservation status",
+      "Italian common name",
+      "Number of recorded observations",
+      "Production server",
+      "Reverse-Engineered Vogel-Datenbank der Schweiz mit verschiedenen Endpoints - Bird Database API for Switzerland providing access to bird species information and data",
+      "Scientific name",
+      "Successful response with bird details",
+      "Successful response with list of birds",
+      "Successful response with species data",
+      "Unique species identifier"
+    ]
+  }
 }

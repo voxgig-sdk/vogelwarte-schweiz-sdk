@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { VogelwarteSchweizSDK, BaseFeature, stdutil } from '../../..'
+import { VogelwarteSchweizSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('SpeciesEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('species hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of VogelwarteSchweizSDK.test(offline).Species().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of VogelwarteSchweizSDK.test(offline).Species()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = VogelwarteSchweizSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Species().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of VogelwarteSchweizSDK.test().Species().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new VogelwarteSchweizSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Species().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Species().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = VogelwarteSchweizSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Species().list({"family":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.VOGELWARTE_SCHWEIZ_TEST_LIVE
@@ -51,7 +109,7 @@ describe('SpeciesEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"characteristics":{"a":true,"h":"Characteristics","n":"characteristics","r":false,"t":"`$OBJECT`","key$":"characteristics","index$":0},"commonNames":{"a":true,"h":"Common Names","n":"commonNames","r":false,"t":"`$OBJECT`","key$":"commonNames","index$":1},"conservationStatus":{"a":true,"h":"Conservation Status","n":"conservationStatus","r":false,"sh":"Conservation status code","t":"`$STRING`","key$":"conservationStatus","index$":2},"distribution":{"a":true,"h":"Distribution","n":"distribution","r":false,"t":"`$OBJECT`","key$":"distribution","index$":3},"observationCount":{"a":true,"h":"Observation Count","n":"observationCount","r":false,"sh":"Number of recorded observations","t":"`$INTEGER`","key$":"observationCount","index$":4},"scientificName":{"a":true,"h":"Scientific Name","n":"scientificName","r":false,"sh":"Scientific name","t":"`$STRING`","key$":"scientificName","index$":5},"speciesId":{"a":true,"h":"Species Id","n":"speciesId","r":false,"sh":"Unique species identifier","t":"`$STRING`","key$":"speciesId","index$":6},"taxonomy":{"a":true,"h":"Taxonomy","n":"taxonomy","r":false,"t":"`$OBJECT`","key$":"taxonomy","index$":7}},"name":"species","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /api/species","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"family","or":"family","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"habitat","or":"habitat","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"status","or":"status","r":false,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/api/species","q":{"exist":["family","habitat","status"]},"r":{},"s":[{"lit":"api"},{"lit":"species"}],"t":{"req":"`reqdata`","res":"`body.species`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"species","name__orig":"species","Name":"Species","name_":"species","name-":"species","NAME":"SPECIES","index$":1}, {"active":true,"entity":"species","key$":"BasicSpeciesFlow","kind":"basic","name":"BasicSpeciesFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"species_ref01"}}],"index$":0}]}, 'Species', {"GET /api/species":{"protocol":"http","parameters":[{"name":"family","in":"query","description":"Filter by bird family","required":false,"schema":{"type":"string"},"index$":0},{"name":"habitat","in":"query","description":"Filter by habitat type","required":false,"schema":{"type":"string"},"index$":1},{"name":"status","in":"query","description":"Filter by conservation status","required":false,"schema":{"type":"string","enum":["LC","NT","VU","EN","CR","EW","EX"]},"index$":2}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"characteristics":{"a":true,"h":"Characteristics","n":"characteristics","r":false,"t":"`$OBJECT`","key$":"characteristics","index$":0},"commonNames":{"a":true,"h":"Common Names","n":"commonNames","r":false,"t":"`$OBJECT`","key$":"commonNames","index$":1},"conservationStatus":{"a":true,"h":"Conservation Status","n":"conservationStatus","r":false,"sh":"Conservation status code","t":"`$STRING`","key$":"conservationStatus","index$":2},"distribution":{"a":true,"h":"Distribution","n":"distribution","r":false,"t":"`$OBJECT`","key$":"distribution","index$":3},"observationCount":{"a":true,"h":"Observation Count","n":"observationCount","r":false,"sh":"Number of recorded observations","t":"`$INTEGER`","key$":"observationCount","index$":4},"scientificName":{"a":true,"h":"Scientific Name","n":"scientificName","r":false,"sh":"Scientific name","t":"`$STRING`","key$":"scientificName","index$":5},"speciesId":{"a":true,"h":"Species Id","n":"speciesId","r":false,"sh":"Unique species identifier","t":"`$STRING`","key$":"speciesId","index$":6},"taxonomy":{"a":true,"h":"Taxonomy","n":"taxonomy","r":false,"t":"`$OBJECT`","key$":"taxonomy","index$":7}},"name":"species","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /api/species","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"family","or":"family","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"habitat","or":"habitat","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"status","or":"status","r":false,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/api/species","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"species"}],"t":{"req":"`reqdata`","res":"`body.species`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"species","name__orig":"species","Name":"Species","name_":"species","name-":"species","NAME":"SPECIES","index$":1}, {"active":true,"entity":"species","key$":"BasicSpeciesFlow","kind":"basic","name":"BasicSpeciesFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"species_ref01"}}],"index$":0}]}, 'Species', {"GET /api/species":{"protocol":"http","parameters":[{"name":"family","in":"query","description":"Filter by bird family","required":false,"schema":{"type":"string"},"index$":0},{"name":"habitat","in":"query","description":"Filter by habitat type","required":false,"schema":{"type":"string"},"index$":1},{"name":"status","in":"query","description":"Filter by conservation status","required":false,"schema":{"type":"string","enum":["LC","NT","VU","EN","CR","EW","EX"]},"index$":2}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('SpeciesEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

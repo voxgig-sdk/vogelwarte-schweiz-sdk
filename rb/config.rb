@@ -79,6 +79,7 @@ module VogelwarteSchweizConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -242,12 +243,10 @@ module VogelwarteSchweizConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "limit",
-                      "offset",
-                      "search",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -300,6 +299,10 @@ module VogelwarteSchweizConfig
                     "exist" => [
                       "id",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -405,12 +408,10 @@ module VogelwarteSchweizConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "family",
-                      "habitat",
-                      "status",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

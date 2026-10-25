@@ -93,6 +93,7 @@ class VogelwarteSchweizConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -256,12 +257,10 @@ class VogelwarteSchweizConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'limit',
-                      'offset',
-                      'search',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -314,6 +313,10 @@ class VogelwarteSchweizConfig
                     'exist' => [
                       'id',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -419,12 +422,10 @@ class VogelwarteSchweizConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'family',
-                      'habitat',
-                      'status',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Bird();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('bird hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.VogelwarteSchweizSDK.test(offline).Bird().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.VogelwarteSchweizSDK.test(offline).Bird()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.VogelwarteSchweizSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Bird().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.VogelwarteSchweizSDK.test().Bird().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.VogelwarteSchweizSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Bird().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Bird().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.VogelwarteSchweizSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Bird().list({ "limit": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.VOGELWARTE_SCHWEIZ_TEST_LIVE;
         for (const op of ['list', 'load']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "commonNameDe": { "a": true, "h": "Common Name De", "n": "commonNameDe", "r": false, "sh": "German common name", "t": "`$STRING`", "key$": "commonNameDe", "index$": 0 }, "commonNameEn": { "a": true, "h": "Common Name En", "n": "commonNameEn", "r": false, "sh": "English common name", "t": "`$STRING`", "key$": "commonNameEn", "index$": 1 }, "commonNameFr": { "a": true, "h": "Common Name Fr", "n": "commonNameFr", "r": false, "sh": "French common name", "t": "`$STRING`", "key$": "commonNameFr", "index$": 2 }, "commonNameIt": { "a": true, "h": "Common Name It", "n": "commonNameIt", "r": false, "sh": "Italian common name", "t": "`$STRING`", "key$": "commonNameIt", "index$": 3 }, "conservationStatus": { "a": true, "h": "Conservation Status", "n": "conservationStatus", "r": false, "sh": "IUCN conservation status", "t": "`$STRING`", "key$": "conservationStatus", "index$": 4 }, "description": { "a": true, "h": "Description", "n": "description", "r": false, "sh": "Detailed description of the bird", "t": "`$STRING`", "key$": "description", "index$": 5 }, "family": { "a": true, "h": "Family", "n": "family", "r": false, "sh": "Taxonomic family", "t": "`$STRING`", "key$": "family", "index$": 6 }, "habitat": { "a": true, "h": "Habitat", "n": "habitat", "r": false, "sh": "Preferred habitats", "t": "`$ARRAY`", "key$": "habitat", "index$": 7 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Unique identifier for the bird", "t": "`$STRING`", "key$": "id", "index$": 8 }, "imageUrl": { "a": true, "fo": "uri", "h": "Image Url", "n": "imageUrl", "r": false, "sh": "URL to bird image", "t": "`$STRING`", "key$": "imageUrl", "index$": 9 }, "length": { "a": true, "h": "Length", "n": "length", "r": false, "t": "`$OBJECT`", "key$": "length", "index$": 10 }, "order": { "a": true, "h": "Order", "n": "order", "r": false, "sh": "Taxonomic order", "t": "`$STRING`", "key$": "order", "index$": 11 }, "scientificName": { "a": true, "h": "Scientific Name", "n": "scientificName", "r": false, "sh": "Scientific name of the bird species", "t": "`$STRING`", "key$": "scientificName", "index$": 12 }, "weight": { "a": true, "h": "Weight", "n": "weight", "r": false, "t": "`$OBJECT`", "key$": "weight", "index$": 13 }, "wingspan": { "a": true, "h": "Wingspan", "n": "wingspan", "r": false, "t": "`$OBJECT`", "key$": "wingspan", "index$": 14 } }, "id": { "field": "id", "name": "id" }, "name": "bird", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/birds", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": 100, "k": "query", "n": "limit", "or": "limit", "r": false, "t": "`$INTEGER`", "index$": 0 }, { "a": true, "ex": 0, "k": "query", "n": "offset", "or": "offset", "r": false, "t": "`$INTEGER`", "index$": 1 }, { "a": true, "k": "query", "n": "search", "or": "search", "r": false, "t": "`$STRING`", "index$": 2 }] }, "k": "http", "m": "GET", "o": "/api/birds", "q": { "exist": ["limit", "offset", "search"] }, "r": {}, "s": [{ "lit": "api" }, { "lit": "birds" }], "t": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /api/birds/{birdId}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "birdId", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/api/birds/{birdId}", "q": { "exist": ["id"] }, "r": { "param": { "birdId": "id" } }, "s": [{ "lit": "api" }, { "lit": "birds" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "bird", "name__orig": "bird", "Name": "Bird", "name_": "bird", "name-": "bird", "NAME": "BIRD", "index$": 0 }, { "active": true, "entity": "bird", "key$": "BasicBirdFlow", "kind": "basic", "name": "BasicBirdFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "bird_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "bird_ref01", "srcdatavar": "bird_ref01_data", "suffix": "_dt0" }, "m": { "id": "bird01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-bird_ref01" } }], "index$": 1 }] }, 'Bird', { "GET /api/birds": { "protocol": "http", "parameters": [{ "name": "limit", "in": "query", "description": "Maximum number of results to return", "required": false, "schema": { "type": "integer", "default": 100, "minimum": 1, "maximum": 1000 }, "index$": 0 }, { "name": "offset", "in": "query", "description": "Number of results to skip for pagination", "required": false, "schema": { "type": "integer", "default": 0, "minimum": 0 }, "index$": 1 }, { "name": "search", "in": "query", "description": "Search term to filter bird species by name", "required": false, "schema": { "type": "string" }, "index$": 2 }] }, "GET /api/birds/{birdId}": { "protocol": "http", "parameters": [{ "name": "birdId", "in": "path", "description": "Unique identifier of the bird species", "required": true, "schema": { "type": "string" }, "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "commonNameDe": { "a": true, "h": "Common Name De", "n": "commonNameDe", "r": false, "sh": "German common name", "t": "`$STRING`", "key$": "commonNameDe", "index$": 0 }, "commonNameEn": { "a": true, "h": "Common Name En", "n": "commonNameEn", "r": false, "sh": "English common name", "t": "`$STRING`", "key$": "commonNameEn", "index$": 1 }, "commonNameFr": { "a": true, "h": "Common Name Fr", "n": "commonNameFr", "r": false, "sh": "French common name", "t": "`$STRING`", "key$": "commonNameFr", "index$": 2 }, "commonNameIt": { "a": true, "h": "Common Name It", "n": "commonNameIt", "r": false, "sh": "Italian common name", "t": "`$STRING`", "key$": "commonNameIt", "index$": 3 }, "conservationStatus": { "a": true, "h": "Conservation Status", "n": "conservationStatus", "r": false, "sh": "IUCN conservation status", "t": "`$STRING`", "key$": "conservationStatus", "index$": 4 }, "description": { "a": true, "h": "Description", "n": "description", "r": false, "sh": "Detailed description of the bird", "t": "`$STRING`", "key$": "description", "index$": 5 }, "family": { "a": true, "h": "Family", "n": "family", "r": false, "sh": "Taxonomic family", "t": "`$STRING`", "key$": "family", "index$": 6 }, "habitat": { "a": true, "h": "Habitat", "n": "habitat", "r": false, "sh": "Preferred habitats", "t": "`$ARRAY`", "key$": "habitat", "index$": 7 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Unique identifier for the bird", "t": "`$STRING`", "key$": "id", "index$": 8 }, "imageUrl": { "a": true, "fo": "uri", "h": "Image Url", "n": "imageUrl", "r": false, "sh": "URL to bird image", "t": "`$STRING`", "key$": "imageUrl", "index$": 9 }, "length": { "a": true, "h": "Length", "n": "length", "r": false, "t": "`$OBJECT`", "key$": "length", "index$": 10 }, "order": { "a": true, "h": "Order", "n": "order", "r": false, "sh": "Taxonomic order", "t": "`$STRING`", "key$": "order", "index$": 11 }, "scientificName": { "a": true, "h": "Scientific Name", "n": "scientificName", "r": false, "sh": "Scientific name of the bird species", "t": "`$STRING`", "key$": "scientificName", "index$": 12 }, "weight": { "a": true, "h": "Weight", "n": "weight", "r": false, "t": "`$OBJECT`", "key$": "weight", "index$": 13 }, "wingspan": { "a": true, "h": "Wingspan", "n": "wingspan", "r": false, "t": "`$OBJECT`", "key$": "wingspan", "index$": 14 } }, "id": { "field": "id", "name": "id" }, "name": "bird", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/birds", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": 100, "k": "query", "n": "limit", "or": "limit", "r": false, "t": "`$INTEGER`", "index$": 0 }, { "a": true, "ex": 0, "k": "query", "n": "offset", "or": "offset", "r": false, "t": "`$INTEGER`", "index$": 1 }, { "a": true, "k": "query", "n": "search", "or": "search", "r": false, "t": "`$STRING`", "index$": 2 }] }, "k": "http", "m": "GET", "o": "/api/birds", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }, { "lit": "birds" }], "t": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /api/birds/{birdId}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "birdId", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/api/birds/{birdId}", "q": { "exist": ["id"] }, "r": { "param": { "birdId": "id" } }, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }, { "lit": "birds" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "bird", "name__orig": "bird", "Name": "Bird", "name_": "bird", "name-": "bird", "NAME": "BIRD", "index$": 0 }, { "active": true, "entity": "bird", "key$": "BasicBirdFlow", "kind": "basic", "name": "BasicBirdFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "bird_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "bird_ref01", "srcdatavar": "bird_ref01_data", "suffix": "_dt0" }, "m": { "id": "bird01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-bird_ref01" } }], "index$": 1 }] }, 'Bird', { "GET /api/birds": { "protocol": "http", "parameters": [{ "name": "limit", "in": "query", "description": "Maximum number of results to return", "required": false, "schema": { "type": "integer", "default": 100, "minimum": 1, "maximum": 1000 }, "index$": 0 }, { "name": "offset", "in": "query", "description": "Number of results to skip for pagination", "required": false, "schema": { "type": "integer", "default": 0, "minimum": 0 }, "index$": 1 }, { "name": "search", "in": "query", "description": "Search term to filter bird species by name", "required": false, "schema": { "type": "string" }, "index$": 2 }] }, "GET /api/birds/{birdId}": { "protocol": "http", "parameters": [{ "name": "birdId", "in": "path", "description": "Unique identifier of the bird species", "required": true, "schema": { "type": "string" }, "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -80,6 +127,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(bird_ref01_data_dt0.id === bird_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

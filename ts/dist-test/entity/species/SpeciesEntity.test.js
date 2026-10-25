@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Species();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('species hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.VogelwarteSchweizSDK.test(offline).Species().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.VogelwarteSchweizSDK.test(offline).Species()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.VogelwarteSchweizSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Species().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.VogelwarteSchweizSDK.test().Species().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.VogelwarteSchweizSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Species().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Species().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.VogelwarteSchweizSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Species().list({ "family": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.VOGELWARTE_SCHWEIZ_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "characteristics": { "a": true, "h": "Characteristics", "n": "characteristics", "r": false, "t": "`$OBJECT`", "key$": "characteristics", "index$": 0 }, "commonNames": { "a": true, "h": "Common Names", "n": "commonNames", "r": false, "t": "`$OBJECT`", "key$": "commonNames", "index$": 1 }, "conservationStatus": { "a": true, "h": "Conservation Status", "n": "conservationStatus", "r": false, "sh": "Conservation status code", "t": "`$STRING`", "key$": "conservationStatus", "index$": 2 }, "distribution": { "a": true, "h": "Distribution", "n": "distribution", "r": false, "t": "`$OBJECT`", "key$": "distribution", "index$": 3 }, "observationCount": { "a": true, "h": "Observation Count", "n": "observationCount", "r": false, "sh": "Number of recorded observations", "t": "`$INTEGER`", "key$": "observationCount", "index$": 4 }, "scientificName": { "a": true, "h": "Scientific Name", "n": "scientificName", "r": false, "sh": "Scientific name", "t": "`$STRING`", "key$": "scientificName", "index$": 5 }, "speciesId": { "a": true, "h": "Species Id", "n": "speciesId", "r": false, "sh": "Unique species identifier", "t": "`$STRING`", "key$": "speciesId", "index$": 6 }, "taxonomy": { "a": true, "h": "Taxonomy", "n": "taxonomy", "r": false, "t": "`$OBJECT`", "key$": "taxonomy", "index$": 7 } }, "name": "species", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/species", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "family", "or": "family", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "habitat", "or": "habitat", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "status", "or": "status", "r": false, "t": "`$STRING`", "index$": 2 }] }, "k": "http", "m": "GET", "o": "/api/species", "q": { "exist": ["family", "habitat", "status"] }, "r": {}, "s": [{ "lit": "api" }, { "lit": "species" }], "t": { "req": "`reqdata`", "res": "`body.species`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "species", "name__orig": "species", "Name": "Species", "name_": "species", "name-": "species", "NAME": "SPECIES", "index$": 1 }, { "active": true, "entity": "species", "key$": "BasicSpeciesFlow", "kind": "basic", "name": "BasicSpeciesFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "species_ref01" } }], "index$": 0 }] }, 'Species', { "GET /api/species": { "protocol": "http", "parameters": [{ "name": "family", "in": "query", "description": "Filter by bird family", "required": false, "schema": { "type": "string" }, "index$": 0 }, { "name": "habitat", "in": "query", "description": "Filter by habitat type", "required": false, "schema": { "type": "string" }, "index$": 1 }, { "name": "status", "in": "query", "description": "Filter by conservation status", "required": false, "schema": { "type": "string", "enum": ["LC", "NT", "VU", "EN", "CR", "EW", "EX"] }, "index$": 2 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "characteristics": { "a": true, "h": "Characteristics", "n": "characteristics", "r": false, "t": "`$OBJECT`", "key$": "characteristics", "index$": 0 }, "commonNames": { "a": true, "h": "Common Names", "n": "commonNames", "r": false, "t": "`$OBJECT`", "key$": "commonNames", "index$": 1 }, "conservationStatus": { "a": true, "h": "Conservation Status", "n": "conservationStatus", "r": false, "sh": "Conservation status code", "t": "`$STRING`", "key$": "conservationStatus", "index$": 2 }, "distribution": { "a": true, "h": "Distribution", "n": "distribution", "r": false, "t": "`$OBJECT`", "key$": "distribution", "index$": 3 }, "observationCount": { "a": true, "h": "Observation Count", "n": "observationCount", "r": false, "sh": "Number of recorded observations", "t": "`$INTEGER`", "key$": "observationCount", "index$": 4 }, "scientificName": { "a": true, "h": "Scientific Name", "n": "scientificName", "r": false, "sh": "Scientific name", "t": "`$STRING`", "key$": "scientificName", "index$": 5 }, "speciesId": { "a": true, "h": "Species Id", "n": "speciesId", "r": false, "sh": "Unique species identifier", "t": "`$STRING`", "key$": "speciesId", "index$": 6 }, "taxonomy": { "a": true, "h": "Taxonomy", "n": "taxonomy", "r": false, "t": "`$OBJECT`", "key$": "taxonomy", "index$": 7 } }, "name": "species", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/species", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "family", "or": "family", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "habitat", "or": "habitat", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "status", "or": "status", "r": false, "t": "`$STRING`", "index$": 2 }] }, "k": "http", "m": "GET", "o": "/api/species", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }, { "lit": "species" }], "t": { "req": "`reqdata`", "res": "`body.species`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "species", "name__orig": "species", "Name": "Species", "name_": "species", "name-": "species", "NAME": "SPECIES", "index$": 1 }, { "active": true, "entity": "species", "key$": "BasicSpeciesFlow", "kind": "basic", "name": "BasicSpeciesFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "species_ref01" } }], "index$": 0 }] }, 'Species', { "GET /api/species": { "protocol": "http", "parameters": [{ "name": "family", "in": "query", "description": "Filter by bird family", "required": false, "schema": { "type": "string" }, "index$": 0 }, { "name": "habitat", "in": "query", "description": "Filter by habitat type", "required": false, "schema": { "type": "string" }, "index$": 1 }, { "name": "status", "in": "query", "description": "Filter by conservation status", "required": false, "schema": { "type": "string", "enum": ["LC", "NT", "VU", "EN", "CR", "EW", "EX"] }, "index$": 2 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const species_ref01_list = (await species_ref01_ent.list(species_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

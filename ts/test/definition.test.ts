@@ -16,47 +16,65 @@ const PLAN: any[] = [
     "path": "/api/birds",
     "args": [],
     "select": {
-      "limit": "v1",
-      "offset": "v1",
+      "limit": 100,
+      "offset": 0,
       "search": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "limit",
       "offset",
       "search"
+    ],
+    "queryArgs": [
+      {
+        "name": "limit",
+        "wire": "limit"
+      },
+      {
+        "name": "offset",
+        "wire": "offset"
+      },
+      {
+        "name": "search",
+        "wire": "search"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "data": [
         {
+          "id": "x",
+          "scientificName": "x",
           "commonNameDe": "x",
-          "commonNameEn": "x",
           "commonNameFr": "x",
           "commonNameIt": "x",
-          "conservationStatus": "x",
-          "description": "x",
+          "commonNameEn": "x",
           "family": "x",
+          "order": "x",
+          "conservationStatus": "x",
           "habitat": [
             "x"
           ],
-          "id": "x",
-          "imageUrl": "x",
           "length": {
-            "max": 1,
-            "min": 1
-          },
-          "order": "x",
-          "scientificName": "x",
-          "weight": {
-            "max": 1,
-            "min": 1
+            "min": 1,
+            "max": 1
           },
           "wingspan": {
-            "max": 1,
-            "min": 1
-          }
+            "min": 1,
+            "max": 1
+          },
+          "weight": {
+            "min": 1,
+            "max": 1
+          },
+          "imageUrl": "x",
+          "description": "x"
         }
       ],
       "total": 1,
@@ -80,7 +98,12 @@ const PLAN: any[] = [
     ],
     "select": {},
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [],
+    "queryArgs": [],
     "auth": null,
     "status": 200,
     "sample": {
@@ -97,16 +120,16 @@ const PLAN: any[] = [
         "x"
       ],
       "length": {
-        "max": 1,
-        "min": 1
+        "min": 1,
+        "max": 1
       },
       "wingspan": {
-        "max": 1,
-        "min": 1
+        "min": 1,
+        "max": 1
       },
       "weight": {
-        "max": 1,
-        "min": 1
+        "min": 1,
+        "max": 1
       },
       "imageUrl": "x",
       "description": "x"
@@ -126,48 +149,66 @@ const PLAN: any[] = [
       "status": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "family",
       "habitat",
       "status"
+    ],
+    "queryArgs": [
+      {
+        "name": "family",
+        "wire": "family"
+      },
+      {
+        "name": "habitat",
+        "wire": "habitat"
+      },
+      {
+        "name": "status",
+        "wire": "status"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "species": [
         {
-          "characteristics": {
-            "behavior": "x",
-            "diet": "x",
-            "plumage": "x",
-            "size": "x"
-          },
+          "speciesId": "x",
+          "scientificName": "x",
           "commonNames": {
             "de": "x",
-            "en": "x",
             "fr": "x",
-            "it": "x"
+            "it": "x",
+            "en": "x"
+          },
+          "taxonomy": {
+            "kingdom": "x",
+            "phylum": "x",
+            "class": "x",
+            "order": "x",
+            "family": "x",
+            "genus": "x",
+            "species": "x"
           },
           "conservationStatus": "x",
+          "characteristics": {
+            "size": "x",
+            "plumage": "x",
+            "behavior": "x",
+            "diet": "x"
+          },
           "distribution": {
-            "breedingRange": "x",
             "regions": [
               "x"
             ],
+            "breedingRange": "x",
             "winteringRange": "x"
           },
-          "observationCount": 1,
-          "scientificName": "x",
-          "speciesId": "x",
-          "taxonomy": {
-            "class": "x",
-            "family": "x",
-            "genus": "x",
-            "kingdom": "x",
-            "order": "x",
-            "phylum": "x",
-            "species": "x"
-          }
+          "observationCount": 1
         }
       ],
       "count": 1

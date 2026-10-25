@@ -155,12 +155,9 @@ main: kit: entity: bird: {
           }
           m: "GET"
           o: "/api/birds"
-          q: {
-            exist: [
-              "limit"
-              "offset"
-              "search"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -208,6 +205,10 @@ main: kit: entity: bird: {
             param: {
               birdId: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

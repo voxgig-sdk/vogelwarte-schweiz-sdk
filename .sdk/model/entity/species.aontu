@@ -97,12 +97,9 @@ main: kit: entity: species: {
           }
           m: "GET"
           o: "/api/species"
-          q: {
-            exist: [
-              "family"
-              "habitat"
-              "status"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
